@@ -1,0 +1,13 @@
+{% extends 'ideax/base.html' %}
+
+{% block content %}
+    {% for idea in ideas %}
+        <div class="post">
+            <p class="date">
+                {{ idea.created_date|date:'d-m-Y' }}
+            </p>
+            <h1><a href="{% url 'idea_detail' pk=idea.pk %}">{{ idea.title }}</a></h1>
+            <p>{{ idea.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}

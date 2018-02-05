@@ -1,0 +1,21 @@
+{% extends 'ideax/base.html' %}
+
+{% block content %}
+    <div class="post">
+        {% if idea.published_date %}
+          <div class="date">
+            {{ idea.published_date }}
+          </div>
+        {% else %}
+          {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'idea_publish' pk=idea.pk %}" title="Publish"><span class="glyphicon glyphicon-saved"></span></a>
+          {% endif %}
+        {% endif %}
+        {% if user.is_authenticated %}
+          <a class="btn btn-default" href="{% url 'idea_edit' pk=idea.pk %}" title="Edit"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a class="btn btn-default" href="{% url 'idea_remove' pk=idea.pk %}" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>
+        {% endif %}
+        <h1>{{ idea.title }}</h1>
+        <p>{{ idea.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}

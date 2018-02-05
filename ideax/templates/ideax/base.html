@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>Ideia X</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    </head>
+    <body>
+        <div class="page-header">
+          {% if user.is_authenticated %}
+            <a href="{% url 'idea_new' %}" class="top-menu" title="Adicionar ideia"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="{% url 'logout' %}" class="top-menu" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a>
+            <p class="top-menu">Olá {{ user.username }}</p>
+          {% else %}
+            <a href="{% url 'login' %}" class="top-menu" title="Login"><span class="glyphicon glyphicon-lock"></span></a>
+          {% endif %}
+          <h1><a href="/">Ideia X</a></h1>
+        </div>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                {% block content %}
+                {% endblock %}
+                </div>
+            </div>
+        </div>
+      </body>
+    </html>

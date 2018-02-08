@@ -1,0 +1,29 @@
+{% load widget_tweaks %}
+
+
+<div class="post">
+    <div class="date">
+        {{ idea.creation_date }}
+    </div>
+    <h1>
+      {% if link_title == True %}
+        <a onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')">{{ idea.title }}</a>
+      {% else%}
+        {{ idea.title }}
+      {% endif%}
+   </h1>
+    <p>{{ idea.description|linebreaksbr }}</p>
+    <p>{{ idea.phase.name }}</p>
+    <p>Likes:
+    </p>
+    <p class="liked_idea_{{idea.id}}">
+      {{ idea.count_likes }}
+    </p>
+
+    <a onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}')" href="javascript:void(0)"> Like </a>
+    <p>
+      {% if idea.id in ideas_liked %}
+        GOSTEI
+      {% endif %}
+    </p>
+</div>

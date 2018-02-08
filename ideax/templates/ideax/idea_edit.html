@@ -1,9 +1,25 @@
 {% extends 'ideax/base.html' %}
+{% load widget_tweaks %}
+
 
 {% block content %}
     <h1>Nova ideia</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+
+    <form method="post" class="post-form">
+      {% csrf_token %}
+      {% for field in form.visible_fields %}
+        <div class="form-group">
+          <label for="{{field.id_for_label}}">{{field.label}}</label>
+          {{ field|add_class:'form_control' }}
+        </div>
+      {% endfor %}
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">
+          <span class="glyphicon glyphicon-ok"></span> Salvar
+        </button>
+
+      </div>
+
+
     </form>
 {% endblock %}

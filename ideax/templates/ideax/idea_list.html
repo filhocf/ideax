@@ -2,12 +2,12 @@
 
 {% block content %}
     {% for idea in ideas %}
-        <div class="post">
-            <div class="date">
-                {{ idea.published_date }}
-            </div>
-            <h1><a href="{% url 'idea_detail' pk=idea.pk %}">{{ idea.title }}</a></h1>
-            <p>{{ idea.text|linebreaksbr }}</p>
-        </div>
+        {% include 'ideax/includes/idea_detail.html' %}
     {% endfor %}
+    <div class="modal fade" id="modal-idea">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
 {% endblock %}

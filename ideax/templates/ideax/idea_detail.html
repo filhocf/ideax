@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="post">
-        {% if idea.published_date %}
+        {% if idea.creation_date %}
           <div class="date">
-            {{ idea.published_date }}
+            {{ idea.creation_date }}
           </div>
         {% else %}
           {% if user.is_authenticated %}
@@ -16,6 +16,6 @@
           <a class="btn btn-default" href="{% url 'idea_remove' pk=idea.pk %}" title="Remove"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
         <h1>{{ idea.title }}</h1>
-        <p>{{ idea.text|linebreaksbr }}</p>
+        <p>{{ idea.description|linebreaksbr }}</p>
     </div>
 {% endblock %}

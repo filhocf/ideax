@@ -25,35 +25,45 @@ def idea_detail(request, pk):
     return JsonResponse(data)
 
 @login_required
-def idea_new(request):
+def save_idea(request, form, template_name):
+    data = dict()
     if request.method == "POST":
         form = IdeaForm(request.POST)
         if form.is_valid():
             idea = form.save(commit=False)
+            print (idea.id)
             idea.author = request.user
             idea.creation_date = timezone.now()
             idea.phase= Phase.objects.get(name='Crescendo')
             idea.save()
-            return redirect('idea_detail', pk=idea.pk)
+            data['form_is_valid'] = True
+            ideas = Idea.objects.order_by('creation_date')
+            data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', {'ideas': ideas, 'link_title': True,})
+        else:
+            data['form_is_valid'] = False
+
+    context = {'form' : form}
+    data['html_form'] = render_to_string(template_name, context, request=request,)
+
+    return JsonResponse(data)
+
+@login_required
+def idea_new(request):
+    if request.method == "POST":
+        form = IdeaForm(request.POST)
     else:
         form = IdeaForm()
 
-    return render(request, 'ideax/idea_edit.html', {'form': form})
+    return save_idea(request, form, 'ideax/includes/partial_idea_create.html')
 
 @login_required
 def idea_edit(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     if request.method == "POST":
         form = IdeaForm(request.POST, instance=idea)
-        if form.is_valid():
-            idea = form.save(commit=False)
-            idea.author = request.user
-            idea.pusblished_date = timezone.now()
-            idea.save()
-            return redirect('idea_detail', pk=idea.pk)
     else:
         form = IdeaForm(instance=idea)
-    return render(request, 'ideax/idea_edit.html', {'form': form})
+    return save_idea(request, form, 'ideax/includes/partial_idea_update.html')
 
 @login_required
 def idea_draft_list(request):

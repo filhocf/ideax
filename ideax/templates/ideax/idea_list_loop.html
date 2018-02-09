@@ -1,0 +1,9 @@
+{% for idea in ideas %}
+    {% include 'ideax/includes/idea_detail.html' %}
+
+    <button type="button"
+        class="btn btn-warning btn-sm js-update-idea"
+        data-url="{% url 'idea_edit' pk=idea.pk %}">
+      <span class="glyphicon glyphicon-pencil"></span> Edit
+    </button>
+{% endfor %}

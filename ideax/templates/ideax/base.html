@@ -10,7 +10,7 @@
     <body>
         <div class="page-header">
           {% if user.is_authenticated %}
-            <a href="{% url 'idea_new' %}" class="top-menu" title="Adicionar ideia"><span class="glyphicon glyphicon-plus"></span></a>
+            <a href="javascript:void(0)" data-url="/idea/new/" class="top-menu js-create-idea" title="Adicionar ideia"><span class="glyphicon glyphicon-plus"></span></a>
             <a href="{% url 'logout' %}" class="top-menu" title="Logout"><span class="glyphicon glyphicon-log-out"></span></a>
             <p class="top-menu">Olá {{ user.username }}</p>
           {% else %}

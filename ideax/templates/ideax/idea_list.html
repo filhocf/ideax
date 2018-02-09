@@ -1,10 +1,18 @@
 {% extends 'ideax/base.html' %}
 
 {% block content %}
-    {% for idea in ideas %}
-        {% include 'ideax/includes/idea_detail.html' %}
-    {% endfor %}
+    <div id="idea-list">
+      {% include 'ideax/idea_list_loop.html' %}
+    </div>
+
     <div class="modal fade" id="modal-idea">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-idea-crud">
       <div class="modal-dialog">
         <div class="modal-content">
         </div>

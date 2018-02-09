@@ -11,6 +11,9 @@
         <div class="form-group">
           <label for="{{field.id_for_label}}">{{field.label}}</label>
           {{ field|add_class:'form_control' }}
+          {% for error in field.errors %}
+            <p class="help-block">{{ error }}</p>
+          {% endfor %}
         </div>
       {% endfor %}
       <div class="form-group">
@@ -19,7 +22,5 @@
         </button>
 
       </div>
-
-
     </form>
 {% endblock %}

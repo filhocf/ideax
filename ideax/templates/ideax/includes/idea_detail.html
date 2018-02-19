@@ -20,7 +20,22 @@
       {{ idea.count_likes }}
     </p>
 
-    <a onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}')" href="javascript:void(0)"> Like </a>
+    <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '#like_{{idea.id}}', '#dislike_{{idea.id}}')" href="javascript:void(0)">
+      <i class="far fa-thumbs-up" id="like_{{idea.id}}"></i>
+    </a>
+
+    <p>Dislikes:
+    </p>
+    <p class="disliked_idea_{{idea.id}}">
+      {{ idea.count_dislikes }}
+    </p>
+
+    <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '#like_{{idea.id}}', '#dislike_{{idea.id}}')" href="javascript:void(0)">
+      <i class="far fa-thumbs-down" id="dislike_{{idea.id}}" ></i>
+    </a>
+
+
+
     <p>
       {% if idea.id in ideas_liked %}
         GOSTEI

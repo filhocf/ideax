@@ -124,3 +124,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = [
+    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+AUTH_LDAP_SERVER_URI = "ldap://ldap.dataprev.gov.br"
+
+import ldap
+from django_auth_ldap.config import LDAPSearch
+
+AUTH_LDAP_BIND_DN = "uid=rcDTPUser,ou=Users,o=Builtin,dc=gov,dc=br"
+AUTH_LDAP_BIND_PASSWORD = "rcDTPUserPWD"
+AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=DATAPREV,dc=gov,dc=br",
+    ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+AUTH_LDAP_START_TLS = True
+
+import logging
+
+logger = logging.getLogger('django_auth_ldap')
+logger.addHandler(logging.StreamHandler())
+logger.setLevel(logging.DEBUG)

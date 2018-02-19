@@ -1,29 +1,58 @@
 {% load widget_tweaks %}
 
-
-<div class="post">
-    <div class="date">
-        {{ idea.creation_date }}
-    </div>
+<div class="idea">
+  <div class="idea-header">
     <h1>
       {% if link_title == True %}
-        <a onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')">{{ idea.title }}</a>
+        <a onclick="openModal('/idea/1/')">{{ idea.title }}</a>
       {% else%}
         {{ idea.title }}
       {% endif%}
-   </h1>
-    <p>{{ idea.description|linebreaksbr }}</p>
-    <p>{{ idea.phase.name }}</p>
-    <p>Likes:
-    </p>
-    <p class="liked_idea_{{idea.id}}">
-      {{ idea.count_likes }}
-    </p>
-
-    <a onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}')" href="javascript:void(0)"> Like </a>
+    </h1>
     <p>
-      {% if idea.id in ideas_liked %}
-        GOSTEI
-      {% endif %}
+      {{ idea.creation_date }}
     </p>
+  </div>
+  <div class="idea-desc">
+    <p><span class="bold">Descrição: </span>{{ idea.description|linebreaksbr }}</p>
+  </div>
+  <div class="idea-footer">
+    <p class="phase">{{ idea.phase.name }}</p>
+
+
+
+<div class="like-menu">
+<div class="liked">
+
+  <a onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}')" href="javascript:void(0)">
+    {% if idea.id in ideas_liked %}
+      <i class="fas fa-thumbs-up"></i>
+    {% else%}
+      <i class="far fa-thumbs-up"></i>
+    {% endif %}
+  </a>
+  <p class="liked_idea_{{idea.id}} ">
+    {{ idea.count_likes }}
+  </p>
+
+
+
+</div>
+<div class="disliked">
+  <a onclick="vote('/idea/2/like/', '.liked_idea_1')" href="javascript:void(0)"><i class="far fa-thumbs-down"></i></i></i></a>
+<p class="liked_idea_1 ">
+0
+</p>
+</div>
+
+</div>
+
+
+    <button type="button"
+        class="btn btn-sm js-update-idea"
+        data-url="{% url 'idea_edit' pk=idea.pk %}">
+      <span class="glyphicon glyphicon-pencil"></span> Edit
+    </button>
+  </div>
+
 </div>

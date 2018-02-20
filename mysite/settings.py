@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from decouple import config
+from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '7@=l@j#@%0j3=11jn!c6ewl$o3ygn0dr8uphfy^s5ks56ht(fq'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.pythonanywhere.com']
 
@@ -75,11 +77,9 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
 
 
@@ -130,16 +130,16 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-AUTH_LDAP_SERVER_URI = "ldap://ldap.dataprev.gov.br"
+AUTH_LDAP_SERVER_URI = config('AUTH_LDAP_SERVER_URI', default='ldap://ldap.example.com')
 
 import ldap
 from django_auth_ldap.config import LDAPSearch
 
-AUTH_LDAP_BIND_DN = "uid=rcDTPUser,ou=Users,o=Builtin,dc=gov,dc=br"
-AUTH_LDAP_BIND_PASSWORD = "rcDTPUserPWD"
-AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=DATAPREV,dc=gov,dc=br",
+AUTH_LDAP_BIND_DN = config('AUTH_LDAP_BIND_DN', default='')
+AUTH_LDAP_BIND_PASSWORD = config('AUTH_LDAP_BIND_PASSWORD', default='')
+AUTH_LDAP_USER_SEARCH = LDAPSearch(config('AUTH_LDAP_USER_SEARCH', default='ou=users,dc=example,dc=com'),
     ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
-AUTH_LDAP_START_TLS = True
+AUTH_LDAP_START_TLS = config('AUTH_LDAP_START_TLS', default=0, cast=bool)
 
 import logging
 

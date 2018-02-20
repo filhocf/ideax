@@ -17,5 +17,6 @@ urlpatterns = [
     path('criterion/new/', views.criterion_new, name='criterion_new'),
     path('criterion/<int:pk>/edit/', views.criterion_edit, name='criterion_edit'),
     path('criterion/<int:pk>/remove/', views.criterion_remove, name='criterion_remove'),
-    path('idea/<int:pk>/like/', views.like_popular_vote, name='like_ideia')
+    path('idea/<int:pk>/like/', views.like_popular_vote, name='like_ideia'),
+    path('idea/<int:pk>/dislike/', views.like_popular_vote, name='dislike_ideia')
 ]

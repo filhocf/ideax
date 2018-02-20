@@ -19,12 +19,30 @@ $("#modal-idea").on("submit", ".js-book-create-form", function () {
 });
 */
 
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 function openModal (url){
   $.ajax({
     url: url,
     type: 'get',
     dataType: 'json',
-    beforeSend: function (){
+    beforeSend: function (xhr, settings){
+      xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+
       $("#modal-idea").modal("show");
     },
     success: function (data){
@@ -33,16 +51,31 @@ function openModal (url){
   });
 }
 
-function vote(url, id){
+function vote(url, idLike, idDislike, aLike, aDislike){
+  var lin = $(this);
   $.ajax({
     url: url,
     type: 'get',
     dataType: 'json',
     success: function (data){
-      $(id).html(data.qtde_votes);
+      $(idLike).html(data.qtde_votes_likes);
+      $(idDislike).html(data.qtde_votes_dislikes);
+
+      if (data.class == null){
+        $(aLike).removeClass("fas").addClass("far");
+        $(aDislike).removeClass("fas").addClass("far");
+      } else if (data.class == true){
+        $(aLike).addClass("fas");
+        $(aDislike).removeClass("fas").addClass("far");
+      }else {
+        $(aLike).removeClass("fas").addClass("far");
+        $(aDislike).addClass("fas");
+      }
     }
   });
 }
+
+
 
 $(function () {
 
@@ -99,7 +132,10 @@ $(function () {
   $(".js-create-idea").click(loadForm);
   $("#modal-idea-crud").on("submit", ".js-idea-create-form", saveForm);
 
-  $(".js-update-idea").click(loadForm);
+  $(document).on("click", ".js-update-idea", loadForm);
   $("#modal-idea-crud").on("submit", ".js-idea-update-form", saveForm);
+
+  $(document).on("click", ".js-remove-idea", loadForm);
+  $("#modal-idea-crud").on("submit", ".js-idea-remove-form", saveForm);
 
 });

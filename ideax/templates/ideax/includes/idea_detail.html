@@ -1,29 +1,66 @@
 {% load widget_tweaks %}
 
-
-<div class="post">
-    <div class="date">
-        {{ idea.creation_date }}
-    </div>
+<div class="idea">
+  <div class="idea-header">
     <h1>
       {% if link_title == True %}
         <a onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')">{{ idea.title }}</a>
       {% else%}
         {{ idea.title }}
       {% endif%}
-   </h1>
-    <p>{{ idea.description|linebreaksbr }}</p>
-    <p>{{ idea.phase.name }}</p>
-    <p>Likes:
-    </p>
-    <p class="liked_idea_{{idea.id}}">
-      {{ idea.count_likes }}
-    </p>
 
-    <a onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}')" href="javascript:void(0)"> Like </a>
+    </h1>
+
     <p>
-      {% if idea.id in ideas_liked %}
-        GOSTEI
-      {% endif %}
+      {{ idea.creation_date }}
     </p>
+  </div>
+  <div class="idea-desc">
+    <p><span class="bold">Descrição: </span>{{ idea.description|linebreaksbr }}</p>
+  </div>
+  <div class="idea-footer">
+    <p class="phase">{{ idea.phase.name }}</p>
+
+
+
+    <div class="like-menu">
+      <div class="liked">
+
+        <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+          <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
+        </a>
+        <p class="liked_idea_{{idea.id}} ">
+          {{ idea.count_likes }}
+        </p>
+
+
+
+      </div>
+      <div class="disliked">
+        <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+          <i class="{%if idea.id in ideas_disliked %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
+        </a>
+        <p class="disliked_idea_{{idea.id}}">
+          {{ idea.count_dislikes }}
+        </p>
+      </div>
+
+    </div>
+
+
+  {% if idea.id in ideas_created_by_me %}
+    <button type="button"
+        class="btn btn-sm js-update-idea"
+        data-url="{% url 'idea_edit' pk=idea.pk %}">
+      <span class="glyphicon glyphicon-pencil"></span> Edit
+    </button>
+
+    <button type="button"
+      class="btn btn-danger btn-sm js-remove-idea"
+      data-url="{% url 'idea_remove' pk=idea.pk %}">
+      <span class="glyphicon glyphicon-trash"></span> Delete
+    </button>
+  {% endif%}
+  </div>
+
 </div>

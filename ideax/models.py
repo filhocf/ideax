@@ -44,8 +44,13 @@ class Idea(models.Model):
     author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
     phase = models.ForeignKey(Phase,on_delete=models.PROTECT)
 
+    def count_popular_vote(self, like_boolean):
+        return self.popular_vote_set.filter(like=like_boolean).count()
+    def count_dislikes(self):
+        return self.count_popular_vote(False)
     def count_likes(self):
-        return self.popular_vote_set.filter(like=True).count()
+        return self.count_popular_vote(True)
+
 
 class Vote(models.Model):
     evaluation_item = models.ForeignKey(Evaluation_Item,on_delete=models.PROTECT)

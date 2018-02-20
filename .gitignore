@@ -7,4 +7,4 @@ db.sqlite3
 .DS_Store
 *bkp*
 _config.yml
-.env
+.env  

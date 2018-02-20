@@ -62,13 +62,11 @@ function vote(url, idLike, idDislike, aLike, aDislike){
       $(idDislike).html(data.qtde_votes_dislikes);
 
       if (data.class == null){
-        $(aLike).removeClass("fas");
-        $(aLike).addClass("far");
-        $(aDislike).removeClass("fas");
-        $(aDislike).addClass("far");
+        $(aLike).removeClass("fas").addClass("far");
+        $(aDislike).removeClass("fas").addClass("far");
       } else if (data.class == true){
         $(aLike).addClass("fas");
-        $(aDislike).removeClass("fas");
+        $(aDislike).removeClass("fas").addClass("far");
       }else {
         $(aLike).removeClass("fas").addClass("far");
         $(aDislike).addClass("fas");

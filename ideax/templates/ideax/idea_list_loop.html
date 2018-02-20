@@ -1,17 +1,3 @@
 {% for idea in ideas %}
     {% include 'ideax/includes/idea_detail.html' %}
-
-    {% if idea.id in ideas_created_by_me %}
-      <button type="button"
-          class="btn btn-warning btn-sm js-update-idea"
-          data-url="{% url 'idea_edit' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-pencil"></span> Edit
-      </button>
-
-      <button type="button"
-        class="btn btn-danger btn-sm js-remove-idea"
-        data-url="{% url 'idea_remove' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-trash"></span> Delete
-      </button>
-    {% endif%}
 {% endfor %}

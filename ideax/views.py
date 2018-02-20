@@ -10,10 +10,18 @@ from .models import Idea, Phase, Criterion,Popular_Vote
 from .forms import IdeaForm, PhaseForm, CriterionForm
 
 def idea_list(request):
-    ideas = Idea.objects.order_by('creation_date')
-    ideas_liked = get_ideas_liked(request)
-    ideas_created_by_me = get_ideas_created(request)
-    return render(request, 'ideax/idea_list.html', {'ideas': ideas, 'ideas_liked' : list(ideas_liked), 'link_title': True, 'ideas_created_by_me': ideas_created_by_me,})
+    ideas = get_ideas_init(request)
+    return render(request, 'ideax/idea_list.html', ideas)
+
+
+def get_ideas_init(request):
+    ideas_dic = dict()
+    ideas_dic['ideas'] = Idea.objects.order_by('creation_date')
+    ideas_dic['ideas_liked'] = get_ideas_voted(request, True)
+    ideas_dic['ideas_disliked'] = get_ideas_voted(request, False)
+    ideas_dic['ideas_created_by_me'] = get_ideas_created(request)
+    ideas_dic['link_title'] = True
+    return ideas_dic
 
 """
 def idea_detail(request, pk):
@@ -38,9 +46,8 @@ def save_idea(request, form, template_name):
             idea.phase= Phase.objects.get(name='Crescendo')
             idea.save()
             data['form_is_valid'] = True
-            ideas = Idea.objects.order_by('creation_date')
-            ideas_created_by_me = get_ideas_created(request)
-            data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', {'ideas': ideas, 'link_title': True, 'ideas_created_by_me': ideas_created_by_me,})
+            ideas = get_ideas_init(request)
+            data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
         else:
             data['form_is_valid'] = False
 
@@ -88,9 +95,8 @@ def idea_remove(request, pk):
     if request.method == 'POST':
         idea.delete()
         data['form_is_valid'] = True
-        ideas = Idea.objects.order_by('creation_date')
-        ideas_created_by_me = get_ideas_created(request)
-        data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', {'ideas': ideas, 'link_title': True, 'ideas_created_by_me': ideas_created_by_me,})
+        ideas = get_ideas_init(request)
+        data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
     else:
         context = {'idea' : idea}
         data['html_form'] = render_to_string('ideax/includes/partial_idea_remove.html', context, request=request,)
@@ -196,12 +202,12 @@ def like_popular_vote(request, pk):
 
     return JsonResponse(data)
 
-def get_ideas_liked(request):
-    ideas_liked = []
+def get_ideas_voted(request, vote):
+    ideas_voted = []
     if request.user.is_authenticated:
-        ideas_liked = Popular_Vote.objects.filter(voter=request.user).values_list('idea_id',flat=True)
+        ideas_voted = Popular_Vote.objects.filter(like=vote, voter=request.user).values_list('idea_id',flat=True)
 
-    return ideas_liked
+    return ideas_voted
 
 
 def get_ideas_created(request):

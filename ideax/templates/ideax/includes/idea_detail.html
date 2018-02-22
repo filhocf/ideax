@@ -1,6 +1,6 @@
 {% load widget_tweaks %}
 
-<div class="idea">
+<div class="idea crescendo">
   <div class="idea-header">
     <h1>
       {% if link_title == True %}
@@ -57,7 +57,7 @@
       </button>
 
       <button type="button"
-        class="btn btn-danger btn-sm js-remove-idea"
+        class="btn btn-sm js-remove-idea"
         data-url="{% url 'idea_remove' pk=idea.pk %}">
         <span class="glyphicon glyphicon-trash"></span> Delete
       </button>

@@ -1,3 +1,7 @@
+body{
+  font-family: 'Open Sans', sans-serif;
+}
+
 .main-header{
   background-color: #46586A;
   border: #132537 solid 1px;
@@ -7,12 +11,12 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0 40px;
-  min-height: 120px;
+  padding: 0 20px;
+  min-height: 80px;
   -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
-  margin-bottom: 50px;
+  //margin-bottom: 50px;
 }
 
 .main-header .title{
@@ -43,7 +47,7 @@
 }
 
 nav.phase-filter {
-  margin: 40px;
+  margin: 30px;
   display: flex;
   justify-content: space-around;
 }
@@ -163,7 +167,7 @@ div.idea{
   -moz-box-shadow: 0 .28571429rem 1.42857143rem rgba(79,79,79,.1);
   box-shadow: 0 .28571429rem 1.42857143rem rgba(79,79,79,.1);
   border: 1px solid #E5E5E5;   */
-
+  border-radius: 14px;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   margin: 0 0 50px 0;
@@ -174,7 +178,7 @@ div.idea{
   min-height: 300px;
   position: relative;
   border: 1px solid #E1E1E1;
-  box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
+   box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
   -webkit-box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
   -moz-box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
 
@@ -188,9 +192,15 @@ div.idea{
   padding-bottom: 10px;
 }
 
+.idea-header h1{
+  cursor: pointer;
+  font-size: 1.6em;
+}
+
 .idea-header h1,
 .idea-header p{
   margin: 0;
+
 }
 
 .idea-desc{
@@ -209,9 +219,13 @@ div.idea{
   align-items: center;
   position: absolute;
   bottom: 0;
-  left: 0;
-  margin-bottom: 10px;
+  margin: 0;
   width: 100%;
+  border-top: 1px solid #E1E1E1;
+  max-width: 524px;
+  padding: 10px 0;
+
+
 
 }
 
@@ -221,17 +235,43 @@ div.idea{
 }
 
 .idea-footer .button-group button{
-  background-color: #E1E1E1;
-  border: 1px solid #AEAEAE;
+  background-color: #E1E1E1;border: 1px solid #AEAEAE;
 
-}
-
-.idea-footer .button-group button:hover{
-  background-position: initial;
 }
 
 .phase{
-  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+}
+
+.phase{
+  font-size: 1.3em;
+  font-weight: 400;
+}
+
+.phase-indicator{
+  border-radius: 10px;
+
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.crescendo{
+  border-left: 5px solid #065B8D !important;
+
+}
+
+.avaliando{
+  border-left: 5px solid #D95578 !important;
+}
+
+.agindo{
+  border-left: 5px solid #BADA55 !important;
+}
+
+.feita{
+  border-left: 5px solid #f68b2c !important;
 }
 
 .like-menu{
@@ -258,8 +298,34 @@ div.idea{
 
 .disliked,
 .disliked a{
-  margin-left: 8px;
+  margin-left: 10px;
   color: #FF0400;
+}
+
+footer{
+  background: #fafafa;
+  border-top: 1px solid #E6E6E6;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+}
+
+footer{
+  text-align: center;
+}
+
+footer p{
+  margin: 0;
+}
+
+.alpha-version{
+  display: block;
+  float: right;
 }
 
 

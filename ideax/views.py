@@ -5,9 +5,10 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
-
-from .models import Idea, Phase, Criterion,Popular_Vote
-from .forms import IdeaForm, PhaseForm, CriterionForm
+from django.db.models import Count, Case, When
+from .models import Idea, Criterion,Popular_Vote, Phase
+from .forms import IdeaForm, CriterionForm,IdeaFormUpdate
+from django import forms
 
 def idea_list(request):
     ideas = get_ideas_init(request)
@@ -16,7 +17,7 @@ def idea_list(request):
 
 def get_ideas_init(request):
     ideas_dic = dict()
-    ideas_dic['ideas'] = Idea.objects.order_by('creation_date')
+    ideas_dic['ideas'] = Idea.objects.annotate(count_like=Count(Case(When(popular_vote__like = True, then=1)))).order_by('-count_like')
     ideas_dic['ideas_liked'] = get_ideas_voted(request, True)
     ideas_dic['ideas_disliked'] = get_ideas_voted(request, False)
     ideas_dic['ideas_created_by_me'] = get_ideas_created(request)
@@ -43,7 +44,7 @@ def save_idea(request, form, template_name):
             idea = form.save(commit=False)
             idea.author = request.user
             idea.creation_date = timezone.now()
-            idea.phase= Phase.objects.get(name='Crescendo')
+            idea.phase= Phase.GROW
             idea.save()
             data['form_is_valid'] = True
             ideas = get_ideas_init(request)
@@ -72,9 +73,9 @@ def idea_new(request):
 def idea_edit(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     if request.method == "POST":
-        form = IdeaForm(request.POST, instance=idea)
+        form = IdeaFormUpdate(request.POST, instance=idea)
     else:
-        form = IdeaForm(instance=idea)
+        form = IdeaFormUpdate(instance=idea)
     return save_idea(request, form, 'ideax/includes/partial_idea_update.html')
 
 @login_required
@@ -102,7 +103,7 @@ def idea_remove(request, pk):
         data['html_form'] = render_to_string('ideax/includes/partial_idea_remove.html', context, request=request,)
 
     return JsonResponse(data)
-
+"""
 @login_required
 def phase_new(request):
     if request.method == "POST":
@@ -139,7 +140,7 @@ def phase_remove(request, pk):
     phase = get_object_or_404(Phase, pk=pk)
     phase.delete()
     return redirect('phase_list')
-
+"""
 @login_required
 def criterion_new(request):
     if request.method == "POST":

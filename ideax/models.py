@@ -19,12 +19,19 @@ class Idea(models.Model):
         return self.title
 """
 
-class Phase(models.Model):
-    name = models.CharField(max_length=30)
-    description = models.CharField(max_length=300)
-
-    def __str__(self):
-        return self.name
+class Phase():
+    GROW = 1
+    RATE = 2
+    ACT = 3
+    DONE = 4
+    PHASES = (
+        (GROW, 'Crescendo'),
+    )
+    PHASES_MANAGER = (
+        (RATE, 'Avaliando'),
+        (ACT, 'Agindo'),
+        (RATE, 'Feito'),
+    )
 
 class Criterion(models.Model):
     description = models.CharField(max_length=40)
@@ -42,7 +49,9 @@ class Idea(models.Model):
     description = models.TextField(max_length=500)
     creation_date = models.DateTimeField('data criação')
     author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
-    phase = models.ForeignKey(Phase,on_delete=models.PROTECT)
+    #phase = models.ForeignKey(Phase,on_delete=models.PROTECT)
+    phase = models.PositiveSmallIntegerField(choices=Phase.PHASES)
+
 
     def count_popular_vote(self, like_boolean):
         return self.popular_vote_set.filter(like=like_boolean).count()

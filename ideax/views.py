@@ -11,11 +11,15 @@ from .forms import IdeaForm, CriterionForm,IdeaFormUpdate
 from django import forms
 
 
+def index(request):
+    return render(request, 'ideax/index.html')
+
+@login_required
 def idea_list(request):
     ideas = get_ideas_init(request)
     return render(request, 'ideax/idea_list.html', ideas)
 
-
+@login_required
 def get_ideas_init(request):
     ideas_dic = dict()
     ideas_dic['ideas'] = Idea.objects.annotate(count_like=Count(Case(When(popular_vote__like = True, then=1)))).order_by('-count_like')

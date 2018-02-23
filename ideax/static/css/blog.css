@@ -49,6 +49,7 @@ nav.phase-filter {
 }
 
 ul.phase-list {
+  overflow: auto;
   list-style-type: none;
 }
 
@@ -103,6 +104,10 @@ div.login{
   display: flex;
   width: 40%;
   justify-content: space-between;
+}
+
+.content{
+  margin-bottom: 25px;
 }
 
 
@@ -204,6 +209,10 @@ div.idea{
 
 }
 
+.date{
+  font-size: 0.9em;
+}
+
 .idea-desc{
   text-align: left;
   margin-top: 20px;
@@ -245,9 +254,42 @@ div.idea{
   align-items: center;
 }
 
-.phase{
+.phase-name{
   font-size: 1.3em;
   font-weight: 400;
+}
+
+.phase-symbol{
+  display: flex;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 5px;
+  font-size: 1.6em;
+
+}
+
+.crescendo-phase{
+ // background: #065B8D;
+  color: #065B8D;
+
+}
+
+.avaliando-phase{
+ // background: #D95578;
+  color: #D95578;
+
+
+}
+
+.agindo-phase{
+  color: #f68b2c;
+}
+
+.feita-phase{
+  color: #BADA55;
 }
 
 .phase-indicator{
@@ -268,11 +310,11 @@ div.idea{
 }
 
 .agindo{
-  border-left: 5px solid #BADA55 !important;
+  border-left: 5px solid #f68b2c !important;
 }
 
 .feita{
-  border-left: 5px solid #f68b2c !important;
+  border-left: 5px solid #BADA55 !important;
 }
 
 .like-menu{
@@ -291,12 +333,6 @@ div.idea{
 
 }
 
-.like-menu a{
-  text-decoration: none;
-  outline: 0;
-}
-
-
 
 .liked,
 .liked a{
@@ -305,39 +341,87 @@ div.idea{
 
 .disliked,
 .disliked a{
-  margin-left: 10px;
+  margin-left: 5px;
   color: #FF040099;
 }
 
-footer{
+footer {
   background: #fafafa;
   border-top: 1px solid #E6E6E6;
   min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  width: 100%;
+  bottom: 0;
 }
 
-footer p{
+footer p {
   margin: 0;
 }
 
+.modal-dialog {
+  margin-top: 200px;
+}
+
+.modal-content {
+  border-left: 5px solid #36aed3;
+  font-family: 'Open Sans', sans-serif;
+  padding: 0 10px 0 5px;
+}
+
+.modal-header h4 {
+    display: inline;
+}
+
+.modal-header svg{
+    font-size: 2em;
+    margin-right: 10px;
+    color: #36aed3;
+}
+
+.modal-title {
+  font-size: 1.6em;
+}
+
+.modal-body textarea {
+  min-width: 540px;
+  width: 100%;
+}
 
 
-@media (min-width: 321px) and (max-width: 480px)
-{
-.main-header{
+input#id_title {
+  width: 100%;
+}
+
+.modal-body label {
+  display: block;
+}
+
+.modal-footer button {
+  background: #36aed3;
+  border: 1px solid #36aed3;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5em;
+  -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+-moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.75);
+
+}
+
+
+
+@media (min-width: 321px) and (max-width: 480px) {
+  .main-header {
     min-height: 150px;
     justify-content: space-around;
   }
-
-
-  .login p{
+  .login p {
     display: none;
-
   }
-
-  .menu{
+  .menu {
     //width: 65%;
     flex-basis: 100%;
     order: 1;
@@ -345,20 +429,15 @@ footer p{
   }
 }
 
-@media (min-width: 481px) and (max-width: 767px)
-{
-  .main-header{
+@media (min-width: 481px) and (max-width: 767px) {
+  .main-header {
     min-height: 150px;
     justify-content: space-around;
   }
-
-
-  .login p{
+  .login p {
     display: none;
-
   }
-
-  .menu{
+  .menu {
     //width: 65%;
     flex-basis: 100%;
     order: 1;
@@ -366,24 +445,19 @@ footer p{
   }
 }
 
-@media (min-width: 768px) and (max-width: 1024px)
-{
-  .main-header{
+@media (min-width: 768px) and (max-width: 1024px) {
+  .main-header {
     min-height: 150px;
   }
-
-  .icon{
+  .icon {
     font-size: 0.8em;
   }
-
-  .login p{
+  .login p {
     display: none;
   }
-
-  .menu{
+  .menu {
     width: 65%;
   }
-
 }
 
 .like {

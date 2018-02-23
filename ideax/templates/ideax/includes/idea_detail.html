@@ -50,21 +50,17 @@
     </div>
 
 
-  {% if idea.id in ideas_created_by_me %}
+    {% if idea.id in ideas_created_by_me %}
     <div class="button-group">
-      <button type="button"
-          class="btn btn-sm js-update-idea"
-          data-url="{% url 'idea_edit' pk=idea.pk %}">
+      <button type="button" class="btn btn-sm js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}">
         <span class="glyphicon glyphicon-pencil"></span> Edit
       </button>
 
-      <button type="button"
-        class="btn btn-sm js-remove-idea"
-        data-url="{% url 'idea_remove' pk=idea.pk %}">
+      <button type="button" class="btn btn-sm js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}">
         <span class="glyphicon glyphicon-trash"></span> Delete
       </button>
     </div>
-  {% endif%}
+    {% endif%}
   </div>
 
 </div>

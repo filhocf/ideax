@@ -1,6 +1,15 @@
 {% extends 'ideax/base.html' %}
 
 {% block content %}
+    <nav class="phase-filter">
+      <ul class="phase-list">
+        <li class="active"><a href="#">Todas</a></li>
+        <li><a href="#">Crescendo</a></li>
+        <li><a href="#">Avaliando</a></li>
+        <li><a href="#">Agindo</a></li>
+        <li><a href="#">Feitas</a></li>
+      </ul>
+    </nav>
     <div id="idea-list">
       {% include 'ideax/idea_list_loop.html' %}
     </div>

@@ -25,16 +25,12 @@
 
     <div class="like-menu">
       <div class="liked">
-
         <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
           <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
           <p class="liked_idea_{{idea.id}} ">
             {{ idea.count_likes }}
           </p>
         </a>
-
-
-
       </div>
       <div class="disliked">
         <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
@@ -44,25 +40,20 @@
           </p>
         </a>
       </div>
-
     </div>
 
 
-  {% if idea.id in ideas_created_by_me %}
+    {% if idea.id in ideas_created_by_me %}
     <div class="button-group">
-      <button type="button"
-          class="btn btn-sm js-update-idea"
-          data-url="{% url 'idea_edit' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-pencil"></span> Editar
+      <button type="button" class="btn btn-sm js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
       </button>
 
-      <button type="button"
-        class="btn btn-sm js-remove-idea"
-        data-url="{% url 'idea_remove' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-trash"></span> Apagar
+      <button type="button" class="btn btn-sm js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}">
+        <span class="glyphicon glyphicon-trash"></span> Delete
       </button>
     </div>
-  {% endif%}
+    {% endif%}
   </div>
 
 </div>

@@ -1,6 +1,6 @@
 {% load widget_tweaks %}
 
-<div class="idea crescendo">
+<div class="idea {{idea.get_phase_display|lower}}">
   <div class="idea-header">
     <h1>
       {% if link_title == True %}
@@ -12,7 +12,7 @@
     </h1>
 
     <p>
-      {{ idea.creation_date }}
+      {{ idea.creation_date|date:"d/m/Y" }}
     </p>
   </div>
   <div class="idea-desc">
@@ -28,10 +28,10 @@
 
         <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
           <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
+          <p class="liked_idea_{{idea.id}} ">
+            {{ idea.count_likes }}
+          </p>
         </a>
-        <p class="liked_idea_{{idea.id}} ">
-          {{ idea.count_likes }}
-        </p>
 
 
 
@@ -39,10 +39,10 @@
       <div class="disliked">
         <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
           <i class="{%if idea.id in ideas_disliked %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
+          <p class="disliked_idea_{{idea.id}}">
+            {{ idea.count_dislikes }}
+          </p>
         </a>
-        <p class="disliked_idea_{{idea.id}}">
-          {{ idea.count_dislikes }}
-        </p>
       </div>
 
     </div>
@@ -53,13 +53,13 @@
       <button type="button"
           class="btn btn-sm js-update-idea"
           data-url="{% url 'idea_edit' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-pencil"></span> Edit
+        <span class="glyphicon glyphicon-pencil"></span> Editar
       </button>
 
       <button type="button"
         class="btn btn-sm js-remove-idea"
         data-url="{% url 'idea_remove' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-trash"></span> Delete
+        <span class="glyphicon glyphicon-trash"></span> Apagar
       </button>
     </div>
   {% endif%}

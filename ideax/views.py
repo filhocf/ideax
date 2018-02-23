@@ -10,6 +10,7 @@ from .models import Idea, Criterion,Popular_Vote, Phase
 from .forms import IdeaForm, CriterionForm,IdeaFormUpdate
 from django import forms
 
+
 def idea_list(request):
     ideas = get_ideas_init(request)
     return render(request, 'ideax/idea_list.html', ideas)
@@ -24,11 +25,7 @@ def get_ideas_init(request):
     ideas_dic['link_title'] = True
     return ideas_dic
 
-"""
-def idea_detail(request, pk):
-    idea = get_object_or_404(Idea, pk=pk)
-    return render(request, 'ideax/idea_detail.html', {'idea': idea})
-"""
+@login_required
 def idea_detail(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     context={'idea': idea, 'link_title': False}
@@ -37,14 +34,15 @@ def idea_detail(request, pk):
     return JsonResponse(data)
 
 @login_required
-def save_idea(request, form, template_name):
+def save_idea(request, form, template_name, new=False):
     data = dict()
     if request.method == "POST":
         if form.is_valid():
             idea = form.save(commit=False)
             idea.author = request.user
-            idea.creation_date = timezone.now()
-            idea.phase= Phase.GROW
+            if new:
+                idea.creation_date = timezone.now()
+                idea.phase= Phase.GROW
             idea.save()
             data['form_is_valid'] = True
             ideas = get_ideas_init(request)
@@ -65,7 +63,7 @@ def idea_new(request):
         form = IdeaForm()
 
     if request.is_ajax():
-        return save_idea(request, form, 'ideax/includes/partial_idea_create.html')
+        return save_idea(request, form, 'ideax/includes/partial_idea_create.html', True)
     else:
         return redirect('idea_list')
 
@@ -73,9 +71,9 @@ def idea_new(request):
 def idea_edit(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     if request.method == "POST":
-        form = IdeaFormUpdate(request.POST, instance=idea)
+        form = IdeaForm(request.POST, instance=idea)
     else:
-        form = IdeaFormUpdate(instance=idea)
+        form = IdeaForm(instance=idea)
     return save_idea(request, form, 'ideax/includes/partial_idea_update.html')
 
 @login_required
@@ -203,6 +201,7 @@ def like_popular_vote(request, pk):
 
     return JsonResponse(data)
 
+@login_required
 def get_ideas_voted(request, vote):
     ideas_voted = []
     if request.user.is_authenticated:
@@ -210,7 +209,7 @@ def get_ideas_voted(request, vote):
 
     return ideas_voted
 
-
+@login_required
 def get_ideas_created(request):
     ideas_created = []
     if request.user.is_authenticated:

@@ -5,29 +5,31 @@ from django.http import JsonResponse
 from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
+from django.db.models import Count, Case, When
+from .models import Idea, Criterion,Popular_Vote, Phase
+from .forms import IdeaForm, CriterionForm,IdeaFormUpdate
+from django import forms
 
-from .models import Idea, Phase, Criterion,Popular_Vote
-from .forms import IdeaForm, PhaseForm, CriterionForm
 
+def index(request):
+    return render(request, 'ideax/index.html')
+
+@login_required
 def idea_list(request):
     ideas = get_ideas_init(request)
     return render(request, 'ideax/idea_list.html', ideas)
 
-
+@login_required
 def get_ideas_init(request):
     ideas_dic = dict()
-    ideas_dic['ideas'] = Idea.objects.order_by('creation_date')
+    ideas_dic['ideas'] = Idea.objects.annotate(count_like=Count(Case(When(popular_vote__like = True, then=1)))).order_by('-count_like')
     ideas_dic['ideas_liked'] = get_ideas_voted(request, True)
     ideas_dic['ideas_disliked'] = get_ideas_voted(request, False)
     ideas_dic['ideas_created_by_me'] = get_ideas_created(request)
     ideas_dic['link_title'] = True
     return ideas_dic
 
-"""
-def idea_detail(request, pk):
-    idea = get_object_or_404(Idea, pk=pk)
-    return render(request, 'ideax/idea_detail.html', {'idea': idea})
-"""
+@login_required
 def idea_detail(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     context={'idea': idea, 'link_title': False}
@@ -36,14 +38,15 @@ def idea_detail(request, pk):
     return JsonResponse(data)
 
 @login_required
-def save_idea(request, form, template_name):
+def save_idea(request, form, template_name, new=False):
     data = dict()
     if request.method == "POST":
         if form.is_valid():
             idea = form.save(commit=False)
             idea.author = request.user
-            idea.creation_date = timezone.now()
-            idea.phase= Phase.objects.get(name='Crescendo')
+            if new:
+                idea.creation_date = timezone.now()
+                idea.phase= Phase.GROW
             idea.save()
             data['form_is_valid'] = True
             ideas = get_ideas_init(request)
@@ -64,7 +67,7 @@ def idea_new(request):
         form = IdeaForm()
 
     if request.is_ajax():
-        return save_idea(request, form, 'ideax/includes/partial_idea_create.html')
+        return save_idea(request, form, 'ideax/includes/partial_idea_create.html', True)
     else:
         return redirect('idea_list')
 
@@ -102,7 +105,7 @@ def idea_remove(request, pk):
         data['html_form'] = render_to_string('ideax/includes/partial_idea_remove.html', context, request=request,)
 
     return JsonResponse(data)
-
+"""
 @login_required
 def phase_new(request):
     if request.method == "POST":
@@ -139,7 +142,7 @@ def phase_remove(request, pk):
     phase = get_object_or_404(Phase, pk=pk)
     phase.delete()
     return redirect('phase_list')
-
+"""
 @login_required
 def criterion_new(request):
     if request.method == "POST":
@@ -202,6 +205,7 @@ def like_popular_vote(request, pk):
 
     return JsonResponse(data)
 
+@login_required
 def get_ideas_voted(request, vote):
     ideas_voted = []
     if request.user.is_authenticated:
@@ -209,7 +213,7 @@ def get_ideas_voted(request, vote):
 
     return ideas_voted
 
-
+@login_required
 def get_ideas_created(request):
     ideas_created = []
     if request.user.is_authenticated:

@@ -543,6 +543,13 @@ padding: 8% 15% 0 15%;
   font-size: 1.2em;
 }
 
+.why-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 550px;
+}
+
 footer.landing-page{
   min-height: 60px;
   background: #2D3F51;

@@ -1,1 +1,47 @@
 {% extends 'ideax/base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="brief-explanation">
+      <h1>Ideia X compartilhando ideias!</h1>
+      <p>Com o Ideia X você tem um canal aberto para a inovação, recebendo ideias de todas as partes, avaliando e fazendo-as acontecer!</p>
+    </div>
+    <div class="idea-launch">
+      <div class="launch-text">
+        <h2>Lance suas ideias para todos!</h2>
+        <p>O Ideia X é o canal para divulgar e compartilhar suas ideias, permitindo
+          que seus pares possam contribuir, discutir e colaborar para o
+          crescimento dela.</p>
+        <p>Da mesma forma, você pode ver as outras ideias postadas, interagindo
+          com sua opinião, perguntando e opinando para melhorar ainda mais
+          outras ideias.</p>
+      </div>
+      <img src="{% static 'images/idea_launch.png' %}" alt="">
+    </div>
+    <div class="functionality">
+      <div class="function-list">
+        <h2>Funcionalidades</h2>
+        <div class="function-item">
+          <h3>Cadastro de ideias</h3>
+          <p>Todos dentro da empresa ou projeto podem colaborar. A inovação
+  poderá vir de todos.</p>
+        </div>
+
+        <div class="function-item">
+          <h3>Gestão de ideias</h3>
+          <p>As ideias podem ser organizadas, amadurecidas e avaliadas,
+  permitindo um fluxo para a gestão da inovação.</p>
+        </div>
+
+        <div class="function-item">
+          <h3>Integração com outras ferramentas</h3>
+          <p>Através das APIs é possível integrar com outras ferramentas.
+  Integrando com uma ferramenta de gestão de projetos é possível criar
+  um projeto a partir de uma ideia cadastrada no Ideia X.</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-info">
+      <img src="{% static 'images/idea_why.png' %}" alt="">
+    </div>
+{% endblock %}

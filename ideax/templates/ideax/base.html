@@ -13,7 +13,7 @@
       <div class="main-header">
         <a href="/">
           <h1 class="title">
-            ideaX
+            <img src="{% static 'images/logo_vertical.png' %}" alt="">
           </h1>
         </a>
         {% if user.is_authenticated %}
@@ -48,15 +48,15 @@
       </div>
 
 
-        <div class="content container">
-            <div class="row">
+        <div class="content   {% if user.is_authenticated %}container{% endif %}">
+
 
                 {% block content %}
                 {% endblock %}
 
-            </div>
+
         </div>
-        <footer><div class="logo"><p class="alpha-version">Software em versão Alpha</p></div></footer>
+        <footer {% if not user.is_authenticated %}class="landing-page"{% endif %} ><div class="logo"><p class="alpha-version">Idea X - Software in alpha stage</p></div></footer>
         <script
 			  src="http://code.jquery.com/jquery-3.3.1.min.js"
 			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

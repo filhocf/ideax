@@ -187,6 +187,10 @@ div.login{
 
 }
 
+.login-error-message {
+  width: 400px;
+  margin: auto;
+}
 
 
 .icon{

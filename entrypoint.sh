@@ -6,9 +6,11 @@ export DJANGO_SETTINGS_MODULE=ideax.settings
 
 if [ ! -f /var/www/ideax/.env ]; then
   echo SECRET_KEY=my_super_secret_key > /var/www/ideax/.env
-  if [ ! -d /var/www/ideax/static ]; then
-    python manage.py collectstatic
-  fi
+fi
+
+if [ ! -d /var/www/ideax/static ]; then
+  python manage.py collectstatic
+fi
 
 python manage.py migrate
 

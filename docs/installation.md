@@ -30,7 +30,8 @@ You can run IdeaX with SQLLite or a database server, like MySql. For the first, 
 docker run -d -p 80:8000 --name ideax filhocf/ideax # run with sqlite3
 ```
 
+For customized environment, is possible to map the .env file. For this propose, copy or rename env.example file.
 ```
 docker run -d -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=password mysql
-docker run -d -p 80:8000 --name ideax --link mysql:mysql filhocf/ideax
+docker run -d -p 80:8000 --name ideax -v .env:/var/www/ideax/.env --link mysql:mysql filhocf/ideax
 ```

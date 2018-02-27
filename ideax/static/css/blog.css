@@ -80,7 +80,7 @@ nav.phase-filter {
 }
 
 ul.phase-list {
-  overflow: auto;
+  overflow: hidden;
   list-style-type: none;
 }
 
@@ -148,10 +148,6 @@ div.login{
 
 
 
-.content{
-
-  min-height: 100%;
-}
 
 
 .icon{
@@ -304,24 +300,22 @@ div.idea{
 }
 
 .crescendo-phase{
- // background: #065B8D;
-  color: #065B8D;
+  color: #f68b2c;
 
 }
 
 .avaliando-phase{
- // background: #D95578;
   color: #D95578;
 
 
 }
 
 .agindo-phase{
-  color: #f68b2c;
+  color: #107906;
 }
 
 .feita-phase{
-  color: #BADA55;
+  color: #065B8D;
 }
 
 .arquivada-phase{
@@ -337,7 +331,7 @@ div.idea{
 }
 
 .crescendo{
-  border-left: 5px solid #065B8D !important;
+  border-left: 5px solid #f68b2c !important;
 
 }
 
@@ -346,11 +340,11 @@ div.idea{
 }
 
 .agindo{
-  border-left: 5px solid #f68b2c !important;
+  border-left: 5px solid #107906 !important;
 }
 
 .feita{
-  border-left: 5px solid #BADA55 !important;
+  border-left: 5px solid #065B8D !important;
 }
 
 .arquivada{

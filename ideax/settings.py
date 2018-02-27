@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'ideax.urls'
 
 TEMPLATES = [
     {
@@ -71,17 +71,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'ideax.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -126,8 +126,8 @@ LOGIN_REDIRECT_URL = '/idea/list'
 LOGOUT_REDIRECT_URL = '/'
 
 AUTHENTICATION_BACKENDS = [
-    'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'django_auth_ldap.backend.LDAPBackend',
 ]
 
 AUTH_LDAP_SERVER_URI = config('AUTH_LDAP_SERVER_URI', default='ldap://ldap.example.com')

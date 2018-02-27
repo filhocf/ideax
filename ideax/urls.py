@@ -1,7 +1,14 @@
+from django.contrib import admin
 from django.urls import path
+from django.contrib.auth import views as auth_views
+
 from . import views
 
 urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('accounts/login/', auth_views.login, name='login'),
+    path('accounts/logout/', auth_views.logout, name='logout'),
+
     path('', views.index, name='index'),
     path('idea/list', views.idea_list, name='idea_list'),
     path('idea/<int:pk>/', views.idea_detail, name='idea_detail'),

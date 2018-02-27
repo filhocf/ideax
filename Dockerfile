@@ -14,8 +14,7 @@ RUN \
     mv ideax-master ideax; \
     rm ideax.tar.gz; \
     cd ideax; \
-    pip install -r requeriments.txt; \
-    python manage.py collectstatic --no-input
+    pip install -r requeriments.txt
 
 WORKDIR /var/www/ideax
 

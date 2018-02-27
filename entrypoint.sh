@@ -9,7 +9,7 @@ if [ ! -f /var/www/ideax/.env ]; then
 fi
 
 if [ ! -d /var/www/ideax/static ]; then
-  python manage.py collectstatic
+  python manage.py collectstatic --no-input
 fi
 
 python manage.py migrate

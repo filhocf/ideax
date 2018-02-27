@@ -134,19 +134,58 @@ div.login{
 }
 
 .login-box{
+  border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   margin: 50px auto;
-  background: #fafafa;
-  max-width: 400px;
+  background: #FFF0;
+  max-width: 360px;
   min-height: 300px;
-  border: 1px solid #E1E1E1;
+  border: 2px solid #E1E1E1;
   box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
   -webkit-box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
   -moz-box-shadow: 2px 2px 3px 0 rgba(117, 124, 129, 0.12);
 }
 
+.login-box form {
+  margin: 32px auto;
+}
 
+.login-box form .login-field {
+  width: 249px;
+  background: #f2f2f2;
+  margin: 0 0 15px;
+  border: none;
+  font-weight: 300;
+  font-size: 20px;
+  padding: 11px 10px 9px;
+}
+
+.login-box .login-info {
+  margin-top: 45px;
+}
+
+.login-box .login-icon{
+  height: auto;
+  width: 100px;
+  margin-top: 25px;
+}
+
+.login-box .login-button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  border: 0;
+  padding: 15px;
+  width: 249px;
+  min-width: 269px;
+  color: #FFFFFF;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+
+}
 
 .content{
 

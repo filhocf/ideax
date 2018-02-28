@@ -4,7 +4,12 @@
 
 {% block content %}
     {% if form.errors %}
-        <p>Your username and password didn't match. Please try again.</p>
+      <div class="alert alert-danger">
+        <div class="login-error-message">
+            Your username and password didn't match. Please try again.
+        </div>
+      </div>
+
     {% endif %}
 
     <div class="login-box">

@@ -1,3 +1,12 @@
+$('.main-header').addClass('fixed');
+$(window).scroll(function(){
+if($(window).scrollTop() >= $('.main-header').outerHeight()) {
+  $('.main-header').addClass('smaller');
+}else{
+  $('.main-header').removeClass('smaller');
+}
+});
+
 /*
 $("#modal-idea").on("submit", ".js-book-create-form", function () {
   var form = $(this);

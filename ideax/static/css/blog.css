@@ -406,6 +406,10 @@ div.idea{
 
 }
 
+.like-menu a{
+  text-decoration: none;
+}
+
 
 .liked,
 .liked a{

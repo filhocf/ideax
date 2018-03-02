@@ -1,37 +1,28 @@
 from django.db import models
 from django.utils import timezone
+from enum import Enum
 
-"""
-class Idea(models.Model):
-    author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
-    title = models.CharField(max_length=200)
-    text = models.TextField()
-    created_date = models.DateTimeField(
-            default=timezone.now)
-    published_date = models.DateTimeField(
-            blank=True, null=True)
+class Phase(Enum):
+    GROW     = (1, 'Crescendo')
+    RATE     = (2, 'Avaliando')
+    ACT      = (3, 'Agindo')
+    DONE     = (4, 'Feita')
+    ARCHIVED = (5, 'Arquivada')
 
-    def publish(self):
-        self.published_date = timezone.now()
-        self.save()
+    def __init__(self, id, description):
+        self.id = id
+        self.description = description
 
-    def __str__(self):
-        return self.title
-"""
+    @classmethod
+    def choices(cls):
+        return tuple((x.id, x.description) for x in cls)
 
-class Phase():
-    GROW = 1
-    RATE = 2
-    ACT = 3
-    DONE = 4
-    PHASES = (
-        (GROW, 'Crescendo'),
-    )
-    PHASES_MANAGER = (
-        (RATE, 'Avaliando'),
-        (ACT, 'Agindo'),
-        (RATE, 'Feito'),
-    )
+    @classmethod
+    def get_phase_by_id(cls, id):
+        for x in cls:
+            if x.id == id:
+                return x
+        return None
 
 class Criterion(models.Model):
     description = models.CharField(max_length=40)
@@ -49,9 +40,7 @@ class Idea(models.Model):
     description = models.TextField(max_length=500)
     creation_date = models.DateTimeField('data criação')
     author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
-    #phase = models.ForeignKey(Phase,on_delete=models.PROTECT)
-    phase = models.PositiveSmallIntegerField(choices=Phase.PHASES)
-
+    phase = models.PositiveSmallIntegerField(choices=Phase.choices())
 
     def count_popular_vote(self, like_boolean):
         return self.popular_vote_set.filter(like=like_boolean).count()

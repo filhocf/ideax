@@ -1,26 +1,3 @@
-/*
-$("#modal-idea").on("submit", ".js-book-create-form", function () {
-  var form = $(this);
-  $.ajax({
-    url: form.attr("action"),
-    data: form.serialize(),
-    type: form.attr("method"),
-    dataType: 'json',
-    success: function (data) {
-      if (data.form_is_valid) {
-        alert("Book created!");  // <-- This is just a placeholder for now for testing
-      }
-      else {
-        $("#modal-idea .modal-content").html(data.html_form);
-      }
-    }
-  });
-  return false;
-});
-*/
-
-
-
 function openModal (url){
   $.ajax({
     url: url,
@@ -58,8 +35,6 @@ function vote(url, idLike, idDislike, aLike, aDislike){
   });
 }
 
-
-
 $(function () {
 
   var loadForm = function(){
@@ -76,22 +51,6 @@ $(function () {
       }
     });
   };
-/*
-    $(".js-create-idea").click(function(){
-      $.ajax({
-        url: '/idea/new/',
-        type: 'get',
-        dataType: 'json',
-        beforeSend: function (){
-            $("#modal-idea-crud").modal("show");
-        },
-        success: function (data){
-          $("#modal-idea-crud .modal-content").html(data.html_form);
-        }
-      });
-  });
-  */
-
 
   var saveForm = function(){
     var form = $(this);

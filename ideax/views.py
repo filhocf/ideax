@@ -12,6 +12,8 @@ from django import forms
 
 
 def index(request):
+    if request.user.is_authenticated:
+        return idea_list(request)
     return render(request, 'ideax/index.html')
 
 @login_required
@@ -46,7 +48,7 @@ def save_idea(request, form, template_name, new=False):
             idea.author = request.user
             if new:
                 idea.creation_date = timezone.now()
-                idea.phase= Phase.GROW
+                idea.phase= Phase.GROW.id
             idea.save()
             data['form_is_valid'] = True
             ideas = get_ideas_init(request)
@@ -81,11 +83,6 @@ def idea_edit(request, pk):
     return save_idea(request, form, 'ideax/includes/partial_idea_update.html')
 
 @login_required
-def idea_draft_list(request):
-    ideas = Idea.objects.filter(creation_date__isnull=True).order_by('creation_date')
-    return render(request, 'ideax/idea_draft_list.html', {'ideas': ideas})
-
-@login_required
 def idea_publish(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     idea.publish()
@@ -105,44 +102,7 @@ def idea_remove(request, pk):
         data['html_form'] = render_to_string('ideax/includes/partial_idea_remove.html', context, request=request,)
 
     return JsonResponse(data)
-"""
-@login_required
-def phase_new(request):
-    if request.method == "POST":
-        form = PhaseForm(request.POST)
-        if form.is_valid():
-            phase = form.save(commit=False)
-            phase.save()
-            return redirect('phase_list')
-    else:
-        form = PhaseForm()
 
-    return render(request, 'ideax/phase_edit.html', {'form': form})
-
-@login_required
-def phase_list(request):
-    phases = Phase.objects.all()
-    return render(request, 'ideax/phase_list.html', {'phases': phases})
-
-@login_required
-def phase_edit(request, pk):
-    phase = get_object_or_404(Phase, pk=pk)
-    if request.method == "POST":
-        form = PhaseForm(request.POST, instance=phase)
-        if form.is_valid():
-            phase = form.save(commit=False)
-            phase.save()
-            return redirect('phase_list')
-    else:
-        form = PhaseForm(instance=phase)
-    return render(request, 'ideax/phase_edit.html', {'form': form})
-
-@login_required
-def phase_remove(request, pk):
-    phase = get_object_or_404(Phase, pk=pk)
-    phase.delete()
-    return redirect('phase_list')
-"""
 @login_required
 def criterion_new(request):
     if request.method == "POST":
@@ -220,3 +180,10 @@ def get_ideas_created(request):
         ideas_created = Idea.objects.filter(author=request.user).values_list('id',flat=True)
 
     return ideas_created
+
+def change_idea_phase(request, pk, old_phase, new_phase):
+    idea = Idea.objects.get(pk=pk)
+    idea.phase = Phase.get_phase_by_id(new_phase).id
+    idea.save()
+
+    return redirect('index')

@@ -16,14 +16,6 @@ class IdeaFormUpdate(forms.ModelForm):
         fields = ('title', 'description', 'phase')
         labels = {'title': _('Título'), 'description': _('Descrição'), 'phase': _('Fase'), }
 
-"""
-class PhaseForm(forms.ModelForm):
-
-    class Meta:
-        model = Phase
-        fields = ('name','description')
-        labels = {'name': _('Nome'), 'description': _('Descrição'), }
-"""
 class CriterionForm(forms.ModelForm):
 
     class Meta:

@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
-from decouple import config
+from decouple import config, Csv
 from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -27,7 +27,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.pythonanywhere.com']
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 
 # Application definition
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'mysite.urls'
+ROOT_URLCONF = 'ideax.urls'
 
 TEMPLATES = [
     {
@@ -71,17 +71,17 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'ideax.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+
 DATABASES = {
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -126,8 +126,8 @@ LOGIN_REDIRECT_URL = '/idea/list'
 LOGOUT_REDIRECT_URL = '/'
 
 AUTHENTICATION_BACKENDS = [
-    'django_auth_ldap.backend.LDAPBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'django_auth_ldap.backend.LDAPBackend',
 ]
 
 AUTH_LDAP_SERVER_URI = config('AUTH_LDAP_SERVER_URI', default='ldap://ldap.example.com')
@@ -137,9 +137,9 @@ from django_auth_ldap.config import LDAPSearch
 
 AUTH_LDAP_BIND_DN = config('AUTH_LDAP_BIND_DN', default='')
 AUTH_LDAP_BIND_PASSWORD = config('AUTH_LDAP_BIND_PASSWORD', default='')
-AUTH_LDAP_USER_SEARCH = LDAPSearch(config('AUTH_LDAP_USER_SEARCH', default='ou=users,dc=example,dc=com'),
-    ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+AUTH_LDAP_GLOBAL_OPTIONS = {ldap.OPT_X_TLS_REQUIRE_CERT : ldap.OPT_X_TLS_NEVER}
 AUTH_LDAP_START_TLS = config('AUTH_LDAP_START_TLS', default=0, cast=bool)
+AUTH_LDAP_USER_SEARCH = LDAPSearch(config('AUTH_LDAP_USER_SEARCH', default='ou=users,dc=example,dc=com'), ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
 
 import logging
 

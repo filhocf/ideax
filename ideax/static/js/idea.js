@@ -1,9 +1,10 @@
-$('.main-header').addClass('fixed');
 $(window).scroll(function(){
 if($(window).scrollTop() >= $('.main-header').outerHeight()) {
-  $('.main-header').addClass('smaller');
+  $('.phase-filter').addClass('fixed');
+  $('.phase-filter').css("width", $(window).outerWidth());
 }else{
-  $('.main-header').removeClass('smaller');
+  $('.phase-filter').removeClass('fixed');
+  $('.phase-filter').css("width", "100%");
 }
 });
 

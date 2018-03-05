@@ -73,19 +73,38 @@ html {
 /*Secondary menu*/
 /*Menu secundário*/
 
+.fixed{
+  position: fixed;
+  top:0; left:0;
+  width: 100%;
+  z-index: 50;
+  background: white;
+border-bottom: 1px solid #E1E1E1;
+height: 60px !important;
+}
+
+.fixed ~ #idea-list{
+  margin-top: 100px;
+}
+
 nav.phase-filter {
-  margin: 30px;
+  //margin: 30px;
   display: flex;
   justify-content: space-around;
+  height: 80px;
+
+align-items: center;
 }
 
 ul.phase-list {
   overflow: hidden;
   list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 ul.phase-list li {
-  height: 22px;
+
   float: left;
   margin-right: 0px;
   border-right: 1px solid #aaa;
@@ -187,6 +206,10 @@ div.login{
 
 }
 
+.login-error-message {
+  width: 400px;
+  margin: auto;
+}
 
 
 .icon{

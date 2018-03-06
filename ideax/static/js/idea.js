@@ -8,6 +8,17 @@ if($(window).scrollTop() >= $('.main-header').outerHeight()) {
 }
 });
 
+
+$(document).mouseup(function (e)
+{
+    var container = $(".idea-options");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0){
+        //container.hide();
+        $( ".idea-options input" ).prop( "checked", false ); //to uncheck
+    }
+});
+
 /*
 $("#modal-idea").on("submit", ".js-book-create-form", function () {
   var form = $(this);

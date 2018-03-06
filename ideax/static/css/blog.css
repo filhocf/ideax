@@ -288,8 +288,8 @@ flex-flow: column;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #E1E1E1;
-  padding-bottom: 10px;
-  height: 40px;
+  padding-bottom: 15px;
+  height: 50px;
 }
 
 .idea-header h1{
@@ -307,17 +307,142 @@ flex-flow: column;
   font-size: 0.9em;
 }
 
+.idea-options{
+  font-size: 1.65em;
+  font-weight: 100;
+  display: flex;
+  flex-direction: column;
+  //position: absolute;
+  overflow: hidden;
+  align-self: flex-start;
+  z-index: 50;
+  padding-top: 5px;
+}
+
+
+
+.idea-options ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.idea-options li{
+  //margin: 10px 10px 0 10px;
+}
+
+.idea-options a{
+  display: block;
+  padding: 5px;
+  text-decoration: none !important;
+  font-size: 0.6em;
+  padding: 10px;
+
+}
+
+.idea-options label{
+  display: block;
+  cursor: pointer;
+  //padding: 30px 0 30px 80px;
+  margin-bottom: 0;
+
+}
+
+input.menu-input{
+  display: none;
+}
+
+.idea-options input:checked ~ .options-content{
+  max-height: 100%;
+  border: 1px solid #E1E1E1;
+
+}
+
+.options-content{
+  max-height: 0;
+  overflow: hidden;
+  background: #fff;
+  padding: 0px;
+  width: 120px;
+  border-left: 1px solid #E1E1E1;
+  border-right: 1px solid #E1E1E1;
+
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+}
+
+.options-content a{
+  color: black;
+}
+
+.options-content a:hover{
+  color: black;
+}
+
+.options-content a:hover{
+  background: #EEEEEE;
+}
+
+.options-content div.action{
+  display: inline-block;
+
+}
+
+.options-content .actions{
+  //background: #cecece;
+  font-size: 1.3em;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+}
+
+.actions button{
+  padding: 0;
+  background: inherit;
+  border: none;
+  font-size: 0.8em;
+}
+
+.action{
+  margin: 0 9px;
+}
+
+.action button:hover{
+  background: inherit;
+  color: inherit;
+}
+
+.edit button{
+  color: #1f5093;
+}
+
+
+.delete button{
+  color: #e52d2a;
+}
+
+.options-content li:nth-last-child(1){
+  border-top: 1px solid #E1E1E1;
+  padding: 15px;
+
+}
+
+
+/*idea card body*/
+
 .idea-desc{
   text-align: left;
   margin-top: 20px;
   padding: 0 20px;
-  min-height: 170px;
-  font-size: 14px;
+  font-size: 0.9em;
+
 }
 
 .bold{
   font-weight: bold;
 }
+
+/*idea card footer*/
 
 .idea-footer{
   display: flex;
@@ -462,6 +587,8 @@ flex-flow: column;
   color: #FF040099;
 }
 
+/*Footer*/
+
 footer {
   background: #fafafa;
   border-top: 1px solid #E6E6E6;
@@ -477,6 +604,14 @@ footer {
 footer p {
   margin: 0;
 }
+
+footer.landing-page{
+  min-height: 60px;
+  background: #333;
+  color: #E6E6E6;
+}
+
+/*Modals*/
 
 .modal-dialog {
   margin-top: 200px;
@@ -580,7 +715,11 @@ padding: 8% 15% 0 15%;
 
 .launch-text h2{
   font-size: 2.5em;
-  color: #5990A4;
+  color: #5990A4;footer.landing-page{
+  min-height: 60px;
+  background: #333;
+  color: #E6E6E6;
+}
 }
 
 .launch-text p{
@@ -637,11 +776,7 @@ padding: 8% 15% 0 15%;
 
 
 
-footer.landing-page{
-  min-height: 60px;
-  background: #333;
-  color: #E6E6E6;
-}
+
 
 @media (max-width: 320px){
       .functionality{

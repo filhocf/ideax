@@ -21,10 +21,10 @@ html {
   color: #E6E6E6;
   font-family: 'Open Sans', sans-serif;
   display: flex;
-  flex-wrap: wrap;
+  //flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 20px;
+  //justify-content: space-between;
+  //padding: 0 20px;
   min-height: 80px;
   -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
@@ -35,6 +35,9 @@ html {
 .main-header .title{
   margin: 0;
   font-size: 4em;
+  position: absolute;
+  left: 20px;
+  top: -4px;
 }
 
 .title img{
@@ -68,6 +71,21 @@ html {
   display: flex;
   width: 40%;
   justify-content: space-between;
+  margin: 0 auto;
+}
+
+div.login{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 20px;
+  top: 18px;
+
+}
+
+.login p{
+  margin: 0px 15px;
+  font-size: 1.5em;
 }
 
 /*Secondary menu*/
@@ -141,16 +159,7 @@ ul.phase-list li.active a {
 
 /*Login*/
 
-div.login{
-  display: flex;
-  align-items: center;
 
-}
-
-.login p{
-  margin: 0px 15px;
-  font-size: 1.5em;
-}
 
 .login-box{
   border-radius: 10px;
@@ -241,7 +250,7 @@ div.icon:hover{
 
 .icon span{
   display: block;
-  font-size: 1.7em;
+  font-size: 1.5em;
   margin-bottom: 0px;
 }
 
@@ -403,6 +412,10 @@ input.menu-input{
   font-size: 0.8em;
 }
 
+.actions button:hover{
+  cursor: pointer;
+}
+
 .action{
   margin: 0 9px;
 }
@@ -454,7 +467,7 @@ input.menu-input{
   width: 100%;
   border-top: 1px solid #E1E1E1;
   /*! max-width: 524px; */
-  padding: 15px 0 5px 0;
+  padding: 20px 0 5px 0;
 
 
 
@@ -615,6 +628,7 @@ footer.landing-page{
 
 .modal-dialog {
   margin-top: 200px;
+  max-width: 600px !important;
 }
 
 #modal-idea-crud .modal-content {

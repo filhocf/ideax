@@ -6,8 +6,8 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
-from .models import Idea, Criterion,Popular_Vote, Phase
-from .forms import IdeaForm, CriterionForm,IdeaFormUpdate
+from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History
+from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm
 from django import forms
 
 
@@ -39,6 +39,7 @@ def idea_detail(request, pk):
     data['html_form'] = render_to_string('ideax/includes/idea_detail.html', context, request=request,)
     return JsonResponse(data)
 
+
 @login_required
 def save_idea(request, form, template_name, new=False):
     data = dict()
@@ -49,7 +50,11 @@ def save_idea(request, form, template_name, new=False):
             if new:
                 idea.creation_date = timezone.now()
                 idea.phase= Phase.GROW.id
-            idea.save()
+                idea.save()
+                phase_history = Phase_History(current_phase=Phase.GROW.id,previous_phase=0, date_change=timezone.now(), idea=idea, author=request.user, current=True)
+                phase_history.save()
+            else:
+                idea.save()
             data['form_is_valid'] = True
             ideas = get_ideas_init(request)
             data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
@@ -140,6 +145,24 @@ def criterion_remove(request, pk):
     criterion.delete()
     return redirect('criterion_list')
 
+def open_category_new(request):
+    data = dict()
+    context = {'form': CategoryForm()}
+    data['html_form'] = render_to_string('ideax/category_edit.html', context,request=request,)
+    return JsonResponse(data)
+
+def category_new(request):
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.save()
+            return redirect('index')
+    else:
+        form = CategoryForm()
+
+    return render(request, 'ideax/category_edit.html', {'form': form})
+
 @login_required
 def like_popular_vote(request, pk):
     vote = Popular_Vote.objects.filter(voter=request.user,idea__pk=pk)
@@ -181,9 +204,16 @@ def get_ideas_created(request):
 
     return ideas_created
 
-def change_idea_phase(request, pk, old_phase, new_phase):
+def change_idea_phase(request, pk, new_phase):
     idea = Idea.objects.get(pk=pk)
-    idea.phase = Phase.get_phase_by_id(new_phase).id
-    idea.save()
+    phase = Phase.get_phase_by_id(new_phase)
+
+    if phase != None:
+        phase_history_current = Phase_History.objects.get(idea=idea, current=True)
+        phase_history_current.current = False
+        phase_history_current.save()
+
+        phase_history_new = Phase_History(current_phase=phase.id,previous_phase=phase_history_current.current_phase, date_change=timezone.now(), idea=idea, author=request.user, current=True)
+        phase_history_new.save()
 
     return redirect('index')

@@ -1,6 +1,6 @@
 {% load widget_tweaks %}
 
-<div class="idea {{idea.get_phase_display|lower}}">
+<div class="idea {{idea.get_current_phase.css_class}}">
   <div class="idea-header">
     <h1>
       {% if link_title == True %}
@@ -21,10 +21,10 @@
   <div class="idea-footer">
 
     <div class="phase">
-        <div class="phase-symbol {{ idea.get_phase_display|lower }}-phase">
-          <i class="fas fa-comments"></i>
+        <div class="phase-symbol {{ idea.get_current_phase.css_class }}-phase">
+          <i class="fas fa-{{ idea.get_current_phase.css_icon_class}}"></i>
         </div>
-        <p class="phase-name">{{ idea.get_phase_display }}</p>
+        <p class="phase-name">{{ idea.get_current_phase.description }}</p>
     </div>
 
 

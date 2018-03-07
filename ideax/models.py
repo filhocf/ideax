@@ -3,15 +3,18 @@ from django.utils import timezone
 from enum import Enum
 
 class Phase(Enum):
-    GROW     = (1, 'Crescendo')
-    RATE     = (2, 'Avaliando')
-    ACT      = (3, 'Agindo')
-    DONE     = (4, 'Feita')
-    ARCHIVED = (5, 'Arquivada')
+    GROW     = (1, 'Discussão', 'discussao', 'comments')
+    RATE     = (2, 'Avaliando', 'avaliando','star')
+    ACT      = (3, 'Desenvolvimento', 'desenvolvimento','tasks')
+    DONE     = (4, 'Feita', 'feita', 'check')
+    ARCHIVED = (5, 'Arquivada', 'arquivada', 'archive')
 
-    def __init__(self, id, description):
+    def __init__(self, id, description, css_class, icon_class):
         self.id = id
         self.description = description
+        self.css_class =  css_class
+        self.css_icon_class = icon_class;
+
 
     @classmethod
     def choices(cls):
@@ -19,10 +22,22 @@ class Phase(Enum):
 
     @classmethod
     def get_phase_by_id(cls, id):
-        for x in cls:
-            if x.id == id:
-                return x
+        for temp in cls:
+            if temp.id == id:
+                return temp
         return None
+
+    @classmethod
+    def get_css_class(cls, id):
+        return cls.get_phase_by_id(id)
+
+class Phase_History(models.Model):
+    current_phase = models.PositiveSmallIntegerField()
+    previous_phase = models.PositiveSmallIntegerField()
+    date_change = models.DateTimeField('data da mudança')
+    idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
+    author = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    current = models.BooleanField()
 
 class Criterion(models.Model):
     description = models.CharField(max_length=40)
@@ -35,12 +50,19 @@ class Evaluation_Item(models.Model):
     value = models.IntegerField(default=0)
     criterion = models.ForeignKey(Criterion,on_delete=models.PROTECT)
 
+class Category(models.Model):
+    description = models.CharField(max_length=200)
+    key_word = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.description
+
 class Idea(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=500)
     creation_date = models.DateTimeField('data criação')
     author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
-    phase = models.PositiveSmallIntegerField(choices=Phase.choices())
+    category = models.ForeignKey('Category', models.SET_NULL,null=True)
 
     def count_popular_vote(self, like_boolean):
         return self.popular_vote_set.filter(like=like_boolean).count()
@@ -48,7 +70,10 @@ class Idea(models.Model):
         return self.count_popular_vote(False)
     def count_likes(self):
         return self.count_popular_vote(True)
-
+    def get_current_phase_history(self):
+        return self.phase_history_set.get(current=True)
+    def get_current_phase(self):
+        return Phase.get_phase_by_id(self.phase_history_set.get(current=True).current_phase)
 
 class Vote(models.Model):
     evaluation_item = models.ForeignKey(Evaluation_Item,on_delete=models.PROTECT)

@@ -1,24 +1,22 @@
-/*
-$("#modal-idea").on("submit", ".js-book-create-form", function () {
-  var form = $(this);
-  $.ajax({
-    url: form.attr("action"),
-    data: form.serialize(),
-    type: form.attr("method"),
-    dataType: 'json',
-    success: function (data) {
-      if (data.form_is_valid) {
-        alert("Book created!");  // <-- This is just a placeholder for now for testing
-      }
-      else {
-        $("#modal-idea .modal-content").html(data.html_form);
-      }
-    }
-  });
-  return false;
+$(window).scroll(function(){
+if($(window).scrollTop() >= $('.main-header').outerHeight()) {
+  $('.phase-filter').addClass('fixed');
+  $('.phase-filter').css("width", $(window).outerWidth());
+}else{
+  $('.phase-filter').removeClass('fixed');
+  $('.phase-filter').css("width", "100%");
+}
 });
-*/
 
+
+$(document).mouseup(function (e)
+{
+    var container = $(".idea-options");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0){
+        $( ".idea-options input" ).prop( "checked", false ); //to uncheck
+    }
+});
 
 
 function openModal (url){
@@ -58,8 +56,6 @@ function vote(url, idLike, idDislike, aLike, aDislike){
   });
 }
 
-
-
 $(function () {
 
   var loadForm = function(){
@@ -76,22 +72,6 @@ $(function () {
       }
     });
   };
-/*
-    $(".js-create-idea").click(function(){
-      $.ajax({
-        url: '/idea/new/',
-        type: 'get',
-        dataType: 'json',
-        beforeSend: function (){
-            $("#modal-idea-crud").modal("show");
-        },
-        success: function (data){
-          $("#modal-idea-crud .modal-content").html(data.html_form);
-        }
-      });
-  });
-  */
-
 
   var saveForm = function(){
     var form = $(this);

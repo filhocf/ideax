@@ -2,20 +2,19 @@
 <html>
     <head>
         <title>Ideia X</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{% static 'css/blog.css' %}">
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     </head>
     <body>
       <div class="main-header">
-        <a href="/">
-          <h1 class="title">
+        <h1 class="title">
+          <a href="/">
             <img src="{% static 'images/logo_vertical.png' %}" alt="">
-          </h1>
-        </a>
+          </a>
+        </h1>
         {% if user.is_authenticated %}
         <div class="menu">
           <a class="icon  js-create-idea" href="javascript:void(0)" data-url="/idea/new/" class="top-menu js-create-idea">
@@ -46,27 +45,16 @@
 
         {% endif %}
       </div>
-
-
-        <div class="content   {% if user.is_authenticated %}container{% endif %}">
-
-
-                {% block content %}
-                {% endblock %}
-
-
-        </div>
-        <footer {% if not user.is_authenticated %}class="landing-page"{% endif %} ><div class="logo"><p class="alpha-version">Idea X - Software in alpha stage</p></div></footer>
-        <script
-			  src="//code.jquery.com/jquery-3.3.1.min.js"
-			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			  crossorigin="anonymous"></script>
-
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js">
-        </script>
-
-        <script src="{% static '/js/idea.js' %}"></script>
-
-
+      <div class="content   {% if user.is_authenticated %}container{% endif %}">
+        {% block content %}
+        {% endblock %}
+      </div>
+      <footer {% if not user.is_authenticated %}class="landing-page"{% endif %} ><div class="logo"><p class="alpha-version">Idea X - Software in alpha stage</p></div></footer>
+      <script
+			src="//code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+      <script src="{% static '/js/idea.js' %}"></script>
       </body>
     </html>

@@ -6,12 +6,14 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
-from .models import Idea, Criterion,Popular_Vote, Phase
-from .forms import IdeaForm, CriterionForm,IdeaFormUpdate
+from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History
+from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm
 from django import forms
 
 
 def index(request):
+    if request.user.is_authenticated:
+        return idea_list(request)
     return render(request, 'ideax/index.html')
 
 @login_required
@@ -22,7 +24,7 @@ def idea_list(request):
 @login_required
 def get_ideas_init(request):
     ideas_dic = dict()
-    ideas_dic['ideas'] = Idea.objects.annotate(count_like=Count(Case(When(popular_vote__like = True, then=1)))).order_by('-count_like')
+    ideas_dic['ideas'] = Idea.objects.filter(discarded=False).annotate(count_like=Count(Case(When(popular_vote__like = True, then=1)))).order_by('-count_like')
     ideas_dic['ideas_liked'] = get_ideas_voted(request, True)
     ideas_dic['ideas_disliked'] = get_ideas_voted(request, False)
     ideas_dic['ideas_created_by_me'] = get_ideas_created(request)
@@ -37,6 +39,7 @@ def idea_detail(request, pk):
     data['html_form'] = render_to_string('ideax/includes/idea_detail.html', context, request=request,)
     return JsonResponse(data)
 
+
 @login_required
 def save_idea(request, form, template_name, new=False):
     data = dict()
@@ -46,8 +49,12 @@ def save_idea(request, form, template_name, new=False):
             idea.author = request.user
             if new:
                 idea.creation_date = timezone.now()
-                idea.phase= Phase.GROW
-            idea.save()
+                idea.phase= Phase.GROW.id
+                idea.save()
+                phase_history = Phase_History(current_phase=Phase.GROW.id,previous_phase=0, date_change=timezone.now(), idea=idea, author=request.user, current=True)
+                phase_history.save()
+            else:
+                idea.save()
             data['form_is_valid'] = True
             ideas = get_ideas_init(request)
             data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
@@ -81,11 +88,6 @@ def idea_edit(request, pk):
     return save_idea(request, form, 'ideax/includes/partial_idea_update.html')
 
 @login_required
-def idea_draft_list(request):
-    ideas = Idea.objects.filter(creation_date__isnull=True).order_by('creation_date')
-    return render(request, 'ideax/idea_draft_list.html', {'ideas': ideas})
-
-@login_required
 def idea_publish(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     idea.publish()
@@ -96,7 +98,8 @@ def idea_remove(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     data = dict()
     if request.method == 'POST':
-        idea.delete()
+        idea.discarded = True
+        idea.save()
         data['form_is_valid'] = True
         ideas = get_ideas_init(request)
         data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
@@ -105,44 +108,7 @@ def idea_remove(request, pk):
         data['html_form'] = render_to_string('ideax/includes/partial_idea_remove.html', context, request=request,)
 
     return JsonResponse(data)
-"""
-@login_required
-def phase_new(request):
-    if request.method == "POST":
-        form = PhaseForm(request.POST)
-        if form.is_valid():
-            phase = form.save(commit=False)
-            phase.save()
-            return redirect('phase_list')
-    else:
-        form = PhaseForm()
 
-    return render(request, 'ideax/phase_edit.html', {'form': form})
-
-@login_required
-def phase_list(request):
-    phases = Phase.objects.all()
-    return render(request, 'ideax/phase_list.html', {'phases': phases})
-
-@login_required
-def phase_edit(request, pk):
-    phase = get_object_or_404(Phase, pk=pk)
-    if request.method == "POST":
-        form = PhaseForm(request.POST, instance=phase)
-        if form.is_valid():
-            phase = form.save(commit=False)
-            phase.save()
-            return redirect('phase_list')
-    else:
-        form = PhaseForm(instance=phase)
-    return render(request, 'ideax/phase_edit.html', {'form': form})
-
-@login_required
-def phase_remove(request, pk):
-    phase = get_object_or_404(Phase, pk=pk)
-    phase.delete()
-    return redirect('phase_list')
-"""
 @login_required
 def criterion_new(request):
     if request.method == "POST":
@@ -179,6 +145,24 @@ def criterion_remove(request, pk):
     criterion = get_object_or_404(Criterion, pk=pk)
     criterion.delete()
     return redirect('criterion_list')
+
+def open_category_new(request):
+    data = dict()
+    context = {'form': CategoryForm()}
+    data['html_form'] = render_to_string('ideax/category_edit.html', context,request=request,)
+    return JsonResponse(data)
+
+def category_new(request):
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.save()
+            return redirect('index')
+    else:
+        form = CategoryForm()
+
+    return render(request, 'ideax/category_edit.html', {'form': form})
 
 @login_required
 def like_popular_vote(request, pk):
@@ -220,3 +204,17 @@ def get_ideas_created(request):
         ideas_created = Idea.objects.filter(author=request.user).values_list('id',flat=True)
 
     return ideas_created
+
+def change_idea_phase(request, pk, new_phase):
+    idea = Idea.objects.get(pk=pk)
+    phase = Phase.get_phase_by_id(new_phase)
+
+    if phase != None:
+        phase_history_current = Phase_History.objects.get(idea=idea, current=True)
+        phase_history_current.current = False
+        phase_history_current.save()
+
+        phase_history_new = Phase_History(current_phase=phase.id,previous_phase=phase_history_current.current_phase, date_change=timezone.now(), idea=idea, author=request.user, current=True)
+        phase_history_new.save()
+
+    return redirect('index')

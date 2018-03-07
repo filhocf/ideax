@@ -1,6 +1,6 @@
 {% load widget_tweaks %}
 
-<div class="idea {{idea.get_phase_display|lower}}">
+<div class="idea {{idea.get_current_phase.css_class}}">
   <div class="idea-header">
     <h1>
       {% if link_title == True %}
@@ -14,6 +14,37 @@
     <p>
       {{ idea.creation_date|date:"d/m/Y" }}
     </p>
+    <div class="idea-options">
+
+      <input class="menu-input" type="checkbox" id="menu{{idea.pk}}">
+      <label for="menu{{idea.pk}}">
+      <i class="fas fa-bars"></i>
+      </label>
+
+            <div class="options-content">
+              <ul>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=1%}">Discussão</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=2%}">Avaliação</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=3%}">Aprovação</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=4%}">Desenvolvimento</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=5%}">Feita</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=6%}">Arquivada</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">Pausada</a></li>
+                <li class="actions">
+                  <div class="action edit">
+                    <button class="js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></button>
+                  </div>
+                  <div class="action delete">
+                    <button class="js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}"><i class="far fa-trash-alt"></i></button>
+                  </div>
+
+
+                </li>
+
+
+              </ul>
+            </div>
+          </div>
   </div>
   <div class="idea-desc">
     <p><span class="bold">Descrição: </span>{{ idea.description|linebreaksbr }}</p>
@@ -21,10 +52,10 @@
   <div class="idea-footer">
 
     <div class="phase">
-        <div class="phase-symbol {{ idea.get_phase_display|lower }}-phase">
-          <i class="fas fa-comments"></i>
+        <div class="phase-symbol {{ idea.get_current_phase.css_class }}-phase">
+          <i class="fas fa-{{ idea.get_current_phase.css_icon_class}}"></i>
         </div>
-        <p class="phase-name">{{ idea.get_phase_display }}</p>
+        <p class="phase-name">{{ idea.get_current_phase.description }}</p>
     </div>
 
 
@@ -50,7 +81,7 @@
 
 
 
-    {% if idea.id in ideas_created_by_me %}
+    <!-- {% if idea.id in ideas_created_by_me %}
     <div class="button-group">
       <button type="button" class="btn btn-sm js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}">
         <span class="glyphicon glyphicon-pencil"></span> Edit
@@ -60,7 +91,7 @@
         <span class="glyphicon glyphicon-trash"></span> Delete
       </button>
     </div>
-    {% endif%}
+    {% endif%} -->
   </div>
 
 </div>

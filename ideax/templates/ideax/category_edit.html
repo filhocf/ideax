@@ -1,0 +1,13 @@
+{% load widget_tweaks %}
+
+
+
+    <h1>Nova Categoria</h1>
+
+    <form method="post" class="post-form" action="{% url 'category_new' %}">
+      {% csrf_token %}
+      {% include 'ideax/includes/base_form.html' %}
+      <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-ok"></span> Salvar
+      </button>
+    </form>

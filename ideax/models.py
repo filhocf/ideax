@@ -4,12 +4,12 @@ from enum import Enum
 
 class Phase(Enum):
     GROW     = (1, 'Discussão', 'discussion', 'comments')
-    RATE     = (2, 'Avaliação', 'rate','star')
+    RATE     = (2, 'Avaliação', 'rate','clipboard')
     APROVED  = (3, 'Aprovação', 'aproved','star')
     ACT      = (4, 'Desenvolvimento', 'develop','tasks')
     DONE     = (5, 'Feita', 'done', 'check')
     ARCHIVED = (6, 'Arquivada', 'archived', 'archive')
-    PAUSED   = (7, 'Pausada', 'paused', 'paused')
+    PAUSED   = (7, 'Pausada', 'paused', 'pause')
 
 
     def __init__(self, id, description, css_class, icon_class):

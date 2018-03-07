@@ -23,11 +23,13 @@
 
             <div class="options-content">
               <ul>
-                <li><a href="">Crescendo</a></li>
-                <li><a href="">Avaliando</a></li>
-                <li><a href="">Agindo</a></li>
-                <li><a href="">Feita</a></li>
-                <li><a href="">Arquivada</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=1%}">Discussão</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=2%}">Avaliação</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=3%}">Aprovação</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=4%}">Desenvolvimento</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=5%}">Feita</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=6%}">Arquivada</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">Pausada</a></li>
                 <li class="actions">
                   <div class="action edit">
                     <button class="js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></button>

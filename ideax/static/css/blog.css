@@ -324,8 +324,8 @@ flex-flow: column;
   //position: absolute;
   overflow: hidden;
   align-self: flex-start;
-  z-index: 50;
-  padding-top: 5px;
+
+  padding-top: 0px;
 }
 
 
@@ -364,7 +364,7 @@ input.menu-input{
 .idea-options input:checked ~ .options-content{
   max-height: 100%;
   border: 1px solid #E1E1E1;
-
+  margin-top: 5px;
 }
 
 .options-content{
@@ -372,10 +372,10 @@ input.menu-input{
   overflow: hidden;
   background: #fff;
   padding: 0px;
-  width: 120px;
+  width: 145px;
   border-left: 1px solid #E1E1E1;
   border-right: 1px solid #E1E1E1;
-
+  z-index: 50;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
 }
 
@@ -506,26 +506,30 @@ input.menu-input{
 
 }
 
-.crescendo-phase{
+.discussion-phase{
   color: #f68b2c;
 
 }
 
-.avaliando-phase{
+.rate-phase{
   color: #D95578;
-
 
 }
 
-.agindo-phase{
+.aproved-phase{
   color: #107906;
 }
 
-.feita-phase{
+.develop-phase{
+  color: #30a2a6;
+
+}
+
+.done-phase{
   color: #065B8D;
 }
 
-.arquivada-phase{
+.archived-phase{
   color: #726C69;
 }
 
@@ -537,24 +541,29 @@ input.menu-input{
   margin-right: 5px;
 }
 
-.crescendo{
+.discussion{
   border-left: 5px solid #f68b2c !important;
 
 }
 
-.avaliando{
+.rate{
   border-left: 5px solid #D95578 !important;
 }
 
-.agindo{
-  border-left: 5px solid #107906 !important;
+.aproved{
+    border-left: 5px solid #107906 !important;
 }
 
-.feita{
+.develop{
+
+  border-left: 5px solid #30a2a6 !important;
+}
+
+.done{
   border-left: 5px solid #065B8D !important;
 }
 
-.arquivada{
+.archived{
   border-left: 5px solid #726C69 !important;
 }
 

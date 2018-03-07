@@ -3,13 +3,13 @@ from django.utils import timezone
 from enum import Enum
 
 class Phase(Enum):
-    GROW     = (1, 'Discussão', 'discussao', 'comments')
-    RATE     = (2, 'Avaliação', 'avaliando','star')
-    APROVED  = (3, 'Aprovação', 'aprovacao','star')
-    ACT      = (4, 'Desenvolvimento', 'desenvolvimento','tasks')
-    DONE     = (5, 'Feita', 'feita', 'check')
-    ARCHIVED = (6, 'Arquivada', 'arquivada', 'archive')
-    PAUSED   = (7, 'Pausada', 'pausada', 'paused')
+    GROW     = (1, 'Discussão', 'discussion', 'comments')
+    RATE     = (2, 'Avaliação', 'rate','star')
+    APROVED  = (3, 'Aprovação', 'aproved','star')
+    ACT      = (4, 'Desenvolvimento', 'develop','tasks')
+    DONE     = (5, 'Feita', 'done', 'check')
+    ARCHIVED = (6, 'Arquivada', 'archived', 'archive')
+    PAUSED   = (7, 'Pausada', 'paused', 'paused')
 
 
     def __init__(self, id, description, css_class, icon_class):

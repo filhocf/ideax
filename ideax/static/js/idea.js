@@ -1,3 +1,24 @@
+$(window).scroll(function(){
+if($(window).scrollTop() >= $('.main-header').outerHeight()) {
+  $('.phase-filter').addClass('fixed');
+  $('.phase-filter').css("width", $(window).outerWidth());
+}else{
+  $('.phase-filter').removeClass('fixed');
+  $('.phase-filter').css("width", "100%");
+}
+});
+
+
+$(document).mouseup(function (e)
+{
+    var container = $(".idea-options");
+
+    if (!container.is(e.target) && container.has(e.target).length === 0){
+        $( ".idea-options input" ).prop( "checked", false ); //to uncheck
+    }
+});
+
+
 function openModal (url){
   $.ajax({
     url: url,

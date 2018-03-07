@@ -4,10 +4,13 @@ from enum import Enum
 
 class Phase(Enum):
     GROW     = (1, 'Discussão', 'discussao', 'comments')
-    RATE     = (2, 'Avaliando', 'avaliando','star')
-    ACT      = (3, 'Desenvolvimento', 'desenvolvimento','tasks')
-    DONE     = (4, 'Feita', 'feita', 'check')
-    ARCHIVED = (5, 'Arquivada', 'arquivada', 'archive')
+    RATE     = (2, 'Avaliação', 'avaliando','star')
+    APROVED  = (3, 'Aprovação', 'aprovacao','star')
+    ACT      = (4, 'Desenvolvimento', 'desenvolvimento','tasks')
+    DONE     = (5, 'Feita', 'feita', 'check')
+    ARCHIVED = (6, 'Arquivada', 'arquivada', 'archive')
+    PAUSED   = (7, 'Pausada', 'pausada', 'paused')
+
 
     def __init__(self, id, description, css_class, icon_class):
         self.id = id
@@ -35,8 +38,8 @@ class Phase_History(models.Model):
     current_phase = models.PositiveSmallIntegerField()
     previous_phase = models.PositiveSmallIntegerField()
     date_change = models.DateTimeField('data da mudança')
-    idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
-    author = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    idea = models.ForeignKey('Idea',on_delete=models.DO_NOTHING)
+    author = models.ForeignKey('auth.User',on_delete=models.DO_NOTHING)
     current = models.BooleanField()
 
 class Criterion(models.Model):
@@ -63,6 +66,7 @@ class Idea(models.Model):
     creation_date = models.DateTimeField('data criação')
     author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
     category = models.ForeignKey('Category', models.SET_NULL,null=True)
+    discarded = models.BooleanField(default=False)
 
     def count_popular_vote(self, like_boolean):
         return self.popular_vote_set.filter(like=like_boolean).count()

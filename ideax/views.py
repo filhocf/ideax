@@ -24,7 +24,7 @@ def idea_list(request):
 @login_required
 def get_ideas_init(request):
     ideas_dic = dict()
-    ideas_dic['ideas'] = Idea.objects.annotate(count_like=Count(Case(When(popular_vote__like = True, then=1)))).order_by('-count_like')
+    ideas_dic['ideas'] = Idea.objects.filter(discarded=False).annotate(count_like=Count(Case(When(popular_vote__like = True, then=1)))).order_by('-count_like')
     ideas_dic['ideas_liked'] = get_ideas_voted(request, True)
     ideas_dic['ideas_disliked'] = get_ideas_voted(request, False)
     ideas_dic['ideas_created_by_me'] = get_ideas_created(request)
@@ -98,7 +98,8 @@ def idea_remove(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     data = dict()
     if request.method == 'POST':
-        idea.delete()
+        idea.discarded = True
+        idea.save()
         data['form_is_valid'] = True
         ideas = get_ideas_init(request)
         data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', ideas)

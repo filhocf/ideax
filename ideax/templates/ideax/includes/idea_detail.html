@@ -1,4 +1,4 @@
-{% load widget_tweaks %}
+{% load widget_tweaks i18n %}
 
 <div class="idea {{idea.get_current_phase.css_class}}">
   <div class="idea-header">
@@ -23,13 +23,13 @@
 
             <div class="options-content">
               <ul>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=1%}">Discussão</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=2%}">Avaliação</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=3%}">Aprovação</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=4%}">Desenvolvimento</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=5%}">Feita</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=6%}">Arquivada</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">Pausada</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=1%}">{% trans 'Discussion' %}</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=2%}">{% trans 'Evaluation' %}</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=3%}">{% trans 'Approval' %}</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=4%}">{% trans 'Development' %}</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=5%}">{% trans 'Finished' %}</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=6%}">{% trans 'Archived' %}</a></li>
+                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">{% trans 'Freezed' %}</a></li>
                 <li class="actions">
                   <div class="action edit">
                     <button class="js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></button>
@@ -47,7 +47,7 @@
           </div>
   </div>
   <div class="idea-desc">
-    <p><span class="bold">Descrição: </span>{{ idea.description|linebreaksbr }}</p>
+    <p><span class="bold">{% trans 'Description' %}: </span>{{ idea.description|linebreaksbr }}</p>
   </div>
   <div class="idea-footer">
 

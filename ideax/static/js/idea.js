@@ -101,4 +101,6 @@ $(function () {
   $(document).on("click", ".js-remove-idea", loadForm);
   $("#modal-idea-crud").on("submit", ".js-idea-remove-form", saveForm);
 
+  $(".js-create-category").click(loadForm);
+
 });

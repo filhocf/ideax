@@ -17,11 +17,11 @@
         </h1>
         {% if user.is_authenticated %}
         <div class="menu">
-          <a class="icon  js-create-idea" href="javascript:void(0)" data-url="/idea/new/" class="top-menu js-create-idea">
+          <a class="icon  js-create-idea" href="javascript:void(0)" data-modal="#modal-idea" data-url="/idea/new/" class="top-menu js-create-idea">
             <span><i class="fas fa-lightbulb"></i></span>
             <p>Nova Ideia</p>
           </a>
-          <a href="" class="icon unavailable">
+          <a href="{% url 'category_list' %}" class="icon unavailable">
             <span><i class="fas fa-tag"></i></span>
             <p>Nova Categoria</p>
           </a>

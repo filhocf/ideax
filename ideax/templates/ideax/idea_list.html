@@ -1,16 +1,17 @@
 {% extends 'ideax/base.html' %}
+{% load i18n %}
 
 {% block content %}
     <nav class="phase-filter">
       <ul class="phase-list">
-        <li class="active"><a href="#">Todas</a></li>
-        <li><a href="#">Discussão</a></li>
-        <li><a href="#">Avaliação</a></li>
-        <li><a href="#">Aprovação</a></li>
-        <li><a href="#">Desenvolvimento</a></li>
-        <li><a href="#">Feitas</a></li>
-        <li><a href="#">Arquivadas</a></li>
-        
+        <li class="active"><a href="#">{% trans 'All' %}</a></li>
+        <li><a href="#">{% trans 'Discussion' %}</a></li>
+        <li><a href="#">{% trans 'Evaluation' %}</a></li>
+        <li><a href="#">{% trans 'Approval' %}</a></li>
+        <li><a href="#">{% trans 'Development' %}</a></li>
+        <li><a href="#">{% trans 'Finished' %}</a></li>
+        <li><a href="#">{% trans 'Archived' %}</a></li>
+
       </ul>
     </nav>
     <div id="idea-list">

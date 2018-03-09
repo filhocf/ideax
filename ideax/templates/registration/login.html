@@ -1,12 +1,12 @@
 {% extends "ideax/base.html" %}
-{% load widget_tweaks %}
-{% load staticfiles %}
+{% load widget_tweaks staticfiles i18n %}
 
+{% trans 'login-error-message' as login-error-message %}
 {% block content %}
     {% if form.errors %}
       <div class="alert alert-danger">
-        <div class="login-error-message">
-            Your username and password didn't match. Please try again.
+        <div class="login_error_message">
+          {{ login_error_message }}
         </div>
       </div>
 
@@ -14,16 +14,17 @@
 
     <div class="login-box">
       <img class="login-icon" src="{% static 'images/idea_launch.png' %}" alt="">
-      <p class="login-info">É necessário fazer o login para ter acesso às ideias.</p>
+      <p class="login-info">{% trans 'login_info' %}</p>
       <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
           <table>
           <tr>
-              <td>{{ form.username|attr:'class:login-field'|attr:'placeholder:nome.sobrenome' }}</td>
+              <td>{{ form.username|attr:'class:login-field'|attr:_('placeholder:name_surname') }}</td>
           </tr>
           <tr>
-              <td>{{ form.password|attr:'class:login-field'|attr:'placeholder:senha' }}</td>
+              <td>{{ form.password|attr:'class:login-field'|attr:_('placeholder:password') }}</td>
           </tr>
+
           </table>
 
           <input type="submit" value="login" class="login-button" />

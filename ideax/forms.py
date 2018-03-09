@@ -7,25 +7,25 @@ class IdeaForm(forms.ModelForm):
     class Meta:
         model = Idea
         fields = ('title', 'description', )
-        labels = {'title': _('Título'), 'description': _('Descrição'), }
+        labels = {'title': _('Title'), 'description': _('Description'), }
 
 class IdeaFormUpdate(forms.ModelForm):
 
     class Meta:
         model = Idea
         fields = ('title', 'description')
-        labels = {'title': _('Título'), 'description': _('Descrição'),  }
+        labels = {'title': _('Title'), 'description': _('Description'),  }
 
 class CriterionForm(forms.ModelForm):
 
     class Meta:
         model = Criterion
         fields = ('description','peso')
-        labels = {'peso': _('Peso'), 'description': _('Descrição'), }
+        labels = {'peso': _('Weight'), 'description': _('Description'), }
 
 class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = Category
         fields = ('description', 'key_word', )
-        labels = {'description': _('Descrição'), 'key_word':_('Palavra-chave') }
+        labels = {'description': _('Description'), 'key_word':_('key_word') }

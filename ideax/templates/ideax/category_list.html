@@ -1,0 +1,47 @@
+{% extends 'ideax/base.html' %}
+
+{% block content %}
+    <div id="category-list">
+
+      <button type="button" class="btn btn-primary js-create-category" data-url="{% url 'open_category_new' %}">
+        <span class="glyphicon glyphicon-plus"></span>
+        Nova Categoria
+      </button>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Palavra-chave</th>
+            <th>Editar</th>
+            <th>Apagar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for category in category_list %}
+            <tr>
+              <td>{{category.description}}</td>
+              <td>{{category.key_word}}</td>
+              <td><i class="far fa-edit"></i></td>
+              <td><i class="far fa-trash-alt"></i></td>
+            </tr>
+          {% endfor %}
+      </tbody>
+      </table>
+    </div>
+
+    <div class="modal fade" id="modal-idea">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-idea-crud">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

@@ -2,20 +2,15 @@
 
 <div class="idea {{idea.get_current_phase.css_class}}">
   <div class="idea-header">
-    <h1>
+    <h1 class="idea-title">
       {% if link_title == True %}
         <a onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')">{{ idea.title }}</a>
       {% else%}
         {{ idea.title }}
       {% endif%}
-
     </h1>
 
-    <p>
-      {{ idea.creation_date|date:"d/m/Y" }}
-    </p>
     <div class="idea-options">
-
       <input class="menu-input" type="checkbox" id="menu{{idea.pk}}">
       <label for="menu{{idea.pk}}">
       <i class="fas fa-bars"></i>
@@ -48,50 +43,53 @@
   </div>
   <div class="idea-desc">
     <p><span class="bold">{% trans 'Description' %}: </span>{{ idea.description|linebreaksbr }}</p>
+    <p class="float-right idea-date">{{ idea.creation_date|date:"d/m/Y" }}</p>
   </div>
-  <div class="idea-footer">
+  <div class="container">
+    <div class="row">
+      <div class="idea-footer">
 
-    <div class="phase">
-        <div class="phase-symbol {{ idea.get_current_phase.css_class }}-phase">
-          <i class="fas fa-{{ idea.get_current_phase.css_icon_class}}"></i>
+        <div class="phase pull-left col-sm">
+            <div class="phase-symbol {{ idea.get_current_phase.css_class }}-phase">
+              <i class="fas fa-{{ idea.get_current_phase.css_icon_class}}"></i>
+            </div>
+            <p class="phase-name">{{ idea.get_current_phase.description }}</p>
         </div>
-        <p class="phase-name">{{ idea.get_current_phase.description }}</p>
-    </div>
 
 
-
-    <div class="like-menu">
-      <div class="liked">
-        <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
-          <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
-          <p class="liked_idea_{{idea.id}} ">
-            {{ idea.count_likes }}
-          </p>
-        </a>
+      <div class="col-sm">
+        <div class="like-menu float-right">
+          <div class="liked">
+            <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+              <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
+              <p class="liked_idea_{{idea.id}} ">
+                {{ idea.count_likes }}
+              </p>
+            </a>
+          </div>
+          <div class="disliked">
+            <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+              <i class="{%if idea.id in ideas_disliked %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
+              <p class="disliked_idea_{{idea.id}}">
+                {{ idea.count_dislikes }}
+              </p>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="disliked">
-        <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
-          <i class="{%if idea.id in ideas_disliked %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
-          <p class="disliked_idea_{{idea.id}}">
-            {{ idea.count_dislikes }}
-          </p>
-        </a>
+
+        <!-- {% if idea.id in ideas_created_by_me %}
+        <div class="button-group">
+          <button type="button" class="btn btn-sm js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}">
+            <span class="glyphicon glyphicon-pencil"></span> Edit
+          </button>
+
+          <button type="button" class="btn btn-sm js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}">
+            <span class="glyphicon glyphicon-trash"></span> Delete
+          </button>
+        </div>
+        {% endif%} -->
       </div>
     </div>
-
-
-
-    <!-- {% if idea.id in ideas_created_by_me %}
-    <div class="button-group">
-      <button type="button" class="btn btn-sm js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-pencil"></span> Edit
-      </button>
-
-      <button type="button" class="btn btn-sm js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-trash"></span> Delete
-      </button>
-    </div>
-    {% endif%} -->
   </div>
-
 </div>

@@ -5,8 +5,8 @@
         <div class="post">
             <h1>{{phase.name}}</h1>
             <p>{{ phase.description|linebreaksbr }}</p>
-            <a href="{% url 'phase_edit' pk=phase.pk %}">Editar</a>
-            <a href="{% url 'phase_remove' pk=phase.pk %}">Remover</a>
+            <a href="{% url 'phase_edit' pk=phase.pk %}">{% trans 'Edit' %}</a>
+            <a href="{% url 'phase_remove' pk=phase.pk %}">{% trans 'Remove' %}</a>
         </div>
     {% endfor %}
 {% endblock %}

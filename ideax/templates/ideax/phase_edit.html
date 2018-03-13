@@ -1,15 +1,15 @@
 {% extends 'ideax/base.html' %}
-{% load widget_tweaks %}
+{% load widget_tweaks i18n %}
 
 
 {% block content %}
-    <h1>Nova Fase</h1>
+    <h1>{% trans 'New phase' %}</h1>
 
     <form method="post" class="post-form" novalidate>
       {% csrf_token %}
       {% include 'ideax/includes/base_form.html' with form=form %}
       <button type="submit" class="btn btn-primary">
-        <span class="glyphicon glyphicon-ok"></span> Salvar
+        <span class="glyphicon glyphicon-ok"></span> {% trans 'Save' %}
       </button>
     </form>
 {% endblock %}

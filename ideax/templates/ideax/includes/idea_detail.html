@@ -3,17 +3,21 @@
 <div class="idea {{idea.get_current_phase.css_class}}">
   <div class="idea-header">
     <h1>
-      {% if link_title == True %}
-        <a onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')">{{ idea.title }}</a>
-      {% else%}
-        {{ idea.title }}
-      {% endif%}
 
+    {{ idea.author.get_full_name }}
     </h1>
 
-    <p>
+    <p class="date">
       {{ idea.creation_date|date:"d/m/Y" }}
     </p>
+
+    {% if link_title == True %}
+      <i class="info-icon fas fa-info-circle" onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')"></i>
+    {% else%}
+      <!-- <i class="no-link info-icon fas fa-info-circle"></i> -->
+    {% endif%}
+
+
     <div class="idea-options">
 
       <input class="menu-input" type="checkbox" id="menu{{idea.pk}}{% if link_title == False %}{{idea.pk}}{% endif%}">
@@ -46,8 +50,9 @@
             </div>
           </div>
   </div>
-  <div class="idea-desc">
-    <p><span class="bold">Descrição: </span>{{ idea.description|linebreaksbr }}</p>
+  <div class="idea-body">
+    <p class="idea-title">{{ idea.title }}</p>
+    <p class="idea-description"><span class="bold">Descrição: </span>{{ idea.description|linebreaksbr }}</p>
   </div>
   <div class="idea-footer">
 

@@ -1,7 +1,8 @@
 $(window).scroll(function(){
 if($(window).scrollTop() >= $('.main-header').outerHeight()) {
+  var scroll = $(window).outerWidth() - $('body').outerWidth();
   $('.phase-filter').addClass('fixed');
-  $('.phase-filter').css("width", $(window).outerWidth());
+  $('.phase-filter').css("width", $(window).outerWidth() - scroll);
 }else{
   $('.phase-filter').removeClass('fixed');
   $('.phase-filter').css("width", "100%");

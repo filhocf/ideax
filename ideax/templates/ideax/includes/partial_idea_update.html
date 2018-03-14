@@ -1,11 +1,11 @@
-{% load widget_tweaks %}
+{% load widget_tweaks i18n %}
 
 <form method="post" class="post-form js-idea-update-form" action="{% url 'idea_edit' form.instance.pk %}">
   {% csrf_token %}
 
   <div class="modal-header">
     <div class="modal-title">
-      <h4 class="modal-title">Atualizar Ideia</h4>
+      <h4 class="modal-title">{% trans 'Update_Idea' %}</h4>
     </div>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
@@ -18,7 +18,7 @@
     {% include 'ideax/includes/partial_idea_form.html' %}
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-    <button type="submit" class="btn btn-primary">Alterar</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
+    <button type="submit" class="btn btn-primary">{% trans 'Update' %}</button>
   </div>
 </form>

@@ -1,4 +1,6 @@
-{% load staticfiles %}
+{% load staticfiles i18n %}
+<!-- Current language: {{request.LANGUAGE_CODE }} -->
+
 <html>
     <head>
         <title>Ideia X</title>
@@ -19,23 +21,23 @@
         <div class="menu">
           <a class="icon  js-create-idea" href="javascript:void(0)" data-modal="#modal-idea" data-url="/idea/new/" class="top-menu js-create-idea">
             <span><i class="fas fa-lightbulb"></i></span>
-            <p>Nova Ideia</p>
+            <p>{% trans 'New Idea' %}</p>
           </a>
           <a href="{% url 'category_list' %}" class="icon unavailable">
             <span><i class="fas fa-tag"></i></span>
-            <p>Nova Categoria</p>
+            <p>{% trans 'New Category' %}</p>
           </a>
           <a href="" class="icon unavailable">
             <span><i class="fas fa-bullseye"></i></span>
-            <p>Nova Missão</p>
+            <p>{% trans 'New Mission' %}</p>
           </a>
           <a href="" class="icon unavailable">
             <span><i class="fas fa-gavel"></i></span>
-            <p>Novo Critério</p>
+            <p>{% trans 'New Criterion' %}</p>
           </a>
         </div>
         <div class="login">
-          <p>Olá, {{ user.username }}</p>
+          <p>{% blocktrans with name=user.username %}Hi, {{name}}!{% endblocktrans %}</p>
           <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
         </div>
         {% else %}

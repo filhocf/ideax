@@ -1,0 +1,237 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <arthur.doliveira@dataprev.gov.br>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-09 13:24-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ideax/forms.py:10 ideax/forms.py:17
+msgid "Title"
+msgstr "Título"
+
+#: ideax/forms.py:10 ideax/forms.py:17 ideax/forms.py:24 ideax/forms.py:31
+#: ideax/templates/ideax/includes/idea_detail.html:50
+msgid "Description"
+msgstr "Descrição"
+
+#: ideax/forms.py:24
+msgid "Weight"
+msgstr "Peso"
+
+#: ideax/forms.py:31
+msgid "key_word"
+msgstr "Palavra-chave"
+
+#: ideax/templates/ideax/base.html:24 ideax/templates/ideax/idea_edit.html:6
+msgid "New Idea"
+msgstr "Nova Ideia"
+
+#: ideax/templates/ideax/base.html:28
+#: ideax/templates/ideax/category_edit.html:5
+msgid "New Category"
+msgstr "Nova Categoria"
+
+#: ideax/templates/ideax/base.html:32
+msgid "New Mission"
+msgstr "Nova Missão"
+
+#: ideax/templates/ideax/base.html:36
+#: ideax/templates/ideax/criterion_edit.html:6
+msgid "New Criterion"
+msgstr "Novo Critério"
+
+#: ideax/templates/ideax/base.html:40
+#, python-format
+msgid "Hi, %(name)s!"
+msgstr "Olá, %(name)s"
+
+#: ideax/templates/ideax/category_edit.html:11
+#: ideax/templates/ideax/criterion_edit.html:12
+#: ideax/templates/ideax/idea_edit.html:21
+#: ideax/templates/ideax/includes/partial_idea_create.html:25
+#: ideax/templates/ideax/phase_edit.html:12
+msgid "Save"
+msgstr "Salvar"
+
+#: ideax/templates/ideax/criterion_list.html:9
+#: ideax/templates/ideax/idea_detail.html:16
+#: ideax/templates/ideax/phase_list.html:8
+msgid "Edit"
+msgstr "Editar"
+
+#: ideax/templates/ideax/criterion_list.html:10
+#: ideax/templates/ideax/idea_detail.html:17
+#: ideax/templates/ideax/phase_list.html:9
+msgid "Remove"
+msgstr "Remover"
+
+#: ideax/templates/ideax/idea_detail.html:12
+msgid "Publish"
+msgstr "Publicar"
+
+#: ideax/templates/ideax/idea_list.html:7
+msgid "All"
+msgstr "Todas"
+
+#: ideax/templates/ideax/idea_list.html:8
+#: ideax/templates/ideax/includes/idea_detail.html:26
+msgid "Discussion"
+msgstr "Discussão"
+
+#: ideax/templates/ideax/idea_list.html:9
+#: ideax/templates/ideax/includes/idea_detail.html:27
+msgid "Evaluation"
+msgstr "Avaliação"
+
+#: ideax/templates/ideax/idea_list.html:10
+#: ideax/templates/ideax/includes/idea_detail.html:28
+msgid "Approval"
+msgstr "Aprovação"
+
+#: ideax/templates/ideax/idea_list.html:11
+#: ideax/templates/ideax/includes/idea_detail.html:29
+msgid "Development"
+msgstr "Desenvolvimento"
+
+#: ideax/templates/ideax/idea_list.html:12
+#: ideax/templates/ideax/includes/idea_detail.html:30
+msgid "Finished"
+msgstr "Feitas"
+
+#: ideax/templates/ideax/idea_list.html:13
+#: ideax/templates/ideax/includes/idea_detail.html:31
+msgid "Archived"
+msgstr "Arquivadas"
+
+#: ideax/templates/ideax/includes/idea_detail.html:32
+msgid "Freezed"
+msgstr "Pausado"
+
+#: ideax/templates/ideax/includes/partial_idea_create.html:10
+#, fuzzy
+#| msgid "Register Ideas"
+msgid "Create Idea"
+msgstr "Cadastro de ideias"
+
+#: ideax/templates/ideax/includes/partial_idea_remove.html:10
+msgid "Confirm ideia removal"
+msgstr "Confirmar descarte de Ideia"
+
+#: ideax/templates/ideax/includes/partial_idea_remove.html:16
+msgid "Would you like to delete the idea?"
+msgstr "Deseja apagar a ideia"
+
+#: ideax/templates/ideax/includes/partial_idea_remove.html:20
+#: ideax/templates/ideax/includes/partial_idea_update.html:21
+msgid "Close"
+msgstr "Fechar"
+
+#: ideax/templates/ideax/includes/partial_idea_remove.html:21
+msgid "Discard"
+msgstr "Descartar"
+
+#: ideax/templates/ideax/includes/partial_idea_update.html:8
+msgid "Update_Idea"
+msgstr "Atualizar Ideia"
+
+#: ideax/templates/ideax/includes/partial_idea_update.html:22
+msgid "Update"
+msgstr "Atualizar Ideia"
+
+#: ideax/templates/ideax/index.html:6
+msgid "brief-explanation-title"
+msgstr "Ideia X compartilhando ideias!"
+
+#: ideax/templates/ideax/index.html:7
+msgid "brief-explanation-description"
+msgstr ""
+"Com o Ideia X você tem um canal aberto para a inovação, recebendo ideias de "
+"todas as partes, avaliando e fazendo-as acontecer!"
+
+#: ideax/templates/ideax/index.html:11
+msgid "launch-text-title"
+msgstr "Lance suas ideias para todos!"
+
+#: ideax/templates/ideax/index.html:12
+msgid "brief-explanation-p-1"
+msgstr ""
+"O Ideia X é o canal para divulgar e compartilhar suas ideias, permitindo que "
+"seus pares possam contribuir, discutir e colaborar para o crescimento dela."
+
+#: ideax/templates/ideax/index.html:13
+msgid "brief-explanation-p-2"
+msgstr ""
+"Da mesma forma, você pode ver as outras ideias postadas, interagindo com sua "
+"opinião, perguntando e opinando para melhorar ainda mais outras ideias."
+
+#: ideax/templates/ideax/index.html:19
+msgid "Features"
+msgstr "Funcionalidades"
+
+#: ideax/templates/ideax/index.html:21
+msgid "Register Ideas"
+msgstr "Cadastro de ideias"
+
+#: ideax/templates/ideax/index.html:22
+msgid "Register Ideas-p"
+msgstr ""
+"Todos dentro da empresa ou projeto podem colaborar. A inovação poderá vir de "
+"todos."
+
+#: ideax/templates/ideax/index.html:26
+msgid "Manage Ideas"
+msgstr "Gestão de ideias"
+
+#: ideax/templates/ideax/index.html:27
+msgid "Manage Ideas-p"
+msgstr ""
+"As ideias podem ser organizadas, amadurecidas e avaliadas, permitindo um "
+"fluxo para a gestão da inovação."
+
+#: ideax/templates/ideax/index.html:31
+msgid "Intagration with other systems"
+msgstr "Integração com outras ferramentas"
+
+#: ideax/templates/ideax/index.html:32
+msgid "Intagration with other systems-p"
+msgstr ""
+"Através das APIs é possível integrar com outras ferramentas. Integrando com "
+"uma ferramenta de gestão de projetos é possível criar um projeto a partir de "
+"uma ideia cadastrada no Ideia X."
+
+#: ideax/templates/ideax/phase_edit.html:6
+msgid "New phase"
+msgstr "Nova Fase"
+
+#: ideax/templates/registration/login.html:4
+#, fuzzy
+#| msgid "login_error_message"
+msgid "login-error-message"
+msgstr "Your username and password didn't match. Please try again."
+
+#: ideax/templates/registration/login.html:17
+msgid "login_info"
+msgstr "É necessário fazer o login para ter acesso às ideias."
+
+#: ideax/templates/registration/login.html:22
+msgid "placeholder:name_surname"
+msgstr "placeholder:nome.sobrenome"
+
+#: ideax/templates/registration/login.html:25
+#, fuzzy
+#| msgid "placeholder:password"
+msgid "placeholder:password"
+msgstr "placeholder:senha"

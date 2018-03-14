@@ -1,70 +1,58 @@
-{% load widget_tweaks %}
+{% load widget_tweaks i18n %}
 
 <div class="idea {{idea.get_current_phase.css_class}}">
+  <!-- idea card header -->
   <div class="idea-header">
     <h1>
-
-    {{ idea.author.get_full_name }}
+      {{ idea.author.get_full_name }}
     </h1>
-
     <p class="date">
       {{ idea.creation_date|date:"d/m/Y" }}
     </p>
-
     {% if link_title == True %}
       <i class="info-icon fas fa-info-circle" onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')"></i>
     {% else%}
-      <!-- <i class="no-link info-icon fas fa-info-circle"></i> -->
     {% endif%}
-
-
+    <!-- idea card phase change and actions -->
     <div class="idea-options">
-
       <input class="menu-input" type="checkbox" id="menu{{idea.pk}}{% if link_title == False %}{{idea.pk}}{% endif%}">
       <label for="menu{{idea.pk}}{% if link_title == False %}{{idea.pk}}{% endif%}">
-      <i class="fas fa-bars"></i>
+        <i class="fas fa-bars"></i>
       </label>
-
-            <div class="options-content">
-              <ul>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=1%}">Discussão</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=2%}">Avaliação</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=3%}">Aprovação</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=4%}">Desenvolvimento</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=5%}">Feita</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=6%}">Arquivada</a></li>
-                <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">Pausada</a></li>
-                <li class="actions">
-                  <div class="action edit">
-                    <button class="js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></button>
-                  </div>
-                  <div class="action delete">
-                    <button class="js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}"><i class="far fa-trash-alt"></i></button>
-                  </div>
-
-
-                </li>
-
-
-              </ul>
+      <div class="options-content">
+        <ul>
+          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=1%}">{% trans 'Discussion' %}</a></li>
+          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=2%}">{% trans 'Evaluation' %}</a></li>
+          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=3%}">{% trans 'Approval' %}</a></li>
+          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=4%}">{% trans 'Development' %}</a></li>
+          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=5%}">{% trans 'Finished' %}</a></li>
+          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=6%}">{% trans 'Archived' %}</a></li>
+          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">{% trans 'Freezed' %}</a></li>
+          <li class="actions">
+            <div class="action edit">
+              <button class="js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></button>
             </div>
-          </div>
+            <div class="action delete">
+              <button class="js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}"><i class="far fa-trash-alt"></i></button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
+  <!-- idea body -->
   <div class="idea-body">
     <p class="idea-title">{{ idea.title }}</p>
-    <p class="idea-description"><span class="bold">Descrição: </span>{{ idea.description|linebreaksbr }}</p>
+    <p class="idea-description"><span class="bold">{% trans 'Description' %}: </span>{{ idea.description|linebreaksbr }}</p>
   </div>
+  <!-- idea footer -->
   <div class="idea-footer">
-
     <div class="phase">
         <div class="phase-symbol {{ idea.get_current_phase.css_class }}-phase">
           <i class="fas fa-{{ idea.get_current_phase.css_icon_class}}"></i>
         </div>
         <p class="phase-name">{{ idea.get_current_phase.description }}</p>
     </div>
-
-
-
     <div class="like-menu">
       <div class="liked">
         <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
@@ -83,20 +71,15 @@
         </a>
       </div>
     </div>
-
-
-
     <!-- {% if idea.id in ideas_created_by_me %}
     <div class="button-group">
       <button type="button" class="btn btn-sm js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}">
         <span class="glyphicon glyphicon-pencil"></span> Edit
       </button>
-
       <button type="button" class="btn btn-sm js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}">
         <span class="glyphicon glyphicon-trash"></span> Delete
       </button>
     </div>
     {% endif%} -->
   </div>
-
 </div>

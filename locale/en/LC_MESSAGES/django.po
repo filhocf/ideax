@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-09 13:24-0300\n"
+"POT-Creation-Date: 2018-03-16 11:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ideax/forms.py:10 ideax/forms.py:17
+#: ideax/forms.py:10 ideax/forms.py:18
 msgid "Title"
 msgstr ""
 
-#: ideax/forms.py:10 ideax/forms.py:17 ideax/forms.py:24 ideax/forms.py:31
-#: ideax/templates/ideax/includes/idea_detail.html:50
+#: ideax/forms.py:10 ideax/forms.py:18 ideax/forms.py:25 ideax/forms.py:32
+#: ideax/templates/ideax/includes/idea_detail.html:46
+#: ideax/templates/ideax/includes/partial_category_list.html:6
 msgid "Description"
 msgstr ""
 
-#: ideax/forms.py:24
+#: ideax/forms.py:10
+msgid "Category"
+msgstr ""
+
+#: ideax/forms.py:25
 msgid "Weight"
 msgstr ""
 
-#: ideax/forms.py:31
+#: ideax/forms.py:32
+#: ideax/templates/ideax/includes/partial_category_list.html:7
 msgid "key_word"
 msgstr ""
 
@@ -40,7 +46,8 @@ msgid "New Idea"
 msgstr ""
 
 #: ideax/templates/ideax/base.html:28
-#: ideax/templates/ideax/category_edit.html:5
+#: ideax/templates/ideax/category_list.html:8
+#: ideax/templates/ideax/category_new.html:3
 msgid "New Category"
 msgstr ""
 
@@ -59,7 +66,16 @@ msgstr ""
 msgid "Hi, %(name)s!"
 msgstr "Hi, %(user.username)s"
 
+#: ideax/templates/ideax/category_edit.html:5
+msgid "Update Category"
+msgstr ""
+
 #: ideax/templates/ideax/category_edit.html:11
+#: ideax/templates/ideax/includes/partial_idea_update.html:22
+msgid "Update"
+msgstr ""
+
+#: ideax/templates/ideax/category_new.html:9
 #: ideax/templates/ideax/criterion_edit.html:12
 #: ideax/templates/ideax/idea_edit.html:21
 #: ideax/templates/ideax/includes/partial_idea_create.html:25
@@ -69,6 +85,7 @@ msgstr ""
 
 #: ideax/templates/ideax/criterion_list.html:9
 #: ideax/templates/ideax/idea_detail.html:16
+#: ideax/templates/ideax/includes/partial_category_list.html:8
 #: ideax/templates/ideax/phase_list.html:8
 msgid "Edit"
 msgstr ""
@@ -88,37 +105,57 @@ msgid "All"
 msgstr ""
 
 #: ideax/templates/ideax/idea_list.html:8
-#: ideax/templates/ideax/includes/idea_detail.html:26
+#: ideax/templates/ideax/includes/idea_detail.html:24
 msgid "Discussion"
 msgstr ""
 
 #: ideax/templates/ideax/idea_list.html:9
-#: ideax/templates/ideax/includes/idea_detail.html:27
+#: ideax/templates/ideax/includes/idea_detail.html:25
 msgid "Evaluation"
 msgstr ""
 
 #: ideax/templates/ideax/idea_list.html:10
-#: ideax/templates/ideax/includes/idea_detail.html:28
+#: ideax/templates/ideax/includes/idea_detail.html:26
 msgid "Approval"
 msgstr ""
 
 #: ideax/templates/ideax/idea_list.html:11
-#: ideax/templates/ideax/includes/idea_detail.html:29
+#: ideax/templates/ideax/includes/idea_detail.html:27
 msgid "Development"
 msgstr ""
 
 #: ideax/templates/ideax/idea_list.html:12
-#: ideax/templates/ideax/includes/idea_detail.html:30
+#: ideax/templates/ideax/includes/idea_detail.html:28
 msgid "Finished"
 msgstr ""
 
 #: ideax/templates/ideax/idea_list.html:13
-#: ideax/templates/ideax/includes/idea_detail.html:31
+#: ideax/templates/ideax/includes/idea_detail.html:29
 msgid "Archived"
 msgstr ""
 
-#: ideax/templates/ideax/includes/idea_detail.html:32
+#: ideax/templates/ideax/includes/idea_detail.html:30
 msgid "Freezed"
+msgstr ""
+
+#: ideax/templates/ideax/includes/partial_category_list.html:9
+#: ideax/templates/ideax/includes/partial_category_remove.html:21
+#: ideax/templates/ideax/includes/partial_idea_remove.html:21
+msgid "Discard"
+msgstr ""
+
+#: ideax/templates/ideax/includes/partial_category_remove.html:10
+msgid "Confirm category removal"
+msgstr ""
+
+#: ideax/templates/ideax/includes/partial_category_remove.html:16
+msgid "Would you like to delete the category?"
+msgstr ""
+
+#: ideax/templates/ideax/includes/partial_category_remove.html:20
+#: ideax/templates/ideax/includes/partial_idea_remove.html:20
+#: ideax/templates/ideax/includes/partial_idea_update.html:21
+msgid "Close"
 msgstr ""
 
 #: ideax/templates/ideax/includes/partial_idea_create.html:10
@@ -133,21 +170,8 @@ msgstr ""
 msgid "Would you like to delete the idea?"
 msgstr ""
 
-#: ideax/templates/ideax/includes/partial_idea_remove.html:20
-#: ideax/templates/ideax/includes/partial_idea_update.html:21
-msgid "Close"
-msgstr ""
-
-#: ideax/templates/ideax/includes/partial_idea_remove.html:21
-msgid "Discard"
-msgstr ""
-
 #: ideax/templates/ideax/includes/partial_idea_update.html:8
 msgid "Update_Idea"
-msgstr ""
-
-#: ideax/templates/ideax/includes/partial_idea_update.html:22
-msgid "Update"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:6

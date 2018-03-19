@@ -18,16 +18,5 @@
           {% include 'ideax/includes/idea_detail.html' %}
       {% endfor %}
     </div>
-    <div class="modal fade" id="modal-idea">
-      <div class="modal-dialog">
-        <div class="modal-content">
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="modal-idea-crud">
-      <div class="modal-dialog">
-        <div class="modal-content">
-        </div>
-      </div>
-    </div>
+    {% include 'ideax/includes/modals.html' %}
 {% endblock %}

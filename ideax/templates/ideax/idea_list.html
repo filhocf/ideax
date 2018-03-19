@@ -11,20 +11,19 @@
         <li><a href="#">{% trans 'Development' %}</a></li>
         <li><a href="#">{% trans 'Finished' %}</a></li>
         <li><a href="#">{% trans 'Archived' %}</a></li>
-
       </ul>
     </nav>
     <div id="idea-list">
-      {% include 'ideax/idea_list_loop.html' %}
+      {% for idea in ideas %}
+          {% include 'ideax/includes/idea_detail.html' %}
+      {% endfor %}
     </div>
-
     <div class="modal fade" id="modal-idea">
       <div class="modal-dialog">
         <div class="modal-content">
         </div>
       </div>
     </div>
-
     <div class="modal fade" id="modal-idea-crud">
       <div class="modal-dialog">
         <div class="modal-content">

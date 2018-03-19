@@ -1,7 +1,8 @@
 $(window).scroll(function(){
 if($(window).scrollTop() >= $('.main-header').outerHeight()) {
+  var scroll = $(window).outerWidth() - $('body').outerWidth();
   $('.phase-filter').addClass('fixed');
-  $('.phase-filter').css("width", $(window).outerWidth());
+  $('.phase-filter').css("width", $(window).outerWidth() - scroll);
 }else{
   $('.phase-filter').removeClass('fixed');
   $('.phase-filter').css("width", "100%");
@@ -100,5 +101,7 @@ $(function () {
 
   $(document).on("click", ".js-remove-idea", loadForm);
   $("#modal-idea-crud").on("submit", ".js-idea-remove-form", saveForm);
+
+  $(".js-create-category").click(loadForm);
 
 });

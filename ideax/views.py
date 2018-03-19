@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
-from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History
+from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category
 from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm
 from django import forms
 
@@ -158,11 +158,17 @@ def category_new(request):
         if form.is_valid():
             category = form.save(commit=False)
             category.save()
-            return redirect('index')
+            return redirect('category_list')
     else:
         form = CategoryForm()
 
     return render(request, 'ideax/category_edit.html', {'form': form})
+
+def category_list(request):
+    category = Category.objects.all()
+    category_list = dict()
+    category_list['category_list'] = category
+    return render(request, 'ideax/category_list.html', category_list)
 
 @login_required
 def like_popular_vote(request, pk):

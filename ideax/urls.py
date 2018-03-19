@@ -22,6 +22,7 @@ urlpatterns = [
     path('idea/<int:pk>/like/', views.like_popular_vote, name='like_ideia'),
     path('idea/<int:pk>/dislike/', views.like_popular_vote, name='dislike_ideia'),
     path('idea/<int:pk>/changephase/<int:new_phase>/', views.change_idea_phase, name='change_phase'),
+    path('idea/filter/<int:phase_pk>', views.idea_filter, name ="idea_filter"),
     path('category/new/', views.category_new, name='category_new'),
     path('category/', views.open_category_new, name='open_category_new'),
     path('category/list', views.category_list, name='category_list')

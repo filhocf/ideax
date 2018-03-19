@@ -3,14 +3,19 @@
 
 {% block content %}
     <nav class="phase-filter">
+
       <ul class="phase-list">
-        <li class="active"><a href="#">{% trans 'All' %}</a></li>
+        <li class="active" onclick="filterIdeas('{% url 'idea_filter' phase_pk=0 %}')"><a href="#" >{% trans 'All' %}</a></li>
+        {% for phase in phases %}
+            <li onclick="filterIdeas('{% url 'idea_filter' phase_pk=phase.0 %}')"><a href="#">{{ phase.1 }}</a></li>
+        {% endfor %}
+        <!-- <li class="active"><a href="#">{% trans 'All' %}</a></li>
         <li><a href="#">{% trans 'Discussion' %}</a></li>
         <li><a href="#">{% trans 'Evaluation' %}</a></li>
         <li><a href="#">{% trans 'Approval' %}</a></li>
         <li><a href="#">{% trans 'Development' %}</a></li>
         <li><a href="#">{% trans 'Finished' %}</a></li>
-        <li><a href="#">{% trans 'Archived' %}</a></li>
+        <li><a href="#">{% trans 'Archived' %}</a></li> -->
       </ul>
     </nav>
     <div id="idea-list">

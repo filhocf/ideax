@@ -19,6 +19,7 @@ def index(request):
 @login_required
 def idea_list(request):
     ideas = get_ideas_init(request)
+    ideas['phases'] = Phase.choices()
     return render(request, 'ideax/idea_list.html', ideas)
 
 @login_required
@@ -31,12 +32,36 @@ def get_ideas_init(request):
     ideas_dic['link_title'] = True
     return ideas_dic
 
+
+def get_phases():
+    phase_dic = dict()
+    phase_dic['phases'] = Phase.choices()
+    return phase_dic
+
 @login_required
 def idea_detail(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     context={'idea': idea, 'link_title': False}
     data = dict()
     data['html_form'] = render_to_string('ideax/includes/idea_detail.html', context, request=request,)
+    return JsonResponse(data)
+
+def idea_filter(request, phase_pk):
+    if phase_pk == 0:
+        filtered_phases = Phase_History.objects.filter(current=1)
+    else:
+        filtered_phases = Phase_History.objects.filter(current_phase=phase_pk, current=1)
+    #filtered_phases = sorted(filtered_phases, key=operator.attrgetter('idea.creation_date'))
+    ideas = [];
+    for phase in filtered_phases:
+        ideas.append(phase.idea)
+    ideas.sort(key=lambda idea:idea.creation_date)
+    context={'ideas': ideas}
+    data = dict()
+    data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', context, request=request)
+    #return render(request, 'ideax/idea_list.html', ideas)
+    if not ideas:
+        data['html_idea_list'] = render_to_string('ideax/includes/empty.html', request=request)
     return JsonResponse(data)
 
 

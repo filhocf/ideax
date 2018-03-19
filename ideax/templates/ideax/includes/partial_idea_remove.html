@@ -1,6 +1,6 @@
 {% load widget_tweaks i18n %}
 
-<form method="post" class="post-form js-idea-remove-form" action="{% url 'idea_remove' idea.id %}">
+<form method="post" class="post-form js-idea-remove-form" action="{% url 'idea_remove' idea.id %}" data-modal="#modal-idea-crud" data-list-div="#idea-list">
   {% csrf_token %}
 
   <div class="modal-header">

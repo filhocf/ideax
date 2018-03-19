@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-09 13:24-0300\n"
+"POT-Creation-Date: 2018-03-16 11:50-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,20 +18,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ideax/forms.py:10 ideax/forms.py:17
+#: ideax/forms.py:10 ideax/forms.py:18
 msgid "Title"
 msgstr "Título"
 
-#: ideax/forms.py:10 ideax/forms.py:17 ideax/forms.py:24 ideax/forms.py:31
-#: ideax/templates/ideax/includes/idea_detail.html:50
+#: ideax/forms.py:10 ideax/forms.py:18 ideax/forms.py:25 ideax/forms.py:32
+#: ideax/templates/ideax/includes/idea_detail.html:46
+#: ideax/templates/ideax/includes/partial_category_list.html:6
 msgid "Description"
 msgstr "Descrição"
 
-#: ideax/forms.py:24
+#: ideax/forms.py:10
+msgid "Category"
+msgstr "Categoria"
+
+#: ideax/forms.py:25
 msgid "Weight"
 msgstr "Peso"
 
-#: ideax/forms.py:31
+#: ideax/forms.py:32
+#: ideax/templates/ideax/includes/partial_category_list.html:7
 msgid "key_word"
 msgstr "Palavra-chave"
 
@@ -40,7 +46,8 @@ msgid "New Idea"
 msgstr "Nova Ideia"
 
 #: ideax/templates/ideax/base.html:28
-#: ideax/templates/ideax/category_edit.html:5
+#: ideax/templates/ideax/category_list.html:8
+#: ideax/templates/ideax/category_new.html:3
 msgid "New Category"
 msgstr "Nova Categoria"
 
@@ -58,7 +65,16 @@ msgstr "Novo Critério"
 msgid "Hi, %(name)s!"
 msgstr "Olá, %(name)s"
 
+#: ideax/templates/ideax/category_edit.html:5
+msgid "Update Category"
+msgstr "Atualizar Categoria"
+
 #: ideax/templates/ideax/category_edit.html:11
+#: ideax/templates/ideax/includes/partial_idea_update.html:22
+msgid "Update"
+msgstr "Atualizar"
+
+#: ideax/templates/ideax/category_new.html:9
 #: ideax/templates/ideax/criterion_edit.html:12
 #: ideax/templates/ideax/idea_edit.html:21
 #: ideax/templates/ideax/includes/partial_idea_create.html:25
@@ -68,6 +84,7 @@ msgstr "Salvar"
 
 #: ideax/templates/ideax/criterion_list.html:9
 #: ideax/templates/ideax/idea_detail.html:16
+#: ideax/templates/ideax/includes/partial_category_list.html:8
 #: ideax/templates/ideax/phase_list.html:8
 msgid "Edit"
 msgstr "Editar"
@@ -87,42 +104,60 @@ msgid "All"
 msgstr "Todas"
 
 #: ideax/templates/ideax/idea_list.html:8
-#: ideax/templates/ideax/includes/idea_detail.html:26
+#: ideax/templates/ideax/includes/idea_detail.html:24
 msgid "Discussion"
 msgstr "Discussão"
 
 #: ideax/templates/ideax/idea_list.html:9
-#: ideax/templates/ideax/includes/idea_detail.html:27
+#: ideax/templates/ideax/includes/idea_detail.html:25
 msgid "Evaluation"
 msgstr "Avaliação"
 
 #: ideax/templates/ideax/idea_list.html:10
-#: ideax/templates/ideax/includes/idea_detail.html:28
+#: ideax/templates/ideax/includes/idea_detail.html:26
 msgid "Approval"
 msgstr "Aprovação"
 
 #: ideax/templates/ideax/idea_list.html:11
-#: ideax/templates/ideax/includes/idea_detail.html:29
+#: ideax/templates/ideax/includes/idea_detail.html:27
 msgid "Development"
 msgstr "Desenvolvimento"
 
 #: ideax/templates/ideax/idea_list.html:12
-#: ideax/templates/ideax/includes/idea_detail.html:30
+#: ideax/templates/ideax/includes/idea_detail.html:28
 msgid "Finished"
 msgstr "Feitas"
 
 #: ideax/templates/ideax/idea_list.html:13
-#: ideax/templates/ideax/includes/idea_detail.html:31
+#: ideax/templates/ideax/includes/idea_detail.html:29
 msgid "Archived"
 msgstr "Arquivadas"
 
-#: ideax/templates/ideax/includes/idea_detail.html:32
+#: ideax/templates/ideax/includes/idea_detail.html:30
 msgid "Freezed"
 msgstr "Pausado"
 
+#: ideax/templates/ideax/includes/partial_category_list.html:9
+#: ideax/templates/ideax/includes/partial_category_remove.html:21
+#: ideax/templates/ideax/includes/partial_idea_remove.html:21
+msgid "Discard"
+msgstr "Descartar"
+
+#: ideax/templates/ideax/includes/partial_category_remove.html:10
+msgid "Confirm category removal"
+msgstr "Confirmar descarte de categoria"
+
+#: ideax/templates/ideax/includes/partial_category_remove.html:16
+msgid "Would you like to delete the category?"
+msgstr "Deseja apagar a categoria"
+
+#: ideax/templates/ideax/includes/partial_category_remove.html:20
+#: ideax/templates/ideax/includes/partial_idea_remove.html:20
+#: ideax/templates/ideax/includes/partial_idea_update.html:21
+msgid "Close"
+msgstr "Fechar"
+
 #: ideax/templates/ideax/includes/partial_idea_create.html:10
-#, fuzzy
-#| msgid "Register Ideas"
 msgid "Create Idea"
 msgstr "Cadastro de ideias"
 
@@ -134,21 +169,8 @@ msgstr "Confirmar descarte de Ideia"
 msgid "Would you like to delete the idea?"
 msgstr "Deseja apagar a ideia"
 
-#: ideax/templates/ideax/includes/partial_idea_remove.html:20
-#: ideax/templates/ideax/includes/partial_idea_update.html:21
-msgid "Close"
-msgstr "Fechar"
-
-#: ideax/templates/ideax/includes/partial_idea_remove.html:21
-msgid "Discard"
-msgstr "Descartar"
-
 #: ideax/templates/ideax/includes/partial_idea_update.html:8
 msgid "Update_Idea"
-msgstr "Atualizar Ideia"
-
-#: ideax/templates/ideax/includes/partial_idea_update.html:22
-msgid "Update"
 msgstr "Atualizar Ideia"
 
 #: ideax/templates/ideax/index.html:6
@@ -217,8 +239,6 @@ msgid "New phase"
 msgstr "Nova Fase"
 
 #: ideax/templates/registration/login.html:4
-#, fuzzy
-#| msgid "login_error_message"
 msgid "login-error-message"
 msgstr "Your username and password didn't match. Please try again."
 
@@ -231,7 +251,4 @@ msgid "placeholder:name_surname"
 msgstr "placeholder:nome.sobrenome"
 
 #: ideax/templates/registration/login.html:25
-#, fuzzy
-#| msgid "placeholder:password"
-msgid "placeholder:password"
 msgstr "placeholder:senha"

@@ -2,12 +2,12 @@
 
 
 
-    <h1>{% trans 'New Category' %}</h1>
+    <h1>{% trans 'Update Category' %}</h1>
 
-    <form method="post" class="post-form" action="{% url 'category_new' %}">
+    <form method="post" class="js-category-update-form" action="{% url 'category_edit' pk=form.instance.pk %}" data-modal="#modal-category-crud" data-list-div="#category-list">
       {% csrf_token %}
       {% include 'ideax/includes/base_form.html' %}
       <button type="submit" class="btn btn-primary">
-        <span class="glyphicon glyphicon-ok"></span> {% trans 'Save' %}
+        <span class="glyphicon glyphicon-ok"></span> {% trans 'Update' %}
       </button>
     </form>

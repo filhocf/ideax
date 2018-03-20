@@ -54,7 +54,8 @@ def idea_filter(request, phase_pk):
     #filtered_phases = sorted(filtered_phases, key=operator.attrgetter('idea.creation_date'))
     ideas = [];
     for phase in filtered_phases:
-        ideas.append(phase.idea)
+        if phase.idea.discarded == False:
+            ideas.append(phase.idea)
     ideas.sort(key=lambda idea:idea.creation_date)
     context={'ideas': ideas}
     data = dict()
@@ -82,7 +83,7 @@ def save_idea(request, form, template_name, new=False):
                 idea.save()
             data['form_is_valid'] = True
             ideas = get_ideas_init(request)
-            data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
+            data['html_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
         else:
             data['form_is_valid'] = False
 
@@ -127,7 +128,7 @@ def idea_remove(request, pk):
         idea.save()
         data['form_is_valid'] = True
         ideas = get_ideas_init(request)
-        data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
+        data['html_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
     else:
         context = {'idea' : idea}
         data['html_form'] = render_to_string('ideax/includes/partial_idea_remove.html', context, request=request,)
@@ -171,29 +172,71 @@ def criterion_remove(request, pk):
     criterion.delete()
     return redirect('criterion_list')
 
-def open_category_new(request):
+def open_category_new(request, ):
     data = dict()
     context = {'form': CategoryForm()}
-    data['html_form'] = render_to_string('ideax/category_edit.html', context,request=request,)
+    data['html_form'] = render_to_string('ideax/category_new.html', context,request=request,)
     return JsonResponse(data)
 
 def category_new(request):
     if request.method == "POST":
         form = CategoryForm(request.POST)
-        if form.is_valid():
-            category = form.save(commit=False)
-            category.save()
-            return redirect('category_list')
     else:
         form = CategoryForm()
 
-    return render(request, 'ideax/category_edit.html', {'form': form})
+    if request.is_ajax():
+        return save_category(request, 'ideax/category_new.html', form)
+    else:
+        return redirect('category_list')
+
+def save_category(request, template_name, form):
+    data = dict()
+    if request.method == "POST":
+        if form.is_valid():
+            category = form.save(commit=False)
+            category.save()
+            data['form_is_valid'] = True
+        else:
+            data['form_is_valid'] = False
+
+        data['html_list'] = render_to_string('ideax/includes/partial_category_list.html', get_category_list())
+    context = {'form' : form}
+    data['html_form'] = render_to_string(template_name, context, request=request,)
+
+    return JsonResponse(data)
+
+
+@login_required
+def category_edit(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    if request.method == "POST":
+        form = CategoryForm(request.POST, instance=category)
+    else:
+        form = CategoryForm(instance=category)
+
+    return save_category(request,'ideax/category_edit.html',form)
+
+@login_required
+def category_remove(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    data = dict()
+    if request.method == 'POST':
+        category.discarded = True
+        category.save()
+        data['form_is_valid'] = True
+        data['html_list'] = render_to_string('ideax/includes/partial_category_list.html', get_category_list())
+    else:
+        context = {'category': category}
+        data['html_form'] = render_to_string('ideax/includes/partial_category_remove.html', context, request=request)
+
+    return JsonResponse(data)
 
 def category_list(request):
-    category = Category.objects.all()
-    category_list = dict()
-    category_list['category_list'] = category
-    return render(request, 'ideax/category_list.html', category_list)
+    return render(request, 'ideax/category_list.html', get_category_list())
+
+
+def get_category_list():
+    return {'category_list': Category.objects.filter(discarded=False)}
 
 @login_required
 def like_popular_vote(request, pk):

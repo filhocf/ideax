@@ -1,0 +1,22 @@
+{% load widget_tweaks i18n %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>{% trans 'Description' %}</th>
+      <th>{% trans 'key_word' %}</th>
+      <th>{% trans 'Edit' %}</th>
+      <th>{% trans 'Discard' %}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for category in category_list %}
+      <tr>
+        <td>{{category.description}}</td>
+        <td>{{category.key_word}}</td>
+        <td><button class="js-update-category" data-modal="#modal-category-crud" data-url="{% url 'category_edit' pk=category.pk %}"><i class="far fa-edit"></i></button></td>
+        <td><button class="js-remove-category" data-modal="#modal-category-crud" data-url="{% url 'category_remove' pk=category.pk %}"><i class="far fa-trash-alt"></i></button></td>
+      </tr>
+    {% endfor %}
+</tbody>
+</table>

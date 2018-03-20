@@ -30,10 +30,10 @@
           <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">{% trans 'Freezed' %}</a></li>
           <li class="actions">
             <div class="action edit">
-              <button class="js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></button>
+              <button class="js-update-idea" data-modal="#modal-idea-crud" data-url="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></button>
             </div>
             <div class="action delete">
-              <button class="js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}"><i class="far fa-trash-alt"></i></button>
+              <button class="js-remove-idea" data-modal="#modal-idea-crud" data-url="{% url 'idea_remove' pk=idea.pk %}"><i class="far fa-trash-alt"></i></button>
             </div>
           </li>
         </ul>

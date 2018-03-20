@@ -1,5 +1,6 @@
 {% load staticfiles i18n %}
 <!-- Current language: {{request.LANGUAGE_CODE }} -->
+<!-- -->
 
 <html>
     <head>
@@ -19,7 +20,7 @@
         </h1>
         {% if user.is_authenticated %}
         <div class="menu">
-          <a class="icon  js-create-idea" href="javascript:void(0)" data-modal="#modal-idea" data-url="/idea/new/" class="top-menu js-create-idea">
+          <a class="icon  js-create-idea" href="javascript:void(0)" data-modal="#modal-idea-crud" data-url="/idea/new/" class="top-menu js-create-idea">
             <span><i class="fas fa-lightbulb"></i></span>
             <p>{% trans 'New Idea' %}</p>
           </a>
@@ -31,7 +32,7 @@
             <span><i class="fas fa-bullseye"></i></span>
             <p>{% trans 'New Mission' %}</p>
           </a>
-          <a href="" class="icon unavailable">
+          <a href="" data-modal="#modal-idea-crud" class="icon unavailable">
             <span><i class="fas fa-gavel"></i></span>
             <p>{% trans 'New Criterion' %}</p>
           </a>

@@ -1,6 +1,6 @@
 {% load widget_tweaks i18n %}
 
-<form method="post" class="post-form js-idea-update-form" action="{% url 'idea_edit' form.instance.pk %}">
+<form method="post" class="post-form js-idea-update-form" action="{% url 'idea_edit' form.instance.pk %}" data-modal="#modal-idea-crud" data-list-div="#idea-list">
   {% csrf_token %}
 
   <div class="modal-header">

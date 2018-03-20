@@ -25,6 +25,9 @@ urlpatterns = [
     path('idea/filter/<int:phase_pk>', views.idea_filter, name ="idea_filter"),
     path('category/new/', views.category_new, name='category_new'),
     path('category/', views.open_category_new, name='open_category_new'),
-    path('category/list', views.category_list, name='category_list')
+    path('category/list', views.category_list, name='category_list'),
+    path('category/<int:pk>/edit/', views.category_edit, name='category_edit'),
+    path('category/<int:pk>/remove/', views.category_remove, name='category_remove')
+
 
 ]

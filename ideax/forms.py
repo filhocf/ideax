@@ -7,7 +7,7 @@ class IdeaForm(forms.ModelForm):
     class Meta:
         model = Idea
         fields = ('title', 'description', 'category' )
-        labels = {'title': _('Título'), 'description': _('Descrição'), 'category': _('Categoria')}
+        labels = {'title': _('Title'), 'description': _('Description'), 'category': _('Category')}
 
 
 class IdeaFormUpdate(forms.ModelForm):

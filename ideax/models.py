@@ -56,6 +56,7 @@ class Evaluation_Item(models.Model):
 class Category(models.Model):
     description = models.CharField(max_length=200)
     key_word = models.CharField(max_length=50)
+    discarded = models.BooleanField(default=False)
 
     def __str__(self):
         return self.description

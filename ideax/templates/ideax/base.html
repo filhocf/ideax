@@ -19,6 +19,8 @@
           </a>
         </h1>
         {% if user.is_authenticated %}
+        <label id="burger-nav" for="toggle">&#9776;</label>
+        <input type="checkbox" id="toggle">
         <div class="menu">
           <a class="icon  js-create-idea" href="javascript:void(0)" data-modal="#modal-idea-crud" data-url="/idea/new/" class="top-menu js-create-idea">
             <span><i class="fas fa-lightbulb"></i></span>

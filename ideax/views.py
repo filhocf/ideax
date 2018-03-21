@@ -57,7 +57,7 @@ def idea_filter(request, phase_pk):
         if phase.idea.discarded == False:
             ideas.append(phase.idea)
     ideas.sort(key=lambda idea:idea.creation_date)
-    context={'ideas': ideas}
+    context={'ideas': ideas, 'link_title': True}
     data = dict()
     data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', context, request=request)
     #return render(request, 'ideax/idea_list.html', ideas)

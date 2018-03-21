@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-19 13:46-0300\n"
+"POT-Creation-Date: 2018-03-20 15:55-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,26 +41,26 @@ msgstr "Peso"
 msgid "key_word"
 msgstr "Palavra-chave"
 
-#: ideax/templates/ideax/base.html:24 ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/base.html:27 ideax/templates/ideax/idea_edit.html:6
 msgid "New Idea"
 msgstr "Nova Ideia"
 
-#: ideax/templates/ideax/base.html:28
+#: ideax/templates/ideax/base.html:31
 #: ideax/templates/ideax/category_list.html:8
 #: ideax/templates/ideax/category_new.html:3
 msgid "New Category"
 msgstr "Nova Categoria"
 
-#: ideax/templates/ideax/base.html:32
+#: ideax/templates/ideax/base.html:35
 msgid "New Mission"
 msgstr "Nova Missão"
 
-#: ideax/templates/ideax/base.html:36
+#: ideax/templates/ideax/base.html:39
 #: ideax/templates/ideax/criterion_edit.html:6
 msgid "New Criterion"
 msgstr "Novo Critério"
 
-#: ideax/templates/ideax/base.html:40
+#: ideax/templates/ideax/base.html:43
 #, python-format
 msgid "Hi, %(name)s!"
 msgstr "Olá, %(name)s"
@@ -102,12 +102,12 @@ msgstr "Publicar"
 #: ideax/templates/ideax/idea_list.html:8
 #: ideax/templates/ideax/idea_list.html:12
 msgid "All"
-msgstr ""
+msgstr "Todas"
 
 #: ideax/templates/ideax/idea_list.html:13
 #: ideax/templates/ideax/includes/idea_detail.html:24
 msgid "Discussion"
-msgstr "Todas"
+msgstr "Discussão"
 
 #: ideax/templates/ideax/idea_list.html:14
 #: ideax/templates/ideax/includes/idea_detail.html:25

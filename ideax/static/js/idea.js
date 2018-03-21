@@ -117,3 +117,20 @@ $(function () {
   $("#modal-category-crud").on("submit", ".js-category-remove-form", saveForm);
 
 });
+
+
+function filterIdeas(url){
+  $.ajax({
+    url: url,
+    type: 'get',
+    dataType: 'json',
+    success: function (data){
+      $("#idea-list").html(data.html_idea_list);
+    }
+  });
+};
+
+$('body').on('click', 'li', function() {
+      $('li.active').removeClass('active');
+      $(this).addClass('active');
+});

@@ -21,27 +21,27 @@ html {
   color: #E6E6E6;
   font-family: 'Open Sans', sans-serif;
   display: flex;
+  //flex-wrap: wrap;
   align-items: center;
-  min-height: 80px;
+  //justify-content: space-between;
+  //padding: 0 20px;
+  height: 60px;
   -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.75);
-  display: flex;
-  flex-direction: row-reverse;
-  line-height: 70px;
+  //margin-bottom: 50px;
 }
 
 .main-header .title{
   margin: 0;
-  font-size: 4em;
   position: absolute;
   left: 20px;
-  top: -4px;
+
 }
 
 .title img{
   height: auto;
-  width: 160px;
+  width: 125px;
 }
 
 .main-header a{
@@ -52,13 +52,13 @@ html {
 .main-header a:hover{
   color: #ffffff;
   text-decoration: none;
-  color: #E6E6E6;
+  color: #B3B3B3;
   transition: all 0.6s;
 }
 
 
 .main-header .login a{
-  font-size: 2.5em;
+  font-size: 0.9em;
   color: white;
 }
 
@@ -69,34 +69,59 @@ html {
 .menu{
   display: flex;
   width: 40%;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
 }
-
-#burger-nav{
-  margin: 0 40px 0 0;
-  font-size: 26px;
-  display: none;
-}
-
-#toggle{
-  display: none;
-}
-
-
 
 div.login{
   display: flex;
   align-items: center;
   position: absolute;
   right: 20px;
-  top: 18px;
+  //top: 18px;
 
+}
+
+.icon{
+  font-size: 1em;
+  cursor: pointer;
+  text-align: center;
+  margin: 10px 0px;
+  display: block;
+
+}
+
+.icon .fa-plus{
+  font-size: 0.6em;
+}
+
+.unavailable span,
+.unavailable p{
+  color: #a3a3a3;
+  cursor: default;
+}
+
+.icon p{
+  display: inline;
+  font-size: 1.15em;
+
+}
+
+/* div.icon:hover{
+  color: #CDCDCD;
+  transition: all 0.2s;
+
+} */
+
+.icon span{
+  display: inline-block;
+  font-size: 1.15em;
+  margin-bottom: 0px;
 }
 
 .login p{
   margin: 0px 15px;
-  font-size: 1.5em;
+  font-size: 1.1em;
 }
 
 /*Secondary menu*/
@@ -174,6 +199,7 @@ ul.phase-list li.active a {
   font-size: 1.8em;
 }
 
+
 /*Login*/
 
 
@@ -238,40 +264,7 @@ ul.phase-list li.active a {
 }
 
 
-.icon{
-  font-size: 1em;
-  cursor: pointer;
-  text-align: center;
-  margin: 10px 0px;
-  display: block;
 
-}
-
-.unavailable span,
-.unavailable p{
-  color: #a3a3a3;
-  cursor: default;
-}
-
-.icon p{
-  display: inline;
-  font-size: 1.2em;
-
-}
-
-div.icon:hover{
-  color: #CDCDCD;
-  transition: all 0.2s;
-
-}
-
-.icon span{
-  display: block;
-  font-size: 1.5em;
-  //margin-bottom: 0px;
-  margin-bottom: -15px;
-  margin-top: 15px;
-}
 
 
 
@@ -294,7 +287,7 @@ div.idea{
   display: flex;
 flex-flow: column;
   justify-content: center;
-  border-radius: 14px;
+  border-radius: 10px;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   margin: 0 0 50px 0;
@@ -404,7 +397,7 @@ input.menu-input{
 }
 
 .idea-options input:checked ~ .options-content{
-  max-height: inherit;
+  max-height: 100%;
   border: 1px solid #E1E1E1;
   //margin-top: 5px;
 }
@@ -491,6 +484,7 @@ input.menu-input{
   padding: 0 20px;
   font-size: 0.9em;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 10px 20px;
   min-height: 200px;
 }
@@ -849,7 +843,6 @@ padding: 8% 15% 0 15%;
 
 
 
-
 @media (max-width: 320px){
       .functionality{
     background-position-x: 50%;
@@ -873,19 +866,7 @@ padding: 8% 15% 0 15%;
 }
 
 @media (min-width: 321px) and (max-width: 480px) {
-  .main-header {
-    min-height: 150px;
-    //justify-content: space-around;
-  }
-  .login p {
-    display: none;
-  }
-  .menu {
-    //width: 65%;
-    flex-basis: 100%;
-    order: 1;
-    margin-top: 60px;
-  }
+
       .functionality{
     background-position-x: 50%;
   }
@@ -906,9 +887,7 @@ padding: 8% 15% 0 15%;
     font-size: 1.1em;
     text-align: justify
   }
-  #toggle:checked + .menu{
-    display: block !important;
-  }
+
 }
 
 @media (max-width: 550px){
@@ -926,9 +905,6 @@ padding: 8% 15% 0 15%;
     width: 30%;
   }
 
-  #burger-nav{
-    display: block;
-  }
     .idea{
     width: 95% !important;;
   }
@@ -940,20 +916,7 @@ padding: 8% 15% 0 15%;
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
-  .main-header {
-    min-height: 150px;
-    //justify-content: space-around;
-  }
 
-  .login p {
-    display: none;
-  }
-  .menu {
-    //width: 65%;
-    flex-basis: 100%;
-    order: 1;
-    margin-top: 0px;
-  }
     .functionality{
     background-position-x: 50%;
   }
@@ -985,24 +948,9 @@ padding: 8% 15% 0 15%;
     align-self: initial
   }
 
-
-
-
-
-
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  .main-header {
-    min-height: 150px;
-  }
-  .icon {
-    font-size: 0.8em;
-  }
-  .login p {
-    display: none;
-  }
-
   .functionality{
     background-position-x: 15%;
   }
@@ -1029,31 +977,6 @@ padding: 8% 15% 0 15%;
 
 }
 @media (min-width: 768px) and (max-width: 1200px){
-  #burger-nav{
-    display: block;
-    cursor: pointer;
-    align-self: flex-end;
-  }
-  .menu{
-    text-align: center;
-    width: 100%;
-    display: none !important;
-    font-size: 0.8em;
-  }
-  .menu a{
-    font-size: 1.1em;
-  }
-
-  .menu a span{
-    display: none;
-  }
-
-  #toggle:checked + .menu{
-    display: block !important;
-  }
-    .menu{
-    font-size: 0.8em;
-  }
   .idea{
     width: 48% !important;
   }

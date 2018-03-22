@@ -19,29 +19,16 @@
           </a>
         </h1>
         {% if user.is_authenticated %}
-        <label id="burger-nav" for="toggle">&#9776;</label>
-        <input type="checkbox" id="toggle">
         <div class="menu">
           <a class="icon  js-create-idea" href="javascript:void(0)" data-modal="#modal-idea-crud" data-url="/idea/new/" class="top-menu js-create-idea">
-            <span><i class="fas fa-lightbulb"></i></span>
+            <span><i class="fas fa-plus"></i><i class="fas fa-lightbulb"></i></span>
             <p>{% trans 'New Idea' %}</p>
           </a>
-          <a href="{% url 'category_list' %}" class="icon unavailable">
-            <span><i class="fas fa-tag"></i></span>
-            <p>{% trans 'New Category' %}</p>
-          </a>
-          <a href="" class="icon unavailable">
-            <span><i class="fas fa-bullseye"></i></span>
-            <p>{% trans 'New Mission' %}</p>
-          </a>
-          <a href="" data-modal="#modal-idea-crud" class="icon unavailable">
-            <span><i class="fas fa-gavel"></i></span>
-            <p>{% trans 'New Criterion' %}</p>
-          </a>
+
         </div>
         <div class="login">
           <p>{% blocktrans with name=user.username %}Hi, {{name}}!{% endblocktrans %}</p>
-          <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
+          <a href="{% url 'logout' %}">( Sair )</i></a>
         </div>
         {% else %}
         <div class="login">

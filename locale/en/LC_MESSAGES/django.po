@@ -75,6 +75,14 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
+#: ideax/templates/ideax/form.html:14
+msgid "New Comment"
+msgstr ""
+
+#: ideax/templates/ideax/form.html:23
+msgid "Comment"
+msgstr ""
+
 #: ideax/templates/ideax/idea_detail.html:12
 msgid "Publish"
 msgstr ""

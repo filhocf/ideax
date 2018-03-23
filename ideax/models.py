@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from enum import Enum
+from mptt.models import MPTTModel, TreeForeignKey
 
 class Phase(Enum):
     GROW     = (1, 'Discussão', 'discussion', 'comments')
@@ -92,3 +93,16 @@ class Popular_Vote(models.Model):
     voter = models.ForeignKey('auth.User',on_delete=models.PROTECT)
     voting_date = models.DateTimeField()
     idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
+
+class Comment(MPTTModel):
+    idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
+    author = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    raw_comment = models.TextField(blank=True)
+    parent = TreeForeignKey('self', related_name='children',
+                            null=True, blank=True, db_index=True,on_delete=models.PROTECT)
+    date = models.DateTimeField()
+    comment_phase = models.PositiveSmallIntegerField()
+    deleted = models.BooleanField(default=False)
+
+    class MPTTMeta:
+        order_insertion_by = ['-date']

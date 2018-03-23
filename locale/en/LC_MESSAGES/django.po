@@ -148,23 +148,29 @@ msgid "Update_Idea"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:6
-msgid "brief-explanation-title"
+msgid "Idea X sharing ideas!"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:7
-msgid "brief-explanation-description"
+msgid ""
+"With Ideia X you have an open channel for innovation, getting ideas from all "
+"parties, evaluating and making them happen!"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:11
-msgid "launch-text-title"
+msgid "Launch your ideas for everyone!"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:12
-msgid "brief-explanation-p-1"
+msgid ""
+"Ideia X is the channel to spread and share your ideas, allowing your peers "
+"to contribute, discuss and collaborate to grow it."
 msgstr ""
 
 #: ideax/templates/ideax/index.html:13
-msgid "brief-explanation-p-2"
+msgid ""
+"In the same way, you can see other posted ideas, interacting with your "
+"opinion, asking and opining to further improve other ideas."
 msgstr ""
 
 #: ideax/templates/ideax/index.html:19
@@ -176,7 +182,9 @@ msgid "Register Ideas"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:22
-msgid "Register Ideas-p"
+msgid ""
+"Everyone within the company or project can collaborate. Innovation can come "
+"from everyone."
 msgstr ""
 
 #: ideax/templates/ideax/index.html:26
@@ -184,15 +192,20 @@ msgid "Manage Ideas"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:27
-msgid "Manage Ideas-p"
+msgid ""
+"Ideas can be organized, matured and evaluated, allowing a flow for the "
+"innovation management."
 msgstr ""
 
 #: ideax/templates/ideax/index.html:31
-msgid "Intagration with other systems"
+msgid "Integration with other systems"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:32
-msgid "Intagration with other systems-p"
+msgid ""
+"Through APIs is possible to integrate with other tools. Integrating with a "
+"project management tool is possible to create a project based on an idea "
+"registered in Idea X."
 msgstr ""
 
 #: ideax/templates/ideax/phase_edit.html:6
@@ -200,11 +213,11 @@ msgid "New phase"
 msgstr ""
 
 #: ideax/templates/registration/login.html:4
-msgid "login-error-message"
+msgid "Your username and password didn"
 msgstr ""
 
 #: ideax/templates/registration/login.html:17
-msgid "login_info"
+msgid "You must be logged in to access ideas."
 msgstr ""
 
 #: ideax/templates/registration/login.html:22

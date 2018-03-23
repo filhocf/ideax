@@ -8,4 +8,8 @@ db.sqlite3
 *bkp*
 _config.yml
 .env
+<<<<<<< HEAD
 locale/*.mo 
+=======
+locale/*/LC_MESSAGES/django.mo 
+>>>>>>> 4d9277c0aa0c272f63236d608c6c50bdfd5b2624

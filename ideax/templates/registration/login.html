@@ -1,7 +1,7 @@
 {% extends "ideax/base.html" %}
 {% load widget_tweaks staticfiles i18n %}
 
-{% trans 'login-error-message' as login-error-message %}
+{% trans 'Your username and password didn't match. Please try again.' as login-error-message %}
 {% block content %}
     {% if form.errors %}
       <div class="alert alert-danger">
@@ -14,7 +14,7 @@
 
     <div class="login-box">
       <img class="login-icon" src="{% static 'images/idea_launch.png' %}" alt="">
-      <p class="login-info">{% trans 'login_info' %}</p>
+      <p class="login-info">{% trans 'You must be logged in to access ideas.' %}</p>
       <form method="post" action="{% url 'login' %}">
       {% csrf_token %}
           <table>

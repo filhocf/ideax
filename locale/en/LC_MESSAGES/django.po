@@ -1,23 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-16 11:50-0300\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
 #: ideax/forms.py:10 ideax/forms.py:18
 msgid "Title"
 msgstr ""
@@ -41,30 +21,29 @@ msgstr ""
 msgid "key_word"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:24 ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/base.html:27 ideax/templates/ideax/idea_edit.html:6
 msgid "New Idea"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:28
+#: ideax/templates/ideax/base.html:31
 #: ideax/templates/ideax/category_list.html:8
 #: ideax/templates/ideax/category_new.html:3
 msgid "New Category"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:32
+#: ideax/templates/ideax/base.html:35
 msgid "New Mission"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:36
+#: ideax/templates/ideax/base.html:39
 #: ideax/templates/ideax/criterion_edit.html:6
 msgid "New Criterion"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:40
-#, fuzzy, python-format
-#| msgid "Hi, %(user.username)s"
+#: ideax/templates/ideax/base.html:43
+#, python-format
 msgid "Hi, %(name)s!"
-msgstr "Hi, %(user.username)s"
+msgstr ""
 
 #: ideax/templates/ideax/category_edit.html:5
 msgid "Update Category"
@@ -100,36 +79,37 @@ msgstr ""
 msgid "Publish"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:7
+#: ideax/templates/ideax/idea_list.html:8
+#: ideax/templates/ideax/idea_list.html:12
 msgid "All"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:8
+#: ideax/templates/ideax/idea_list.html:13
 #: ideax/templates/ideax/includes/idea_detail.html:24
 msgid "Discussion"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:9
+#: ideax/templates/ideax/idea_list.html:14
 #: ideax/templates/ideax/includes/idea_detail.html:25
 msgid "Evaluation"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:10
+#: ideax/templates/ideax/idea_list.html:15
 #: ideax/templates/ideax/includes/idea_detail.html:26
 msgid "Approval"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:11
+#: ideax/templates/ideax/idea_list.html:16
 #: ideax/templates/ideax/includes/idea_detail.html:27
 msgid "Development"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:12
+#: ideax/templates/ideax/idea_list.html:17
 #: ideax/templates/ideax/includes/idea_detail.html:28
 msgid "Finished"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:13
+#: ideax/templates/ideax/idea_list.html:18
 #: ideax/templates/ideax/includes/idea_detail.html:29
 msgid "Archived"
 msgstr ""
@@ -175,23 +155,29 @@ msgid "Update_Idea"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:6
-msgid "brief-explanation-title"
+msgid "Idea X sharing ideas!"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:7
-msgid "brief-explanation-description"
+msgid ""
+"With Ideia X you have an open channel for innovation, getting ideas from all "
+"parties, evaluating and making them happen!"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:11
-msgid "launch-text-title"
+msgid "Launch your ideas for everyone!"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:12
-msgid "brief-explanation-p-1"
+msgid ""
+"Ideia X is the channel to spread and share your ideas, allowing your peers "
+"to contribute, discuss and collaborate to grow it."
 msgstr ""
 
 #: ideax/templates/ideax/index.html:13
-msgid "brief-explanation-p-2"
+msgid ""
+"In the same way, you can see other posted ideas, interacting with your "
+"opinion, asking and opining to further improve other ideas."
 msgstr ""
 
 #: ideax/templates/ideax/index.html:19
@@ -203,7 +189,9 @@ msgid "Register Ideas"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:22
-msgid "Register Ideas-p"
+msgid ""
+"Everyone within the company or project can collaborate. Innovation can come "
+"from everyone."
 msgstr ""
 
 #: ideax/templates/ideax/index.html:26
@@ -211,15 +199,20 @@ msgid "Manage Ideas"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:27
-msgid "Manage Ideas-p"
+msgid ""
+"Ideas can be organized, matured and evaluated, allowing a flow for the "
+"innovation management."
 msgstr ""
 
 #: ideax/templates/ideax/index.html:31
-msgid "Intagration with other systems"
+msgid "Integration with other systems"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:32
-msgid "Intagration with other systems-p"
+msgid ""
+"Through APIs is possible to integrate with other tools. Integrating with a "
+"project management tool is possible to create a project based on an idea "
+"registered in Idea X."
 msgstr ""
 
 #: ideax/templates/ideax/phase_edit.html:6
@@ -227,21 +220,17 @@ msgid "New phase"
 msgstr ""
 
 #: ideax/templates/registration/login.html:4
-msgid "login-error-message"
+msgid "Your username and password didn"
 msgstr ""
 
 #: ideax/templates/registration/login.html:17
-msgid "login_info"
+msgid "You must be logged in to access ideas."
 msgstr ""
 
 #: ideax/templates/registration/login.html:22
-#, fuzzy
-#| msgid "Hi, %(user.username)s"
 msgid "placeholder:name_surname"
-msgstr "Hi, %(user.username)s"
+msgstr ""
 
 #: ideax/templates/registration/login.html:25
-#, fuzzy
-#| msgid "Hi, %(user.username)s"
 msgid "placeholder:password"
-msgstr "Hi, %(user.username)s"
+msgstr ""

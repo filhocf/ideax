@@ -5,7 +5,6 @@
     <nav class="phase-filter">
 
       <ul class="phase-list">
-        <li class="active" onclick="filterIdeas('{% url 'idea_filter' phase_pk=0 %}')"><a href="#" >{% trans 'All' %}</a></li>
         {% for phase in phases %}
             <li onclick="filterIdeas('{% url 'idea_filter' phase_pk=phase.0 %}')"><a href="#">{{ phase.1 }}</a></li>
         {% endfor %}

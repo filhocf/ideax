@@ -21,26 +21,11 @@ msgstr ""
 msgid "key_word"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:27 ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/base.html:25 ideax/templates/ideax/idea_edit.html:6
 msgid "New Idea"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:31
-#: ideax/templates/ideax/category_list.html:8
-#: ideax/templates/ideax/category_new.html:3
-msgid "New Category"
-msgstr ""
-
-#: ideax/templates/ideax/base.html:35
-msgid "New Mission"
-msgstr ""
-
-#: ideax/templates/ideax/base.html:39
-#: ideax/templates/ideax/criterion_edit.html:6
-msgid "New Criterion"
-msgstr ""
-
-#: ideax/templates/ideax/base.html:43
+#: ideax/templates/ideax/base.html:30
 #, python-format
 msgid "Hi, %(name)s!"
 msgstr ""
@@ -54,12 +39,21 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
+#: ideax/templates/ideax/category_list.html:8
+#: ideax/templates/ideax/category_new.html:3
+msgid "New Category"
+msgstr ""
+
 #: ideax/templates/ideax/category_new.html:9
 #: ideax/templates/ideax/criterion_edit.html:12
 #: ideax/templates/ideax/idea_edit.html:21
 #: ideax/templates/ideax/includes/partial_idea_create.html:25
 #: ideax/templates/ideax/phase_edit.html:12
 msgid "Save"
+msgstr ""
+
+#: ideax/templates/ideax/criterion_edit.html:6
+msgid "New Criterion"
 msgstr ""
 
 #: ideax/templates/ideax/criterion_list.html:9
@@ -87,37 +81,36 @@ msgstr ""
 msgid "Publish"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:8
-#: ideax/templates/ideax/idea_list.html:12
+#: ideax/templates/ideax/idea_list.html:11
 msgid "All"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:13
+#: ideax/templates/ideax/idea_list.html:12
 #: ideax/templates/ideax/includes/idea_detail.html:24
 msgid "Discussion"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:14
+#: ideax/templates/ideax/idea_list.html:13
 #: ideax/templates/ideax/includes/idea_detail.html:25
 msgid "Evaluation"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:15
+#: ideax/templates/ideax/idea_list.html:14
 #: ideax/templates/ideax/includes/idea_detail.html:26
 msgid "Approval"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:16
+#: ideax/templates/ideax/idea_list.html:15
 #: ideax/templates/ideax/includes/idea_detail.html:27
 msgid "Development"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:17
+#: ideax/templates/ideax/idea_list.html:16
 #: ideax/templates/ideax/includes/idea_detail.html:28
 msgid "Finished"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:18
+#: ideax/templates/ideax/idea_list.html:17
 #: ideax/templates/ideax/includes/idea_detail.html:29
 msgid "Archived"
 msgstr ""

@@ -7,7 +7,7 @@ class Phase(Enum):
     GROW     = (1, 'Discussão', 'discussion', 'comments')
     RATE     = (2, 'Avaliação', 'rate','clipboard')
     APROVED  = (3, 'Aprovação', 'aproved','star')
-    ACT      = (4, 'Desenvolvimento', 'develop','tasks')
+    ACT      = (4, 'Evolução', 'develop','tasks')
     DONE     = (5, 'Feita', 'done', 'check')
     ARCHIVED = (6, 'Arquivada', 'archived', 'archive')
     PAUSED   = (7, 'Pausada', 'paused', 'pause')

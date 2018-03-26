@@ -288,11 +288,11 @@ def change_idea_phase(request, pk, new_phase):
     return redirect('index')
 
 def form_redirect(request):
-    idea = Idea.objects.get(id=1)
+    idea = Idea.objects.get(id=28)
     comments = idea.comment_set.all()
     #Comment.objects.filter(idea=idea)
 
-    return render(request, 'ideax/form.html', {"comments": comments, "idea" : idea, "idea_id" : idea.pk})
+    return render(request, 'ideax/idea_detail.html', {"comments": comments, "idea" : idea, "idea_id" : idea.pk})
 
 
 def post_comment(request):

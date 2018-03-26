@@ -161,12 +161,19 @@ $(function () {
     });
 
     doPost.done(function (response) {
-        var errorLabel = $form.find("span#postResponse");
+        var message = $form.find("span#postResponse");
         if (response.msg) {
-            errorLabel.text(response.msg);
-            errorLabel.removeAttr('style');
+            message.text(response.msg);
+            message.removeAttr('style');
         }
         refleshCommentList(event, form)
+    });
+    doPost.fail(function (response){
+      var message = $form.find("span#postResponse");
+      if (response.msg) {
+          message.text(response.msg);
+          message.removeAttr('style');
+      }
     });
   }
 
@@ -249,4 +256,9 @@ function filterIdeas(url){
 $('body').on('click', 'li', function() {
       $('li.active').removeClass('active');
       $(this).addClass('active');
+});
+
+$('#idea-tab a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
 });

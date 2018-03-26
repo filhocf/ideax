@@ -1,7 +1,7 @@
 {% extends "ideax/base.html" %}
 {% load widget_tweaks staticfiles i18n %}
 
-{% trans 'Your username and password didn't match. Please try again.' as login-error-message %}
+{% trans "Your username and password didn't match. Please try again." as login-error-message %}
 {% block content %}
     {% if form.errors %}
       <div class="alert alert-danger">
@@ -19,7 +19,7 @@
       {% csrf_token %}
           <table>
           <tr>
-              <td>{{ form.username|attr:'class:login-field'|attr:_('placeholder:name_surname') }}</td>
+              <td>{{ form.username|attr:'class:login-field'|attr:_('placeholder:username') }}</td>
           </tr>
           <tr>
               <td>{{ form.password|attr:'class:login-field'|attr:_('placeholder:password') }}</td>

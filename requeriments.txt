@@ -7,3 +7,4 @@ pyldap==2.4.45
 python-decouple==3.1
 pytz==2017.3
 django-mptt==0.9.0
+wordfilter==0.2.6.2

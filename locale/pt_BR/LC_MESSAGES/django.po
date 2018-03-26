@@ -3,7 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <arthur.doliveira@dataprev.gov.br>, 2018.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -250,9 +249,7 @@ msgid "New phase"
 msgstr "Nova Fase"
 
 #: ideax/templates/registration/login.html:4
-#, fuzzy
-#| msgid "Your username and password didn't match. Please try again."
-msgid "Your username and password didn"
+msgid "Your username and password didn't match. Please try again."
 msgstr "Seu nome de usuário e senha não correspondem. Tente novamente."
 
 #: ideax/templates/registration/login.html:17
@@ -260,9 +257,7 @@ msgid "You must be logged in to access ideas."
 msgstr "É necessário fazer o login para ter acesso às ideias."
 
 #: ideax/templates/registration/login.html:22
-#, fuzzy
-#| msgid "placeholder:username"
-msgid "placeholder:name_surname"
+msgid "placeholder:username"
 msgstr "placeholder:nome_de_usuário"
 
 #: ideax/templates/registration/login.html:25

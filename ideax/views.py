@@ -8,8 +8,11 @@ from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
 from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment
 from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm
+from .singleton import Profanity_Check
 from django import forms
-
+from wordfilter import Wordfilter
+import os
+import json
 
 def index(request):
     if request.user.is_authenticated:
@@ -238,9 +241,7 @@ def like_popular_vote(request, pk):
     idea_ = Idea.objects.get(pk=pk)
     like_boolean =  request.path.split("/")[3] == "like"
 
-    if vote.count() == 0:
-        like = Popular_Vote(like=like_boolean,voter=request.user,voting_date=timezone.now(),idea=idea_)
-        like.save()
+    if vote.count() == 0:import json
     else:
         if vote[0].like == like_boolean:
             vote.delete()
@@ -287,11 +288,11 @@ def change_idea_phase(request, pk, new_phase):
     return redirect('index')
 
 def form_redirect(request):
-    idea = Idea.objects.get(id=1)
+    idea = Idea.objects.get(id=28)
     comments = idea.comment_set.all()
     #Comment.objects.filter(idea=idea)
 
-    return render(request, 'ideax/form.html', {"comments": comments, "idea" : idea, "idea_id" : idea.pk})
+    return render(request, 'ideax/idea_detail.html', {"comments": comments, "idea" : idea, "idea_id" : idea.pk})
 
 
 def post_comment(request):
@@ -303,6 +304,8 @@ def post_comment(request):
     author = request.user
     idea_id = request.POST.get('ideiaId', None)
 
+    if Profanity_Check.wordcheck().blacklisted(raw_comment):
+        return JsonResponse({'msg': "Please check your message it has inappropriate content."})
 
     if not raw_comment:
         return JsonResponse({'msg': "You have to write a comment."})

@@ -805,7 +805,7 @@ input#id_title {
 
 #idea-tab{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .tab-content{

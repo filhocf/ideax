@@ -7,11 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2018-03-22 13:02-0300\n"
-=======
-"POT-Creation-Date: 2018-03-22 15:35-0300\n"
->>>>>>> 4d9277c0aa0c272f63236d608c6c50bdfd5b2624
+"POT-Creation-Date: 2018-03-27 13:31-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,11 +40,11 @@ msgstr "Peso"
 msgid "key_word"
 msgstr "Palavra-chave"
 
-#: ideax/templates/ideax/base.html:25 ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/base.html:24 ideax/templates/ideax/idea_edit.html:6
 msgid "New Idea"
 msgstr "Criar Ideia"
 
-#: ideax/templates/ideax/base.html:30
+#: ideax/templates/ideax/base.html:29
 #, python-format
 msgid "Hi, %(name)s!"
 msgstr "Olá, %(name)s"
@@ -80,21 +76,23 @@ msgid "New Criterion"
 msgstr "Novo Critério"
 
 #: ideax/templates/ideax/criterion_list.html:9
-#: ideax/templates/ideax/idea_detail.html:16
 #: ideax/templates/ideax/includes/partial_category_list.html:8
 #: ideax/templates/ideax/phase_list.html:8
 msgid "Edit"
 msgstr "Editar"
 
 #: ideax/templates/ideax/criterion_list.html:10
-#: ideax/templates/ideax/idea_detail.html:17
 #: ideax/templates/ideax/phase_list.html:9
 msgid "Remove"
 msgstr "Remover"
 
-#: ideax/templates/ideax/idea_detail.html:12
-msgid "Publish"
-msgstr "Publicar"
+#: ideax/templates/ideax/form.html:14
+msgid "New Comment"
+msgstr "Novo Comentário"
+
+#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:44
+msgid "Comment"
+msgstr "Comentar"
 
 #: ideax/templates/ideax/idea_list.html:11
 msgid "All"
@@ -263,6 +261,9 @@ msgstr "placeholder:nome_de_usuário"
 #: ideax/templates/registration/login.html:25
 msgid "placeholder:password"
 msgstr "placeholder:senha"
+
+#~ msgid "Publish"
+#~ msgstr "Publicar"
 
 #~ msgid "New Mission"
 #~ msgstr "Nova Missão"

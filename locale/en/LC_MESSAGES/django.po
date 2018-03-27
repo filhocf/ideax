@@ -21,11 +21,11 @@ msgstr ""
 msgid "key_word"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:25 ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/base.html:24 ideax/templates/ideax/idea_edit.html:6
 msgid "New Idea"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:30
+#: ideax/templates/ideax/base.html:29
 #, python-format
 msgid "Hi, %(name)s!"
 msgstr ""
@@ -57,14 +57,12 @@ msgid "New Criterion"
 msgstr ""
 
 #: ideax/templates/ideax/criterion_list.html:9
-#: ideax/templates/ideax/idea_detail.html:16
 #: ideax/templates/ideax/includes/partial_category_list.html:8
 #: ideax/templates/ideax/phase_list.html:8
 msgid "Edit"
 msgstr ""
 
 #: ideax/templates/ideax/criterion_list.html:10
-#: ideax/templates/ideax/idea_detail.html:17
 #: ideax/templates/ideax/phase_list.html:9
 msgid "Remove"
 msgstr ""
@@ -73,12 +71,8 @@ msgstr ""
 msgid "New Comment"
 msgstr ""
 
-#: ideax/templates/ideax/form.html:23
+#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:44
 msgid "Comment"
-msgstr ""
-
-#: ideax/templates/ideax/idea_detail.html:12
-msgid "Publish"
 msgstr ""
 
 #: ideax/templates/ideax/idea_list.html:11
@@ -221,7 +215,7 @@ msgid "New phase"
 msgstr ""
 
 #: ideax/templates/registration/login.html:4
-msgid "Your username and password didn"
+msgid "Your username and password didn't match. Please try again."
 msgstr ""
 
 #: ideax/templates/registration/login.html:17
@@ -229,7 +223,7 @@ msgid "You must be logged in to access ideas."
 msgstr ""
 
 #: ideax/templates/registration/login.html:22
-msgid "placeholder:name_surname"
+msgid "placeholder:username"
 msgstr ""
 
 #: ideax/templates/registration/login.html:25

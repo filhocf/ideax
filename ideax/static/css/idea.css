@@ -6,6 +6,7 @@ html {
       min-height: 100%;
       display: flex;
       flex-direction: column;
+      font-family: 'Open Sans', sans-serif !important;
     }
 
     .content {
@@ -687,7 +688,6 @@ footer.landing-page{
   border-left: 5px solid #36aed3;
   font-family: 'Open Sans', sans-serif;
   padding: 0 10px 0 5px;
-  margin-top: 30%;
 }
 
 #modal-idea .idea {
@@ -809,9 +809,8 @@ input#id_title {
 }
 
 .tab-content{
-  height: inherit;
-  overflow-y: auto;
-  padding: 0 20px 0 0;
+
+  padding: 0;
 }
 
 .nav-item a{
@@ -819,8 +818,13 @@ input#id_title {
 }
 
 .comments{
-  padding: 15px 0 10px 0;
+  padding: 0px 0 10px 0;
+  height: 70vh;
+}
+
+.comment-list{
   overflow-y: auto;
+  height: inherit;
 }
 
 .comment{
@@ -1088,6 +1092,24 @@ padding: 8% 15% 0 15%;
   .idea{
     width: 48% !important;
   }
+}
+
+@media (max-width: 1200px){
+  .idea-page{
+    flex-direction: column;
+  }
+
+  .idea-desc{
+    width: 100%;
+  }
+  .idea-interaction{
+    width: 100%;
+  }
+
+  #idea-tab{
+    justify-content: flex-start;
+  }
+
 }
 
 

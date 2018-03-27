@@ -2,28 +2,51 @@
 {% load widget_tweaks i18n %}
 
 <div id="comments-area" class="tab-pane fade show active comments" role="tabpanel" aria-labelledby="comment-group-tab">
-  {% recursetree comments %}
-  <div class="media comment">
-    <div class="media-left">
-    </div>
-    <div class="media-body">
-      <div class="mt-0 comment-header">
-        <span class="c-author">{{ node.author.username }}</span>
-        <span class="c-date">{{ node.date|date:"d/m/Y h:m"}}</span>
-      </div>
-      <div class="comment-body">
-        {{ node.raw_comment|safe }}
-      </div>
-      <div class="reply-link reply-container">
-        <a href="javascript:void(0)" data-idea-id="{{idea_id}}" data-parent-id="{{ node.id }}" name="replyButton">reply</a>
-      </div>
-      {% if not node.is_leaf_node %}
-      <div class="reply">
-        {{ children }}
-      </div>
-      {% endif %}
+  <div class="new-comment">
+    <form id="commentForm" class="form-horizontal" data-idea-id="{{idea.pk}}" action="/post/comment/">
+        {% csrf_token %}
+        <fieldset>
 
+            <div class="form-group comment-group">
+                <label for="commentContent" class="col-lg-2 control-label"></label>
+
+                <div class="col-lg-12">
+                    <textarea class="form-control" rows="3" id="commentContent"></textarea>
+                    <span id="postResponse" class="text-success" style="display: none"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary">{% trans 'Comment' %}</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+  </div>
+    <div class="comment-list">
+      {% recursetree comments %}
+      <div class="media comment">
+        <div class="media-left">
+        </div>
+        <div class="media-body">
+          <div class="mt-0 comment-header">
+            <span class="c-author">{{ node.author.username }}</span>
+            <span class="c-date">{{ node.date|date:"d/m/Y h:m"}}</span>
+          </div>
+          <div class="comment-body">
+            {{ node.raw_comment|safe }}
+          </div>
+          <div class="reply-link reply-container">
+            <a href="javascript:void(0)" data-idea-id="{{idea_id}}" data-parent-id="{{ node.id }}" name="replyButton">reply</a>
+          </div>
+          {% if not node.is_leaf_node %}
+          <div class="reply">
+            {{ children }}
+          </div>
+          {% endif %}
+
+        </div>
+        </div>
+      {% endrecursetree %}
     </div>
-    </div>
-  {% endrecursetree %}
   </div>

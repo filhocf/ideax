@@ -198,7 +198,7 @@ $(function () {
                               >\
                               <fieldset>\
                               <div class="form-group comment-group">\
-                                  <label for="commentContent" class="col-lg-2 control-label">New comment</label>\
+                                  <label for="commentContent" class="col-lg-2 control-label"></label>\
                                   <div class="col-lg-10">\
                                       <textarea class="form-control" rows="3" id="commentContent"></textarea>\
                                       <span id="postResponse" class="text-success" style="display: none"></span>\
@@ -261,4 +261,4 @@ $('body').on('click', 'li', function() {
 $('#idea-tab a').on('click', function (e) {
   e.preventDefault()
   $(this).tab('show')
-});
+})

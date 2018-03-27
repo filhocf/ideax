@@ -287,8 +287,8 @@ def change_idea_phase(request, pk, new_phase):
 
     return redirect('index')
 
-def form_redirect(request):
-    idea = Idea.objects.get(id=28)
+def form_redirect(request, pk):
+    idea = Idea.objects.get(id=pk)
     comments = idea.comment_set.all()
     #Comment.objects.filter(idea=idea)
 

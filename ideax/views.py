@@ -84,29 +84,40 @@ def save_idea(request, form, template_name, new=False):
                 phase_history.save()
             else:
                 idea.save()
-            data['form_is_valid'] = True
-            ideas = get_ideas_init(request)
-            data['html_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
-        else:
-            data['form_is_valid'] = False
+            #data['form_is_valid'] = True
+            #ideas = get_ideas_init(request)
+            #data['html_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
+            return redirect('idea_list')
+        #else:
+            #data['form_is_valid'] = False
+            #form = IdeaForm()
 
-    context = {'form' : form}
-    data['html_form'] = render_to_string(template_name, context, request=request,)
+    #context = {'form' : form}
+    #data['html_form'] = render_to_string(template_name, context, request=request,)
 
-    return JsonResponse(data)
+    return render(request, template_name, {'form': form})
+    #return JsonResponse(data)
 
 @login_required
 def idea_new(request):
     if request.method == "POST":
         form = IdeaForm(request.POST)
+        #form = IdeaForm({'title':request.POST.get('title', None),
+        #                'oportunity':request.POST.get('oportunity', None),
+        #                'solution':request.POST.get('solution', None),
+        #                'target':request.POST.get('target', None),
+        #                'category':request.POST.get('category', None)}
+        #                )
     else:
         form = IdeaForm()
 
+    return save_idea(request, form, 'ideax/idea_new.html', True)
+"""
     if request.is_ajax():
-        return save_idea(request, form, 'ideax/includes/partial_idea_create.html', True)
+        return save_idea(request, form, 'ideax/idea_new.html', True)
     else:
         return redirect('idea_list')
-
+"""
 @login_required
 def idea_edit(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
@@ -114,7 +125,8 @@ def idea_edit(request, pk):
         form = IdeaForm(request.POST, instance=idea)
     else:
         form = IdeaForm(instance=idea)
-    return save_idea(request, form, 'ideax/includes/partial_idea_update.html')
+
+    return save_idea(request, form, 'ideax/idea_edit.html')
 
 
 @login_required
@@ -241,7 +253,9 @@ def like_popular_vote(request, pk):
     idea_ = Idea.objects.get(pk=pk)
     like_boolean =  request.path.split("/")[3] == "like"
 
-    if vote.count() == 0:import json
+    if vote.count() == 0:
+        like = Popular_Vote(like=like_boolean,voter=request.user,voting_date=timezone.now(),idea=idea_)
+        like.save()
     else:
         if vote[0].like == like_boolean:
             vote.delete()
@@ -297,7 +311,7 @@ def form_redirect(request, pk):
 
 def post_comment(request):
     if not request.user.is_authenticated:
-        return JsonResponse({'msg': "You need to log in to post new comments."})
+        return JsonResponse({'msg': "You need to log in to post new comments."}, status=500)
 
     raw_comment = request.POST.get('commentContent', None)
     parent_id = request.POST.get('parentId', None)
@@ -305,17 +319,16 @@ def post_comment(request):
     idea_id = request.POST.get('ideiaId', None)
 
     if Profanity_Check.wordcheck().blacklisted(raw_comment):
-        return JsonResponse({'msg': "Please check your message it has inappropriate content."})
+        return JsonResponse({'msg': "Please check your message it has inappropriate content."}, status=500)
 
     if not raw_comment:
-        return JsonResponse({'msg': "You have to write a comment."})
+        return JsonResponse({'msg': "You have to write a comment."},status=500)
 
     if not parent_id:
         parent_object = None
     else:
         parent_object = Comment.objects.get(id=parent_id)
 
-    print(idea_id)
     idea = Idea.objects.get(id=idea_id)
 
     comment = Comment(author=author,

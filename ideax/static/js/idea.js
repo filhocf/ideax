@@ -98,11 +98,11 @@ $(function () {
     return false;
   };
 
-  $(".js-create-idea").click(loadForm);
-  $("#modal-idea-crud").on("submit", ".js-idea-create-form", saveForm);
+  //$(".js-create-idea").click(loadForm);
+  //$("#modal-idea-crud").on("submit", ".js-idea-create-form", saveForm);
 
-  $(document).on("click", ".js-update-idea", loadForm);
-  $("#modal-idea-crud").on("submit", ".js-idea-update-form", saveForm);
+  //$(document).on("click", ".js-update-idea", loadForm);
+  //$("#modal-idea-crud").on("submit", ".js-idea-update-form", saveForm);
 
   $(document).on("click", ".js-remove-idea", loadForm);
   $("#modal-idea-crud").on("submit", ".js-idea-remove-form", saveForm);
@@ -161,36 +161,38 @@ $(function () {
     });
 
     doPost.done(function (response) {
-        var message = $form.find("span#postResponse");
         if (response.msg) {
-            message.text(response.msg);
-            message.removeAttr('style');
+            showCommentMessage(response.msg, "alert-info");
         }
-        refleshCommentList(event, form)
+        refreshCommentList(event, form)
     });
+
     doPost.fail(function (response){
-      var message = $form.find("span#postResponse");
-      if (response.msg) {
-          message.text(response.msg);
-          message.removeAttr('style');
+      if (response.responseJSON.msg) {
+          showCommentMessage(response.responseJSON.msg, "alert-danger");
       }
     });
   }
 
-  function refleshCommentList(event, form){
+  function showCommentMessage(message, classMessage){
+    $("#comment-message").html(message);
+    $("#comment-message").css("display","");
+    $("#comment-message").removeClass("alert-danger").removeClass("alert-warning").addClass(classMessage);
+  }
+
+  function refreshCommentList(event, form){
     var urlRequest = '/idea/comments/' + form.data().ideaId;
     $.ajax({
       url: urlRequest,
       dataType: 'json',
       success: function (data){
-        $("#comments-area").html(data.html_list);
+        $("#comments-list").html(data.html_list);
       }
     });
   }
 
-  $("#commentForm").submit(function (event) {
+  $(document).on("submit", "#commentForm", function (event) {
     submitEvent(event, $(this));
-
   });
 
   var newCommentForm = '<form id="commentFormReply" class="form-horizontal" \

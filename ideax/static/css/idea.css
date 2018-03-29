@@ -789,6 +789,10 @@ input#id_title {
   //font-weight: bold;
 }
 
+.desc-body p{
+  line-height: 1.8;
+}
+
 .desc-footer{
   height: 10%;
 }

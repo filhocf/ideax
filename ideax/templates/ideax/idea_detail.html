@@ -10,7 +10,9 @@
   </div>
   <div class="idea-page">
     <div class="idea-desc">
-      {{ idea.description|linebreaksbr }}
+      {{ idea.oportunity|linebreaksbr }}
+      {{ idea.solution|linebreaksbr }}
+      {{ idea.target|linebreaksbr }}
     </div>
     <div class="separator"></div>
 
@@ -27,7 +29,31 @@
         </li>
       </ul>
       <div class="tab-content" id="myTabContent">
-        {% include 'ideax/includes/partial_comments.html' %}
+        <div id="comments-area" class="tab-pane fade show active comments" role="tabpanel" aria-labelledby="comment-group-tab">
+          <div class="new-comment">
+            <div id="comment-message" class="alert alert-dismissible fade show" role="alert" style="display:none">
+            </div>
+            <form id="commentForm" class="form-horizontal" data-idea-id="{{idea.pk}}" action="/post/comment/">
+                {% csrf_token %}
+                <fieldset>
+
+                    <div class="form-group comment-group">
+                        <label for="commentContent" class="col-lg-2 control-label"></label>
+
+                        <div class="col-lg-12">
+                            <textarea class="form-control" rows="3" id="commentContent"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary">{% trans 'Comment' %}</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+          </div>
+          {% include 'ideax/includes/partial_comments.html' %}
+        </div>
         <div class="tab-pane fade" id="evaluation" role="tabpanel" aria-labelledby="evaluation-tab">Avaliação</div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact</div>
       </div>

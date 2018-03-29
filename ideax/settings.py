@@ -145,7 +145,11 @@ AUTH_LDAP_BIND_PASSWORD = config('AUTH_LDAP_BIND_PASSWORD', default='')
 AUTH_LDAP_GLOBAL_OPTIONS = {ldap.OPT_X_TLS_REQUIRE_CERT : ldap.OPT_X_TLS_NEVER}
 AUTH_LDAP_START_TLS = config('AUTH_LDAP_START_TLS', default=0, cast=bool)
 AUTH_LDAP_USER_SEARCH = LDAPSearch(config('AUTH_LDAP_USER_SEARCH', default='ou=users,dc=example,dc=com'), ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
-
+AUTH_LDAP_USER_ATTR_MAP = {
+    "first_name": "givenName",
+    "last_name": "sn",
+    "email": "mail"
+}
 import logging
 
 logger = logging.getLogger('django_auth_ldap')

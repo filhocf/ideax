@@ -27,7 +27,7 @@ urlpatterns = [
     path('category/list', views.category_list, name='category_list'),
     path('category/<int:pk>/edit/', views.category_edit, name='category_edit'),
     path('category/<int:pk>/remove/', views.category_remove, name='category_remove'),
-    path('idea/comment/', views.form_redirect, name='form'),
+    path('idea/comment/<int:pk>', views.form_redirect, name='form'),
     path('post/comment/', views.post_comment, name='post_comment'),
     path('idea/comments/<int:pk>/', views.idea_comments, name='idea_comments'),
 

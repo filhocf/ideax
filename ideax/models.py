@@ -40,7 +40,7 @@ class Phase_History(models.Model):
     previous_phase = models.PositiveSmallIntegerField()
     date_change = models.DateTimeField('data da mudança')
     idea = models.ForeignKey('Idea',on_delete=models.DO_NOTHING)
-    author = models.ForeignKey('auth.User',on_delete=models.DO_NOTHING)
+    author = models.ForeignKey('UserProfile',on_delete=models.DO_NOTHING)
     current = models.BooleanField()
 
 class Criterion(models.Model):
@@ -68,7 +68,7 @@ class Idea(models.Model):
     solution = models.TextField(max_length=2500, null=True)
     target = models.TextField(max_length=500, null=True)
     creation_date = models.DateTimeField('data criação')
-    author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
+    author = models.ForeignKey('UserProfile',on_delete=models.CASCADE)
     category = models.ForeignKey('Category', models.SET_NULL,null=True)
     discarded = models.BooleanField(default=False)
 
@@ -86,19 +86,19 @@ class Idea(models.Model):
 class Vote(models.Model):
     evaluation_item = models.ForeignKey(Evaluation_Item,on_delete=models.PROTECT)
     value = models.IntegerField()
-    voter = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    voter = models.ForeignKey('UserProfile',on_delete=models.PROTECT)
     idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
     voting_date = models.DateTimeField('data da votação')
 
 class Popular_Vote(models.Model):
     like = models.BooleanField()
-    voter = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    voter = models.ForeignKey('UserProfile',on_delete=models.PROTECT)
     voting_date = models.DateTimeField()
     idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
 
 class Comment(MPTTModel):
     idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
-    author = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    author = models.ForeignKey('UserProfile',on_delete=models.PROTECT)
     raw_comment = models.TextField()
     parent = TreeForeignKey('self', related_name='children',
                             null=True, blank=True, db_index=True,on_delete=models.PROTECT)
@@ -108,3 +108,7 @@ class Comment(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['-date']
+
+class UserProfile (models.Model):
+    user = models.OneToOneField('auth.User',on_delete=models.PROTECT)
+    use_term_accept = models.NullBooleanField(default=False)

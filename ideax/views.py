@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
-from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment
+from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment, UserProfile
 from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm
 from .singleton import Profanity_Check
 from django import forms
@@ -21,6 +21,20 @@ def index(request):
 
 @login_required
 def idea_list(request):
+
+    try:
+        print("Checando...")
+        user_profile = UserProfile.objects.get(user=request.user)
+        print(user_profile)
+
+    except UserProfile.DoesNotExist:
+        print("Caiu na exceção")
+        user_profile = UserProfile()
+        user_profile.user = request.user
+        user_profile.save()
+        print("criou um userprofile")
+        print(user_profile)
+
     ideas = get_ideas_init(request)
     ideas['phases'] = Phase.choices()
     return render(request, 'ideax/idea_list.html', ideas)
@@ -75,12 +89,20 @@ def save_idea(request, form, template_name, new=False):
     if request.method == "POST":
         if form.is_valid():
             idea = form.save(commit=False)
-            idea.author = request.user
+
+            try:
+                user_profile = UserProfile.objects.get(user=request.user)
+            except UserProfile.DoesNotExist:
+                user_profile = UserProfile(user=request.user)
+                user_profile.save()
+
+            idea.author = user_profile
+
             if new:
                 idea.creation_date = timezone.now()
                 idea.phase= Phase.GROW.id
                 idea.save()
-                phase_history = Phase_History(current_phase=Phase.GROW.id,previous_phase=0, date_change=timezone.now(), idea=idea, author=request.user, current=True)
+                phase_history = Phase_History(current_phase=Phase.GROW.id,previous_phase=0, date_change=timezone.now(), idea=idea, author=user_profile, current=True)
                 phase_history.save()
             else:
                 idea.save()
@@ -275,7 +297,7 @@ def like_popular_vote(request, pk):
 def get_ideas_voted(request, vote):
     ideas_voted = []
     if request.user.is_authenticated:
-        ideas_voted = Popular_Vote.objects.filter(like=vote, voter=request.user).values_list('idea_id',flat=True)
+        ideas_voted = Popular_Vote.objects.filter(like=vote, voter=UserProfile(user=request.user)).values_list('idea_id',flat=True)
 
     return ideas_voted
 
@@ -283,7 +305,7 @@ def get_ideas_voted(request, vote):
 def get_ideas_created(request):
     ideas_created = []
     if request.user.is_authenticated:
-        ideas_created = Idea.objects.filter(author=request.user).values_list('id',flat=True)
+        ideas_created = Idea.objects.filter(author=UserProfile(user=request.user)).values_list('id',flat=True)
 
     return ideas_created
 

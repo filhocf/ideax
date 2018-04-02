@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-27 13:31-0300\n"
+"POT-Creation-Date: 2018-03-29 11:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/forms.py:10 ideax/forms.py:18 ideax/forms.py:32
 msgid "Title"
 msgstr "Título"
 
-#: ideax/forms.py:10 ideax/forms.py:18 ideax/forms.py:25 ideax/forms.py:32
-#: ideax/templates/ideax/includes/idea_detail.html:46
-#: ideax/templates/ideax/includes/partial_category_list.html:6
-msgid "Description"
-msgstr "Descrição"
+#: ideax/forms.py:10 ideax/forms.py:18
+msgid "Oportunity"
+msgstr ""
+
+#: ideax/forms.py:10 ideax/forms.py:18
+#, fuzzy
+#| msgid "Evaluation"
+msgid "Solution"
+msgstr "Avaliação"
+
+#: ideax/forms.py:10 ideax/forms.py:18
+msgid "Target"
+msgstr ""
 
 #: ideax/forms.py:10
 msgid "Category"
@@ -35,12 +43,13 @@ msgstr "Categoria"
 msgid "Weight"
 msgstr "Peso"
 
-#: ideax/forms.py:32
-#: ideax/templates/ideax/includes/partial_category_list.html:7
-msgid "key_word"
-msgstr "Palavra-chave"
+#: ideax/forms.py:25 ideax/forms.py:32
+#: ideax/templates/ideax/includes/idea_detail.html:47
+#: ideax/templates/ideax/includes/partial_category_list.html:6
+msgid "Description"
+msgstr "Descrição"
 
-#: ideax/templates/ideax/base.html:24 ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/base.html:24
 msgid "New Idea"
 msgstr "Criar Ideia"
 
@@ -54,6 +63,7 @@ msgid "Update Category"
 msgstr "Atualizar Categoria"
 
 #: ideax/templates/ideax/category_edit.html:11
+#: ideax/templates/ideax/idea_edit.html:10
 #: ideax/templates/ideax/includes/partial_idea_update.html:22
 msgid "Update"
 msgstr "Atualizar"
@@ -65,7 +75,7 @@ msgstr "Nova Categoria"
 
 #: ideax/templates/ideax/category_new.html:9
 #: ideax/templates/ideax/criterion_edit.html:12
-#: ideax/templates/ideax/idea_edit.html:21
+#: ideax/templates/ideax/idea_new.html:14
 #: ideax/templates/ideax/includes/partial_idea_create.html:25
 #: ideax/templates/ideax/phase_edit.html:12
 msgid "Save"
@@ -90,9 +100,14 @@ msgstr "Remover"
 msgid "New Comment"
 msgstr "Novo Comentário"
 
-#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:44
+#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:49
 msgid "Comment"
 msgstr "Comentar"
+
+#: ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/includes/partial_idea_update.html:8
+msgid "Update_Idea"
+msgstr "Atualizar Ideia"
 
 #: ideax/templates/ideax/idea_list.html:11
 msgid "All"
@@ -128,15 +143,23 @@ msgstr "Feita"
 msgid "Archived"
 msgstr "Arquivadas"
 
+#: ideax/templates/ideax/idea_new.html:10
+#: ideax/templates/ideax/includes/partial_idea_create.html:10
+msgid "Create Idea"
+msgstr "Cadastrar ideia"
+
 #: ideax/templates/ideax/includes/idea_detail.html:30
 msgid "Freezed"
 msgstr "Pausadas"
 
+#: ideax/templates/ideax/includes/partial_category_list.html:7
+msgid "key_word"
+msgstr "Palavra-chave"
+
 #: ideax/templates/ideax/includes/partial_category_list.html:9
 #: ideax/templates/ideax/includes/partial_category_remove.html:21
-#: ideax/templates/ideax/includes/partial_idea_remove.html:21
 msgid "Discard"
-msgstr "Descartadas"
+msgstr "Descartar"
 
 #: ideax/templates/ideax/includes/partial_category_remove.html:10
 msgid "Confirm category removal"
@@ -147,26 +170,21 @@ msgid "Would you like to delete the category?"
 msgstr "Deseja apagar a categoria?"
 
 #: ideax/templates/ideax/includes/partial_category_remove.html:20
-#: ideax/templates/ideax/includes/partial_idea_remove.html:20
 #: ideax/templates/ideax/includes/partial_idea_update.html:21
 msgid "Close"
 msgstr "Fechar"
-
-#: ideax/templates/ideax/includes/partial_idea_create.html:10
-msgid "Create Idea"
-msgstr "Cadastro de ideias"
 
 #: ideax/templates/ideax/includes/partial_idea_remove.html:10
 msgid "Confirm ideia removal"
 msgstr "Confirmar descarte de Ideia"
 
 #: ideax/templates/ideax/includes/partial_idea_remove.html:16
-msgid "Would you like to delete the idea?"
-msgstr "Deseja apagar a ideia?"
+msgid "Would you like to delete the idea:"
+msgstr "Deseja descartar a ideia:"
 
-#: ideax/templates/ideax/includes/partial_idea_update.html:8
-msgid "Update_Idea"
-msgstr "Atualizar Ideia"
+#: ideax/templates/ideax/includes/partial_idea_remove.html:20
+msgid "Confirm"
+msgstr "Confirmar"
 
 #: ideax/templates/ideax/index.html:6
 msgid "Idea X sharing ideas!"

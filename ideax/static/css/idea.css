@@ -442,7 +442,8 @@ input.menu-input{
   padding: 8px 0;
 }
 
-.actions button{
+.actions button,
+.actions a{
   padding: 0;
   background: inherit;
   border: none;
@@ -457,12 +458,13 @@ input.menu-input{
   margin: 0 9px;
 }
 
-.action button:hover{
+.action button:hover,
+.action a:hover{
   background: inherit;
   color: inherit;
 }
 
-.edit button{
+.edit a{
   color: #1f5093;
 }
 
@@ -695,6 +697,11 @@ footer.landing-page{
   margin-top: 25px;
 }
 
+.modal-header{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .modal-header h4 {
     display: inline;
     margin: 0;
@@ -789,6 +796,10 @@ input#id_title {
   //font-weight: bold;
 }
 
+.desc-body p{
+  line-height: 1.8;
+}
+
 .desc-footer{
   height: 10%;
 }
@@ -851,6 +862,66 @@ input#id_title {
   font-size: 0.7em;
 }
 
+/* gereic idea form */
+.idea-form{
+  width: 70%;
+  margin: 5% auto;
+  padding: 0 0 10px 0;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  border-radius: 5px;
+}
+
+.idea-form .form-group{
+  display: flex;
+  flex-direction: column;
+}
+
+.idea-form-body .form-group textarea {
+    resize: none !important;
+    height: 130px;
+}
+
+div.idea-form-header {
+  background: #6E6E6E;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  min-height: 56px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.idea-form-header svg{
+  font-size: 1.5em;
+  margin: 0 8px
+}
+
+.idea-form-header h4{
+  margin: 0;
+}
+
+div.idea-form-body{
+  margin-top: 20px;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+div.idea-form-body button{
+  width: 100px;
+  align-self: flex-end;
+  background-color: #6E6E6E;
+  border: 1px solid #ccc;
+  margin-top: 25px;
+}
+
+div.idea-form-body .form-group select{
+  width: 40%;
+}
 
 /*Landing Page*/
 

@@ -13,11 +13,10 @@
 
   <div class="modal-body">
     <p class="lead">
-      {% trans 'Would you like to delete the idea?' %} <strong>{{idea.title}}</strong> ?
+      {% trans 'Would you like to delete the idea:' %} <span class="bold">{{idea.title}}</span> ?
     </p>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
-    <button type="submit" class="btn btn-primary">{% trans 'Discard' %}</button>
+    <button type="submit" class="btn btn-primary">{% trans 'Confirm' %}</button>
   </div>
 </form>

@@ -59,6 +59,18 @@ function vote(url, idLike, idDislike, aLike, aDislike){
 
 $(function () {
 
+
+var teste = function() {
+  var length = $("#id_oportunity").val().length + $("#id_solution").val().length + $("#id_target").val().length;
+  $("#character_count").html(length+"/3000")
+
+}
+
+$(document).on("keyup", "#id_oportunity", teste);
+$(document).on("keyup", "#id_solution", teste);
+$(document).on("keyup", "#id_target", teste);
+
+
   var loadForm = function(){
     var btn = $(this);
     var idModal = btn.attr("data-modal");
@@ -164,6 +176,7 @@ $(function () {
         if (response.msg) {
             showCommentMessage(response.msg, "alert-info");
         }
+        $("#commentContent").val("");
         refreshCommentList(event, form)
     });
 

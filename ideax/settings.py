@@ -150,11 +150,6 @@ AUTH_LDAP_USER_ATTR_MAP = {
     "last_name": "sn",
     "email": "mail"
 }
-AUTH_LDAP_GROUP_SEARCH = LDAPSearch("ou=DATAPREV,dc=gov,dc=br",
-    ldap.SCOPE_SUBTREE, "(objectClass=groupOfNames)"
-)
-AUTH_LDAP_GROUP_TYPE = GroupOfNamesType(name_attr="cn")
-AUTH_LDAP_MIRROR_GROUPS = True
 import logging
 
 logger = logging.getLogger('django_auth_ldap')

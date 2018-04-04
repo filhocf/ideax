@@ -2,6 +2,18 @@ from django.db import models
 from django.utils import timezone
 from enum import Enum
 from mptt.models import MPTTModel, TreeForeignKey
+from django.contrib.auth.signals import user_logged_in
+from decouple import config
+
+def check_user_profile(sender, user, request, **kwargs):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfile()
+        user_profile.user = request.user
+        user_profile.save()
+
+user_logged_in.connect(check_user_profile)
 
 class Phase(Enum):
     GROW     = (1, 'Discussão', 'discussion', 'comments')
@@ -112,3 +124,11 @@ class Comment(MPTTModel):
 class UserProfile (models.Model):
     user = models.OneToOneField('auth.User',on_delete=models.PROTECT)
     use_term_accept = models.NullBooleanField(default=False)
+    manager = models.NullBooleanField(default=False)
+
+    """
+     it is necessary add manager group in MANAGER_GROUP key in .env file
+    """
+    def is_manager_group(self):
+        print("chamou")
+        return self.user.groups.filter(name=config("MANAGER_GROUP")).exists()

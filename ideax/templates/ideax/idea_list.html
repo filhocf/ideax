@@ -17,6 +17,12 @@
         <li><a href="#">{% trans 'Archived' %}</a></li> -->
       </ul>
     </nav>
+    {% for message in messages %}
+      <div class="alert alert-dismissible alert-{{ message.tags }}">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          {{ message }}
+      </div>
+    {% endfor %}
     <div id="idea-list">
       {% for idea in ideas %}
           {% include 'ideax/includes/idea_detail.html' %}

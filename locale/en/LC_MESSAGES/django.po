@@ -1,11 +1,17 @@
-#: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/forms.py:10 ideax/forms.py:18 ideax/forms.py:32
 msgid "Title"
 msgstr ""
 
-#: ideax/forms.py:10 ideax/forms.py:18 ideax/forms.py:25 ideax/forms.py:32
-#: ideax/templates/ideax/includes/idea_detail.html:46
-#: ideax/templates/ideax/includes/partial_category_list.html:6
-msgid "Description"
+#: ideax/forms.py:10 ideax/forms.py:18
+msgid "Oportunity"
+msgstr ""
+
+#: ideax/forms.py:10 ideax/forms.py:18
+msgid "Solution"
+msgstr ""
+
+#: ideax/forms.py:10 ideax/forms.py:18
+msgid "Target"
 msgstr ""
 
 #: ideax/forms.py:10
@@ -16,31 +22,17 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
-#: ideax/forms.py:32
-#: ideax/templates/ideax/includes/partial_category_list.html:7
-msgid "key_word"
+#: ideax/forms.py:25 ideax/forms.py:32
+#: ideax/templates/ideax/includes/idea_detail.html:47
+#: ideax/templates/ideax/includes/partial_category_list.html:6
+msgid "Description"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:27 ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/base.html:24
 msgid "New Idea"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:31
-#: ideax/templates/ideax/category_list.html:8
-#: ideax/templates/ideax/category_new.html:3
-msgid "New Category"
-msgstr ""
-
-#: ideax/templates/ideax/base.html:35
-msgid "New Mission"
-msgstr ""
-
-#: ideax/templates/ideax/base.html:39
-#: ideax/templates/ideax/criterion_edit.html:6
-msgid "New Criterion"
-msgstr ""
-
-#: ideax/templates/ideax/base.html:43
+#: ideax/templates/ideax/base.html:29
 #, python-format
 msgid "Hi, %(name)s!"
 msgstr ""
@@ -50,77 +42,101 @@ msgid "Update Category"
 msgstr ""
 
 #: ideax/templates/ideax/category_edit.html:11
+#: ideax/templates/ideax/idea_edit.html:10
 #: ideax/templates/ideax/includes/partial_idea_update.html:22
 msgid "Update"
 msgstr ""
 
+#: ideax/templates/ideax/category_list.html:8
+#: ideax/templates/ideax/category_new.html:3
+msgid "New Category"
+msgstr ""
+
 #: ideax/templates/ideax/category_new.html:9
 #: ideax/templates/ideax/criterion_edit.html:12
-#: ideax/templates/ideax/idea_edit.html:21
+#: ideax/templates/ideax/idea_new.html:14
 #: ideax/templates/ideax/includes/partial_idea_create.html:25
 #: ideax/templates/ideax/phase_edit.html:12
 msgid "Save"
 msgstr ""
 
+#: ideax/templates/ideax/criterion_edit.html:6
+msgid "New Criterion"
+msgstr ""
+
 #: ideax/templates/ideax/criterion_list.html:9
-#: ideax/templates/ideax/idea_detail.html:16
 #: ideax/templates/ideax/includes/partial_category_list.html:8
 #: ideax/templates/ideax/phase_list.html:8
 msgid "Edit"
 msgstr ""
 
 #: ideax/templates/ideax/criterion_list.html:10
-#: ideax/templates/ideax/idea_detail.html:17
 #: ideax/templates/ideax/phase_list.html:9
 msgid "Remove"
 msgstr ""
 
-#: ideax/templates/ideax/idea_detail.html:12
-msgid "Publish"
+#: ideax/templates/ideax/form.html:14
+msgid "New Comment"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:8
-#: ideax/templates/ideax/idea_list.html:12
+#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:49
+msgid "Comment"
+msgstr ""
+
+#: ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/includes/partial_idea_update.html:8
+msgid "Update_Idea"
+msgstr ""
+
+#: ideax/templates/ideax/idea_list.html:11
 msgid "All"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:13
+#: ideax/templates/ideax/idea_list.html:12
 #: ideax/templates/ideax/includes/idea_detail.html:24
 msgid "Discussion"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:14
+#: ideax/templates/ideax/idea_list.html:13
 #: ideax/templates/ideax/includes/idea_detail.html:25
 msgid "Evaluation"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:15
+#: ideax/templates/ideax/idea_list.html:14
 #: ideax/templates/ideax/includes/idea_detail.html:26
 msgid "Approval"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:16
+#: ideax/templates/ideax/idea_list.html:15
 #: ideax/templates/ideax/includes/idea_detail.html:27
 msgid "Development"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:17
+#: ideax/templates/ideax/idea_list.html:16
 #: ideax/templates/ideax/includes/idea_detail.html:28
 msgid "Finished"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:18
+#: ideax/templates/ideax/idea_list.html:17
 #: ideax/templates/ideax/includes/idea_detail.html:29
 msgid "Archived"
+msgstr ""
+
+#: ideax/templates/ideax/idea_new.html:10
+#: ideax/templates/ideax/includes/partial_idea_create.html:10
+msgid "Create Idea"
 msgstr ""
 
 #: ideax/templates/ideax/includes/idea_detail.html:30
 msgid "Freezed"
 msgstr ""
 
+#: ideax/templates/ideax/includes/partial_category_list.html:7
+msgid "key_word"
+msgstr ""
+
 #: ideax/templates/ideax/includes/partial_category_list.html:9
 #: ideax/templates/ideax/includes/partial_category_remove.html:21
-#: ideax/templates/ideax/includes/partial_idea_remove.html:21
 msgid "Discard"
 msgstr ""
 
@@ -133,13 +149,8 @@ msgid "Would you like to delete the category?"
 msgstr ""
 
 #: ideax/templates/ideax/includes/partial_category_remove.html:20
-#: ideax/templates/ideax/includes/partial_idea_remove.html:20
 #: ideax/templates/ideax/includes/partial_idea_update.html:21
 msgid "Close"
-msgstr ""
-
-#: ideax/templates/ideax/includes/partial_idea_create.html:10
-msgid "Create Idea"
 msgstr ""
 
 #: ideax/templates/ideax/includes/partial_idea_remove.html:10
@@ -147,11 +158,11 @@ msgid "Confirm ideia removal"
 msgstr ""
 
 #: ideax/templates/ideax/includes/partial_idea_remove.html:16
-msgid "Would you like to delete the idea?"
+msgid "Would you like to delete the idea:"
 msgstr ""
 
-#: ideax/templates/ideax/includes/partial_idea_update.html:8
-msgid "Update_Idea"
+#: ideax/templates/ideax/includes/partial_idea_remove.html:20
+msgid "Confirm"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:6
@@ -220,7 +231,7 @@ msgid "New phase"
 msgstr ""
 
 #: ideax/templates/registration/login.html:4
-msgid "Your username and password didn"
+msgid "Your username and password didn't match. Please try again."
 msgstr ""
 
 #: ideax/templates/registration/login.html:17
@@ -228,7 +239,7 @@ msgid "You must be logged in to access ideas."
 msgstr ""
 
 #: ideax/templates/registration/login.html:22
-msgid "placeholder:name_surname"
+msgid "placeholder:username"
 msgstr ""
 
 #: ideax/templates/registration/login.html:25

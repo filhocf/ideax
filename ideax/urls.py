@@ -13,7 +13,6 @@ urlpatterns = [
     path('idea/<int:pk>/', views.idea_detail, name='idea_detail'),
     path('idea/new/', views.idea_new, name='idea_new'),
     path('idea/<int:pk>/edit/', views.idea_edit, name='idea_edit'),
-    path('idea/<int:pk>/publish/', views.idea_publish, name='idea_publish'),
     path('idea/<int:pk>/remove/', views.idea_remove, name='idea_remove'),
     path('criterion/', views.criterion_list, name='criterion_list'),
     path('criterion/new/', views.criterion_new, name='criterion_new'),
@@ -27,7 +26,9 @@ urlpatterns = [
     path('category/', views.open_category_new, name='open_category_new'),
     path('category/list', views.category_list, name='category_list'),
     path('category/<int:pk>/edit/', views.category_edit, name='category_edit'),
-    path('category/<int:pk>/remove/', views.category_remove, name='category_remove')
-
+    path('category/<int:pk>/remove/', views.category_remove, name='category_remove'),
+    path('idea/comment/<int:pk>', views.form_redirect, name='form'),
+    path('post/comment/', views.post_comment, name='post_comment'),
+    path('idea/comments/<int:pk>/', views.idea_comments, name='idea_comments'),
 
 ]

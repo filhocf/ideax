@@ -6,16 +6,16 @@ class IdeaForm(forms.ModelForm):
 
     class Meta:
         model = Idea
-        fields = ('title', 'description', 'category' )
-        labels = {'title': _('Title'), 'description': _('Description'), 'category': _('Category')}
+        fields = ('title', 'oportunity', 'solution', 'target', 'category' )
+        labels = {'title': _('Title'), 'oportunity': _('Oportunity'), 'solution': _('Solution'), 'target': _('Target'),'category': _('Category')}
 
 
 class IdeaFormUpdate(forms.ModelForm):
 
     class Meta:
         model = Idea
-        fields = ('title', 'description')
-        labels = {'title': _('Title'), 'description': _('Description'),  }
+        fields = ('title', 'oportunity', 'solution', 'target')
+        labels = {'title': _('Title'), 'oportunity': _('Oportunity'), 'solution': _('Solution'), 'target': _('Target'),  }
 
 class CriterionForm(forms.ModelForm):
 
@@ -28,5 +28,5 @@ class CategoryForm(forms.ModelForm):
 
     class Meta:
         model = Category
-        fields = ('description', 'key_word', )
-        labels = {'description': _('Description'), 'key_word':_('key_word') }
+        fields = ('title', 'description', )
+        labels = {'title':_('Title'), 'description': _('Description') }

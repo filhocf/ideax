@@ -1,12 +1,13 @@
 from django.db import models
 from django.utils import timezone
 from enum import Enum
+from mptt.models import MPTTModel, TreeForeignKey
 
 class Phase(Enum):
     GROW     = (1, 'Discussão', 'discussion', 'comments')
     RATE     = (2, 'Avaliação', 'rate','clipboard')
     APROVED  = (3, 'Aprovação', 'aproved','star')
-    ACT      = (4, 'Desenvolvimento', 'develop','tasks')
+    ACT      = (4, 'Evolução', 'develop','tasks')
     DONE     = (5, 'Feita', 'done', 'check')
     ARCHIVED = (6, 'Arquivada', 'archived', 'archive')
     PAUSED   = (7, 'Pausada', 'paused', 'pause')
@@ -54,16 +55,18 @@ class Evaluation_Item(models.Model):
     criterion = models.ForeignKey(Criterion,on_delete=models.PROTECT)
 
 class Category(models.Model):
+    title = models.CharField(max_length=50)
     description = models.CharField(max_length=200)
-    key_word = models.CharField(max_length=50)
     discarded = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.description
+        return self.title
 
 class Idea(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField(max_length=500)
+    oportunity = models.TextField(max_length=2500, null=True)
+    solution = models.TextField(max_length=2500, null=True)
+    target = models.TextField(max_length=500, null=True)
     creation_date = models.DateTimeField('data criação')
     author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
     category = models.ForeignKey('Category', models.SET_NULL,null=True)
@@ -92,3 +95,16 @@ class Popular_Vote(models.Model):
     voter = models.ForeignKey('auth.User',on_delete=models.PROTECT)
     voting_date = models.DateTimeField()
     idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
+
+class Comment(MPTTModel):
+    idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
+    author = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    raw_comment = models.TextField()
+    parent = TreeForeignKey('self', related_name='children',
+                            null=True, blank=True, db_index=True,on_delete=models.PROTECT)
+    date = models.DateTimeField()
+    comment_phase = models.PositiveSmallIntegerField()
+    deleted = models.BooleanField(default=False)
+
+    class MPTTMeta:
+        order_insertion_by = ['-date']

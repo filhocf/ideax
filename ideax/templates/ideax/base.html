@@ -6,10 +6,9 @@
     <head>
         <title>Ideia X</title>
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+        <link rel="stylesheet" href="{% static 'css/idea.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     </head>
     <body>
       <div class="main-header">
@@ -19,33 +18,20 @@
           </a>
         </h1>
         {% if user.is_authenticated %}
-        <label id="burger-nav" for="toggle">&#9776;</label>
-        <input type="checkbox" id="toggle">
         <div class="menu">
-          <a class="icon  js-create-idea" href="javascript:void(0)" data-modal="#modal-idea-crud" data-url="/idea/new/" class="top-menu js-create-idea">
-            <span><i class="fas fa-lightbulb"></i></span>
+          <a class="icon  js-create-idea" href="/idea/new/" class="top-menu js-create-idea">
+            <span><i class="fas fa-plus"></i><i class="fas fa-lightbulb"></i></span>
             <p>{% trans 'New Idea' %}</p>
           </a>
-          <a href="{% url 'category_list' %}" class="icon unavailable">
-            <span><i class="fas fa-tag"></i></span>
-            <p>{% trans 'New Category' %}</p>
-          </a>
-          <a href="" class="icon unavailable">
-            <span><i class="fas fa-bullseye"></i></span>
-            <p>{% trans 'New Mission' %}</p>
-          </a>
-          <a href="" data-modal="#modal-idea-crud" class="icon unavailable">
-            <span><i class="fas fa-gavel"></i></span>
-            <p>{% trans 'New Criterion' %}</p>
-          </a>
+
         </div>
         <div class="login">
           <p>{% blocktrans with name=user.username %}Hi, {{name}}!{% endblocktrans %}</p>
-          <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
+          <a href="{% url 'logout' %}">( Sair )</i></a>
         </div>
         {% else %}
         <div class="login">
-          <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i></a>
+          <a href="{% url 'login' %}">Login</i></a>
         </div>
 
         {% endif %}
@@ -54,12 +40,14 @@
         {% block content %}
         {% endblock %}
       </div>
-      <footer {% if not user.is_authenticated %}class="landing-page"{% endif %} ><div class="logo"><p class="alpha-version">Idea X - Software in alpha stage</p></div></footer>
-      <script
-			src="//code.jquery.com/jquery-3.3.1.min.js"
-			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-			crossorigin="anonymous"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+      <footer {% if not user.is_authenticated %}class="landing-page"{% endif %} ><div class="logo"><p class="alpha-version">Idea X - Software in alpha stage 2018-03-29</p></div></footer>
+      <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+      <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
+      <script src="{% static '/js/popper.min.js' %}"></script>
+      <script src="{% static '/js/bootstrap.min.js' %}"></script>
       <script src="{% static '/js/idea.js' %}"></script>
+
+
+
       </body>
     </html>

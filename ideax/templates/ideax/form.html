@@ -1,0 +1,33 @@
+{% extends 'ideax/base.html' %}
+{% load widget_tweaks i18n %}
+
+
+{% block content %}
+
+<div class="container">
+
+<form id="commentForm" class="form-horizontal" data-idea-id="{{idea.pk}}" action="/post/comment/">
+    {% csrf_token %}
+    <fieldset>
+
+        <div class="form-group comment-group">
+            <label for="commentContent" class="col-lg-2 control-label">{% trans 'New Comment' %}</label>
+
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="commentContent"></textarea>
+                <span id="postResponse" class="text-success" style="display: none"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">{% trans 'Comment' %}</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+
+{% include 'ideax/includes/partial_comments.html' %}
+
+</div>
+
+{% endblock %}

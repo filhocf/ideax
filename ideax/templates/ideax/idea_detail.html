@@ -2,21 +2,65 @@
 {% load i18n %}
 
 {% block content %}
-    <div class="post">
-        {% if idea.creation_date %}
-          <div class="date">
-            {{ idea.creation_date }}
-          </div>
-        {% else %}
-          {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'idea_publish' pk=idea.pk %}" title="{% trans 'Publish'%}"><span class="glyphicon glyphicon-saved"></span></a>
-          {% endif %}
-        {% endif %}
-        {% if user.is_authenticated %}
-          <a class="btn btn-default" href="{% url 'idea_edit' pk=idea.pk %}" title="{% trans 'Edit'%}"><span class="glyphicon glyphicon-pencil"></span></a>
-          <a class="btn btn-default" href="{% url 'idea_remove' pk=idea.pk %}" title="{% trans 'Remove'%}"><span class="glyphicon glyphicon-remove"></span></a>
-        {% endif %}
-        <h1>{{ idea.title }}</h1>
-        <p>{{ idea.description|linebreaksbr }}</p>
+  <div class="idea-desc-title">
+      <h2 class="desc-title">
+        {{ idea.title }}
+      </h2>
+      <p class="author">Por {{ idea.author.get_full_name }}</p>
+  </div>
+  <div class="idea-page">
+    <div class="idea-desc">
+      {{ idea.oportunity|linebreaksbr }}
+      {{ idea.solution|linebreaksbr }}
+      {{ idea.target|linebreaksbr }}
     </div>
+    <div class="separator"></div>
+
+    <div class="idea-interaction">
+      <ul class="nav nav-tabs" id="idea-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="comments-area-tab" data-toggle="tab" href="#comments-area" role="tab" aria-controls="comments-area" aria-selected="true">Comentários</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="evaluation-tab" data-toggle="tab" href="#evaluation" role="tab" aria-controls="evaluation" aria-selected="false">Avaliação</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Histórico</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div id="comments-area" class="tab-pane fade show active comments" role="tabpanel" aria-labelledby="comment-group-tab">
+          <div class="new-comment">
+            <div id="comment-message" class="alert alert-dismissible fade show" role="alert" style="display:none">
+            </div>
+            <form id="commentForm" class="form-horizontal" data-idea-id="{{idea.pk}}" action="/post/comment/">
+                {% csrf_token %}
+                <fieldset>
+
+                    <div class="form-group comment-group">
+                        <label for="commentContent" class="col-lg-2 control-label"></label>
+
+                        <div class="col-lg-12">
+                            <textarea class="form-control" rows="3" id="commentContent"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-primary">{% trans 'Comment' %}</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+          </div>
+          {% include 'ideax/includes/partial_comments.html' %}
+        </div>
+        <div class="tab-pane fade" id="evaluation" role="tabpanel" aria-labelledby="evaluation-tab">Avaliação</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact</div>
+      </div>
+    </div>
+
+  </div>
+
+
+
 {% endblock %}

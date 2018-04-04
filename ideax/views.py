@@ -6,10 +6,13 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
-from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category
+from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment
 from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm
+from .singleton import Profanity_Check
 from django import forms
-
+from wordfilter import Wordfilter
+import os
+import json
 
 def index(request):
     if request.user.is_authenticated:
@@ -81,29 +84,40 @@ def save_idea(request, form, template_name, new=False):
                 phase_history.save()
             else:
                 idea.save()
-            data['form_is_valid'] = True
-            ideas = get_ideas_init(request)
-            data['html_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
-        else:
-            data['form_is_valid'] = False
+            #data['form_is_valid'] = True
+            #ideas = get_ideas_init(request)
+            #data['html_list'] = render_to_string('ideax/idea_list_loop.html', ideas)
+            return redirect('idea_list')
+        #else:
+            #data['form_is_valid'] = False
+            #form = IdeaForm()
 
-    context = {'form' : form}
-    data['html_form'] = render_to_string(template_name, context, request=request,)
+    #context = {'form' : form}
+    #data['html_form'] = render_to_string(template_name, context, request=request,)
 
-    return JsonResponse(data)
+    return render(request, template_name, {'form': form})
+    #return JsonResponse(data)
 
 @login_required
 def idea_new(request):
     if request.method == "POST":
         form = IdeaForm(request.POST)
+        #form = IdeaForm({'title':request.POST.get('title', None),
+        #                'oportunity':request.POST.get('oportunity', None),
+        #                'solution':request.POST.get('solution', None),
+        #                'target':request.POST.get('target', None),
+        #                'category':request.POST.get('category', None)}
+        #                )
     else:
         form = IdeaForm()
 
+    return save_idea(request, form, 'ideax/idea_new.html', True)
+"""
     if request.is_ajax():
-        return save_idea(request, form, 'ideax/includes/partial_idea_create.html', True)
+        return save_idea(request, form, 'ideax/idea_new.html', True)
     else:
         return redirect('idea_list')
-
+"""
 @login_required
 def idea_edit(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
@@ -111,13 +125,9 @@ def idea_edit(request, pk):
         form = IdeaForm(request.POST, instance=idea)
     else:
         form = IdeaForm(instance=idea)
-    return save_idea(request, form, 'ideax/includes/partial_idea_update.html')
 
-@login_required
-def idea_publish(request, pk):
-    idea = get_object_or_404(Idea, pk=pk)
-    idea.publish()
-    return redirect('idea_detail', pk=pk)
+    return save_idea(request, form, 'ideax/idea_edit.html')
+
 
 @login_required
 def idea_remove(request, pk):
@@ -215,8 +225,6 @@ def category_edit(request, pk):
         form = CategoryForm(instance=category)
 
     return save_category(request,'ideax/category_edit.html',form)
-
-@login_required
 def category_remove(request, pk):
     category = get_object_or_404(Category, pk=pk)
     data = dict()
@@ -292,3 +300,51 @@ def change_idea_phase(request, pk, new_phase):
         phase_history_new.save()
 
     return redirect('index')
+
+def form_redirect(request, pk):
+    idea = Idea.objects.get(id=pk)
+    comments = idea.comment_set.all()
+    #Comment.objects.filter(idea=idea)
+
+    return render(request, 'ideax/idea_detail.html', {"comments": comments, "idea" : idea, "idea_id" : idea.pk})
+
+
+def post_comment(request):
+    if not request.user.is_authenticated:
+        return JsonResponse({'msg': "You need to log in to post new comments."}, status=500)
+
+    raw_comment = request.POST.get('commentContent', None)
+    parent_id = request.POST.get('parentId', None)
+    author = request.user
+    idea_id = request.POST.get('ideiaId', None)
+
+    if Profanity_Check.wordcheck().blacklisted(raw_comment):
+        return JsonResponse({'msg': "Please check your message it has inappropriate content."}, status=500)
+
+    if not raw_comment:
+        return JsonResponse({'msg': "You have to write a comment."},status=500)
+
+    if not parent_id:
+        parent_object = None
+    else:
+        parent_object = Comment.objects.get(id=parent_id)
+
+    idea = Idea.objects.get(id=idea_id)
+
+    comment = Comment(author=author,
+                      raw_comment=raw_comment,
+                      parent=parent_object,
+                      idea=idea,
+                      date=timezone.now(),
+                      comment_phase=1)
+
+    comment.save()
+
+    return JsonResponse({"msg" : "Your comment has been posted."})
+
+def idea_comments(request, pk):
+    data = dict()
+    data['html_list'] = render_to_string('ideax/includes/partial_comments.html',
+                                         {"comments" : Comment.objects.filter(idea__id=pk), "idea_id" : pk})
+
+    return JsonResponse(data)

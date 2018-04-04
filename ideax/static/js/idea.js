@@ -98,11 +98,11 @@ $(function () {
     return false;
   };
 
-  $(".js-create-idea").click(loadForm);
-  $("#modal-idea-crud").on("submit", ".js-idea-create-form", saveForm);
+  //$(".js-create-idea").click(loadForm);
+  //$("#modal-idea-crud").on("submit", ".js-idea-create-form", saveForm);
 
-  $(document).on("click", ".js-update-idea", loadForm);
-  $("#modal-idea-crud").on("submit", ".js-idea-update-form", saveForm);
+  //$(document).on("click", ".js-update-idea", loadForm);
+  //$("#modal-idea-crud").on("submit", ".js-idea-update-form", saveForm);
 
   $(document).on("click", ".js-remove-idea", loadForm);
   $("#modal-idea-crud").on("submit", ".js-idea-remove-form", saveForm);
@@ -115,6 +115,131 @@ $(function () {
 
   $(document).on("click", ".js-remove-category", loadForm);
   $("#modal-category-crud").on("submit", ".js-category-remove-form", saveForm);
+
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+  }
+
+  function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+  }
+
+  function submitEvent(event, form) {
+    event.preventDefault();
+    var $form = form;
+    var data = $form.data();
+    url = $form.attr("action");
+    commentContent = $form.find("textarea#commentContent").val();
+
+    var csrftoken = getCookie('csrftoken');
+
+    $.ajaxSetup({
+        beforeSend: function (xhr, settings) {
+          if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+          }
+        }
+    });
+
+    var doPost = $.post(url, {
+        ideiaId : data.ideaId,
+        parentId: data.parentId,
+        commentContent: commentContent
+    });
+
+    doPost.done(function (response) {
+        if (response.msg) {
+            showCommentMessage(response.msg, "alert-info");
+        }
+        refreshCommentList(event, form)
+    });
+
+    doPost.fail(function (response){
+      if (response.responseJSON.msg) {
+          showCommentMessage(response.responseJSON.msg, "alert-danger");
+      }
+    });
+  }
+
+  function showCommentMessage(message, classMessage){
+    $("#comment-message").html(message);
+    $("#comment-message").css("display","");
+    $("#comment-message").removeClass("alert-danger").removeClass("alert-warning").addClass(classMessage);
+  }
+
+  function refreshCommentList(event, form){
+    var urlRequest = '/idea/comments/' + form.data().ideaId;
+    $.ajax({
+      url: urlRequest,
+      dataType: 'json',
+      success: function (data){
+        $("#comments-list").html(data.html_list);
+      }
+    });
+  }
+
+  $(document).on("submit", "#commentForm", function (event) {
+    submitEvent(event, $(this));
+  });
+
+  var newCommentForm = '<form id="commentFormReply" class="form-horizontal" \
+                              action="/post/comment/"\
+                              >\
+                              <fieldset>\
+                              <div class="form-group comment-group">\
+                                  <label for="commentContent" class="col-lg-2 control-label"></label>\
+                                  <div class="col-lg-10">\
+                                      <textarea class="form-control" rows="3" id="commentContent"></textarea>\
+                                      <span id="postResponse" class="text-success" style="display: none"></span>\
+                                  </div>\
+                              </div>\
+                              <div class="form-group">\
+                                  <div class="col-lg-10 col-lg-offset-2">\
+                                      <button type="submit" class="btn btn-primary">Submit</button>\
+                                  </div>\
+                              </div>\
+                          </fieldset>\
+                      </form>';
+
+  $(document).on("click", 'a[name="replyButton"]', function () {
+    var $mediaBody = $(this).parent();
+    if ($mediaBody.find('#commentFormReply').length == 0) {
+        $mediaBody.parent().find(".reply-container:first").append(newCommentForm);
+        var $form = $mediaBody.find('#commentFormReply');
+        $form.data('idea-id', $(this).attr("data-idea-id"));
+        $form.data('parent-id', $(this).attr("data-parent-id"));
+        /*$form.on("submit", function (event) {
+            submitEvent(event, $(this));
+            refleshCommentList(event, $(this))
+
+        });*/
+    } else {
+        $commentForm = $mediaBody.find('#commentFormReply:first');
+        if ($commentForm.attr('style') == null) {
+            $commentForm.css('display', 'none')
+        } else {
+            $commentForm.removeAttr('style')
+        }
+    }
+
+  });
+
+  $(document).on("submit", "#commentFormReply", function (event) {
+    submitEvent(event, $(this));
+  });
 
 });
 
@@ -134,3 +259,8 @@ $('body').on('click', 'li', function() {
       $('li.active').removeClass('active');
       $(this).addClass('active');
 });
+
+$('#idea-tab a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})

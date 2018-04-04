@@ -1,0 +1,31 @@
+{% load mptt_tags %}
+{% load widget_tweaks i18n %}
+
+
+  <div id="comments-list" class="comment-list">
+    {% recursetree comments %}
+    <div class="media comment">
+      <div class="media-left">
+      </div>
+      <div class="media-body">
+        <div class="mt-0 comment-header">
+          <span class="c-author">{{ node.author.username }}</span>
+          <span class="c-date">{{ node.date|date:"d/m/Y h:m"}}</span>
+        </div>
+        <div class="comment-body">
+          {{ node.raw_comment|safe }}
+        </div>
+        <div class="reply-link reply-container">
+          <a href="javascript:void(0)" data-idea-id="{{idea_id}}" data-parent-id="{{ node.id }}" name="replyButton">reply</a>
+        </div>
+        {% if not node.is_leaf_node %}
+        <div class="reply">
+          {{ children }}
+        </div>
+        {% endif %}
+
+      </div>
+      </div>
+    {% endrecursetree %}
+  </div>
+  

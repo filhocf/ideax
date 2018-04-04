@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-29 11:58-0300\n"
+"POT-Creation-Date: 2018-04-04 12:08-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,18 +22,21 @@ msgid "Title"
 msgstr "Título"
 
 #: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/templates/ideax/idea_detail.html:15
 msgid "Oportunity"
-msgstr ""
+msgstr "Problema"
 
 #: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/templates/ideax/idea_detail.html:13
 #, fuzzy
 #| msgid "Evaluation"
 msgid "Solution"
 msgstr "Avaliação"
 
 #: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/templates/ideax/idea_detail.html:17
 msgid "Target"
-msgstr ""
+msgstr "Público Alvo"
 
 #: ideax/forms.py:10
 msgid "Category"
@@ -63,7 +66,7 @@ msgid "Update Category"
 msgstr "Atualizar Categoria"
 
 #: ideax/templates/ideax/category_edit.html:11
-#: ideax/templates/ideax/idea_edit.html:10
+#: ideax/templates/ideax/idea_edit.html:16
 #: ideax/templates/ideax/includes/partial_idea_update.html:22
 msgid "Update"
 msgstr "Atualizar"
@@ -75,7 +78,7 @@ msgstr "Nova Categoria"
 
 #: ideax/templates/ideax/category_new.html:9
 #: ideax/templates/ideax/criterion_edit.html:12
-#: ideax/templates/ideax/idea_new.html:14
+#: ideax/templates/ideax/idea_new.html:15
 #: ideax/templates/ideax/includes/partial_idea_create.html:25
 #: ideax/templates/ideax/phase_edit.html:12
 msgid "Save"
@@ -100,11 +103,11 @@ msgstr "Remover"
 msgid "New Comment"
 msgstr "Novo Comentário"
 
-#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:49
+#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:52
 msgid "Comment"
 msgstr "Comentar"
 
-#: ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/idea_edit.html:12
 #: ideax/templates/ideax/includes/partial_idea_update.html:8
 msgid "Update_Idea"
 msgstr "Atualizar Ideia"
@@ -143,7 +146,7 @@ msgstr "Feita"
 msgid "Archived"
 msgstr "Arquivadas"
 
-#: ideax/templates/ideax/idea_new.html:10
+#: ideax/templates/ideax/idea_new.html:11
 #: ideax/templates/ideax/includes/partial_idea_create.html:10
 msgid "Create Idea"
 msgstr "Cadastrar ideia"

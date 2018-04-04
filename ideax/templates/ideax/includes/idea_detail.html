@@ -3,16 +3,16 @@
 <div class="idea {{idea.get_current_phase.css_class}}">
   <!-- idea card header -->
   <div class="idea-header">
-    <h1>
-      {{ idea.author.get_full_name }}
+    <h1 class="idea-title">
+      {{ idea.title }}
     </h1>
-    <p class="date">
+    <!-- <p class="date">
       {{ idea.creation_date|date:"d/m/Y" }}
-    </p>
-    {% if link_title == True %}
-      <i class="info-icon fas fa-info-circle" onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')"></i>
+    </p> -->
+    <!-- {% if link_title == True %}
+      <i class="info-icon fas fa-info-circle" ></i>
     {% else%}
-    {% endif%}
+    {% endif%} -->
     <!-- idea card phase change and actions -->
     <div class="idea-options">
       <input class="menu-input" type="checkbox" id="menu{{idea.pk}}{% if link_title == False %}{{idea.pk}}{% endif%}">
@@ -42,9 +42,9 @@
     </div>
   </div>
   <!-- idea body -->
-  <div class="idea-body">
-    <p class="idea-title">{{ idea.title }}</p>
-    <p class="idea-description"><span class="bold">{% trans 'Description' %}: </span>{{ idea.description|linebreaksbr }}</p>
+  <div class="idea-body" onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')">
+    <!-- <p class="idea-title"></p> -->
+    <p class="idea-description"><span class="bold">{% trans 'Description' %}: </span>{{ idea.solution|linebreaksbr }}</p>
   </div>
   <!-- idea footer -->
   <div class="idea-footer">

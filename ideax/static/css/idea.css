@@ -400,7 +400,7 @@ input.menu-input{
 }
 
 .idea-options input:checked ~ .options-content{
-  max-height: 100%;
+  max-height: inherit;
   border: 1px solid #E1E1E1;
   //margin-top: 5px;
 }

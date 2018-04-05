@@ -24,9 +24,13 @@
       </div>
     {% endfor %}
     <div id="idea-list">
-      {% for idea in ideas %}
-          {% include 'ideax/includes/idea_detail.html' %}
-      {% endfor %}
+      {%if not ideas %}
+          {% include 'ideax/includes/empty.html' %}
+      {%else%}
+        {% for idea in ideas %}
+            {% include 'ideax/includes/idea_detail.html' %}
+        {% endfor %}
+      {%endif%}
     </div>
     {% include 'ideax/includes/modals.html' %}
 {% endblock %}

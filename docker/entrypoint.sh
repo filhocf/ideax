@@ -20,6 +20,7 @@ if [ ! -d /run/nginx ]; then
 fi
 
 python manage.py migrate
+python manage.py compilemessages
 
 nginx
 

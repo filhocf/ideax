@@ -138,7 +138,7 @@ AUTHENTICATION_BACKENDS = [
 AUTH_LDAP_SERVER_URI = config('AUTH_LDAP_SERVER_URI', default='ldap://ldap.example.com')
 
 import ldap
-from django_auth_ldap.config import LDAPSearch
+from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 
 AUTH_LDAP_BIND_DN = config('AUTH_LDAP_BIND_DN', default='')
 AUTH_LDAP_BIND_PASSWORD = config('AUTH_LDAP_BIND_PASSWORD', default='')

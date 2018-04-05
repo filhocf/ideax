@@ -1,5 +1,51 @@
 {% load widget_tweaks %}
 
+<div class="form-group{% if form.title.errors %} has-error{% endif %}">
+  <label for="{{form.title.id_for_label}}">{{form.title.label}}</label>
+  {{ form.title|add_class:'form_control' }}
+  {% for error in form.title.errors %}
+    <p class="help-block">{{ error }}</p>
+  {% endfor %}
+</div>
+
+<div class="form-group{% if form.oportunity.errors %} has-error{% endif %}">
+  <label for="{{form.oportunity.id_for_label}}">{{form.oportunity.label}}</label>
+  {{ form.oportunity|add_class:'form_control' }}
+  {% for error in form.oportunity.errors %}
+    <p class="help-block">{{ error }}</p>
+  {% endfor %}
+</div>
+
+<div class="form-group{% if form.solution.errors %} has-error{% endif %}">
+  <label for="{{form.solution.id_for_label}}">{{form.solution.label}}</label>
+  {{ form.solution|add_class:'form_control' }}
+  {% for error in form.solution.errors %}
+    <p class="help-block">{{ error }}</p>
+  {% endfor %}
+</div>
+
+<div class="form-group{% if form.target.errors %} has-error{% endif %}">
+  <label for="{{form.target.id_for_label}}">{{form.target.label}}</label>
+  {{ form.target|add_class:'form_control' }}
+  {% for error in form.target.errors %}
+    <p class="help-block">{{ error }}</p>
+  {% endfor %}
+</div>
+
+<div class="form-group">
+  <label style="text-align: right;">Caracteres digitados: </label>
+  <p id="character_count" style="text-align: right;">0/3000</p>
+</div>
+
+<div class="form-group{% if form.category.errors %} has-error{% endif %}">
+  <label for="{{form.category.id_for_label}}">{{form.category.label}}</label>
+  {{ form.category|add_class:'form_control' }}
+  {% for error in form.category.errors %}
+    <p class="help-block">{{ error }}</p>
+  {% endfor %}
+</div>
+
+<!--
 {% for field in form %}
   <div class="form-group{% if field.errors %} has-error{% endif %}">
     <label for="{{field.id_for_label}}">{{field.label}}</label>
@@ -9,3 +55,4 @@
     {% endfor %}
   </div>
 {% endfor %}
+-->

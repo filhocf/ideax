@@ -264,3 +264,15 @@ $('#idea-tab a').on('click', function (e) {
   e.preventDefault()
   $(this).tab('show')
 })
+
+// tooltip functions
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip({ trigger: 'click' });
+});
+
+// end of tooltip functions

@@ -3,14 +3,22 @@
 <div class="idea {{idea.get_current_phase.css_class}}">
   <!-- idea card header -->
   <div class="idea-header">
-    <h1>
-      {{ idea.author.get_full_name }}
+    <h1 class="idea-title">
+      {{ idea.title }}
     </h1>
-    <p class="date">
+    <!-- <p class="date">
       {{ idea.creation_date|date:"d/m/Y" }}
+<<<<<<< HEAD
     </p>
 
     <a href="{% url 'idea_detail' pk=idea.pk %}"><i class="info-icon fas fa-info-circle"></i></a>
+
+=======
+    </p> -->
+    <!-- {% if link_title == True %}
+      <i class="info-icon fas fa-info-circle" ></i>
+    {% else%}
+    {% endif%} -->
 
     <!-- idea card phase change and actions -->
     <div class="idea-options">
@@ -42,8 +50,10 @@
     </div>
   </div>
   <!-- idea body -->
-  <div class="idea-body">
-    <p class="idea-title">{{ idea.title }}</p>
+
+  <div class="idea-body" onclick="document.location.href='{% url 'idea_detail' pk=idea.pk %}'">
+        <!-- <p class="idea-title"></p> -->
+
     <p class="idea-description"><span class="bold">{% trans 'Description' %}: </span>{{ idea.solution|linebreaksbr }}</p>
   </div>
   <!-- idea footer -->

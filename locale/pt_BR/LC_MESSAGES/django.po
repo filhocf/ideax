@@ -26,8 +26,6 @@ msgstr "Título"
 msgid "Oportunity"
 msgstr "Oportunidade"
 
-#: ideax/forms.py:10 ideax/forms.py:18
-#: ideax/templates/ideax/idea_detail.html:15
 msgid "Solution"
 msgstr "Solução"
 

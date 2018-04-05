@@ -6,13 +6,34 @@
       <h2 class="desc-title">
         {{ idea.title }}
       </h2>
-      <p class="author">Por {{ idea.author.user.get_full_name }}</p>
+      <p class="author">Por {{ idea.author.get_full_name }}</p>
+      <div class="like-menu">
+        <div class="liked">
+          <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+            <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
+            <p class="liked_idea_{{idea.id}} ">
+              {{ idea.count_likes }}
+            </p>
+          </a>
+        </div>
+        <div class="disliked">
+          <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+            <i class="{%if idea.id in ideas_disliked %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
+            <p class="disliked_idea_{{idea.id}}">
+              {{ idea.count_dislikes }}
+            </p>
+          </a>
+        </div>
+      </div>
   </div>
   <div class="idea-page">
     <div class="idea-desc">
-      {{ idea.oportunity|linebreaksbr }}
-      {{ idea.solution|linebreaksbr }}
-      {{ idea.target|linebreaksbr }}
+      <h3>{% trans 'Solution' %}</h3>
+      <p>{{ idea.oportunity|linebreaksbr }}</p>
+      <h3>{% trans 'Oportunity' %}</h3>
+      <p>{{ idea.solution|linebreaksbr }}</p>
+      <h3>{% trans 'Target' %}</h3>
+      <p>{{ idea.target|linebreaksbr }}</p>
     </div>
     <div class="separator"></div>
 

@@ -8,7 +8,7 @@ msgid "Oportunity"
 msgstr ""
 
 #: ideax/forms.py:10 ideax/forms.py:18
-#: ideax/templates/ideax/idea_detail.html:15
+#: ideax/templates/ideax/idea_detail.html:13
 msgid "Solution"
 msgstr ""
 

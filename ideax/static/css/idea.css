@@ -277,6 +277,7 @@ div#idea-list{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-bottom: 100px;
 }
 
 div.idea{
@@ -315,11 +316,12 @@ flex-flow: column;
   height: 45px;
 }
 
-
-
-.idea-header h1{
-  //cursor: pointer;
-  font-size: 0.9em;
+.idea-header .idea-title{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1em;
+  font-weight: bold;
   z-index: 1;
 }
 
@@ -408,11 +410,12 @@ input.menu-input{
   overflow: hidden;
   background: #fff;
   padding: 0px;
-  width: 145px;
+  width: 125px;
   border-left: 1px solid #E1E1E1;
   border-right: 1px solid #E1E1E1;
   z-index: 5;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+  margin-right: 35px
 
 }
 
@@ -490,6 +493,10 @@ input.menu-input{
   overflow-x: hidden;
   padding: 10px 20px;
   min-height: 200px;
+}
+
+.idea-body:hover{
+  cursor: pointer;
 }
 
 .bold{
@@ -664,7 +671,7 @@ footer {
   display: flex !important;
   align-items: center;
   justify-content: center;
-
+  z-index: 50;
   width: 100%;
   bottom: 0;
 }
@@ -765,6 +772,11 @@ input#id_title {
   //border: 1px solid #E1E1E1;
 }
 
+.idea-desc p{
+  line-height: 1.8;
+
+}
+
 .idea-interaction{
   width: 37%;
   height: 90vh;
@@ -783,6 +795,13 @@ input#id_title {
 
 .idea-desc-title{
   margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.idea-desc-title p{
+  margin-bottom: 5px;
 }
 
 .desc-body{
@@ -856,6 +875,7 @@ input#id_title {
 
 .c-author{
   font-weight: bold;
+  font-size: 0.9em;
 }
 
 .c-date{

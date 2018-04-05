@@ -309,9 +309,17 @@ def idea_detail(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     comments = idea.comment_set.all()
 
-    return render(request, 'ideax/idea_detail.html', {"comments": comments,
-                                                      "idea" : idea,
-                                                      "idea_id" : idea.pk})
+    data = dict()
+    data["comments"] = comments
+    data["idea"] = idea
+    data["idea_id"] = idea.pk
+
+    try:
+        data["popular_vote"] = idea.popular_vote_set.get(voter=request.user.userprofile).like
+    except Popular_Vote.DoesNotExist:
+        pass
+
+    return render(request, 'ideax/idea_detail.html', data)
 
 
 def post_comment(request):

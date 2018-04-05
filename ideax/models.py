@@ -130,5 +130,4 @@ class UserProfile (models.Model):
      it is necessary add manager group in MANAGER_GROUP key in .env file
     """
     def is_manager_group(self):
-        print("chamou")
         return self.user.groups.filter(name=config("MANAGER_GROUP")).exists()

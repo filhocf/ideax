@@ -6,11 +6,11 @@
       <h2 class="desc-title">
         {{ idea.title }}
       </h2>
-      <p class="author">Por {{ idea.author.get_full_name }}</p>
+      <p class="author">Por {{ idea.author.user.get_full_name }}</p>
       <div class="like-menu">
         <div class="liked">
           <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
-            <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
+            <i class="{%if popular_vote == True %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
             <p class="liked_idea_{{idea.id}} ">
               {{ idea.count_likes }}
             </p>
@@ -18,7 +18,7 @@
         </div>
         <div class="disliked">
           <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
-            <i class="{%if idea.id in ideas_disliked %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
+            <i class="{%if popular_vote == False %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
             <p class="disliked_idea_{{idea.id}}">
               {{ idea.count_dislikes }}
             </p>

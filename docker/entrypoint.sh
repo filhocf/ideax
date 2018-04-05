@@ -8,6 +8,7 @@ export DJANGO_SETTINGS_MODULE=ideax.settings
 
 if [ ! -f /var/www/ideax/.env ]; then
   echo SECRET_KEY=my_super_secret_key > /var/www/ideax/.env
+  echo ALLOWED_HOSTS=127.0.0.1 >> /var/www/ideax/.env
 fi
 
 if [ ! -d /var/www/ideax/static ]; then

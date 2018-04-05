@@ -3,14 +3,17 @@ msgid "Title"
 msgstr ""
 
 #: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/templates/ideax/idea_detail.html:13
 msgid "Oportunity"
 msgstr ""
 
 #: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/templates/ideax/idea_detail.html:13
 msgid "Solution"
 msgstr ""
 
 #: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/templates/ideax/idea_detail.html:17
 msgid "Target"
 msgstr ""
 
@@ -42,7 +45,7 @@ msgid "Update Category"
 msgstr ""
 
 #: ideax/templates/ideax/category_edit.html:11
-#: ideax/templates/ideax/idea_edit.html:10
+#: ideax/templates/ideax/idea_edit.html:16
 #: ideax/templates/ideax/includes/partial_idea_update.html:22
 msgid "Update"
 msgstr ""
@@ -54,7 +57,7 @@ msgstr ""
 
 #: ideax/templates/ideax/category_new.html:9
 #: ideax/templates/ideax/criterion_edit.html:12
-#: ideax/templates/ideax/idea_new.html:14
+#: ideax/templates/ideax/idea_new.html:15
 #: ideax/templates/ideax/includes/partial_idea_create.html:25
 #: ideax/templates/ideax/phase_edit.html:12
 msgid "Save"
@@ -79,11 +82,11 @@ msgstr ""
 msgid "New Comment"
 msgstr ""
 
-#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:49
+#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:52
 msgid "Comment"
 msgstr ""
 
-#: ideax/templates/ideax/idea_edit.html:6
+#: ideax/templates/ideax/idea_edit.html:12
 #: ideax/templates/ideax/includes/partial_idea_update.html:8
 msgid "Update_Idea"
 msgstr ""
@@ -122,7 +125,7 @@ msgstr ""
 msgid "Archived"
 msgstr ""
 
-#: ideax/templates/ideax/idea_new.html:10
+#: ideax/templates/ideax/idea_new.html:11
 #: ideax/templates/ideax/includes/partial_idea_create.html:10
 msgid "Create Idea"
 msgstr ""
@@ -244,4 +247,28 @@ msgstr ""
 
 #: ideax/templates/registration/login.html:25
 msgid "placeholder:password"
+msgstr ""
+
+#: ideax/views.py:92
+msgid "Idea saved successfully!"
+msgstr ""
+
+#: ideax/views.py:302
+msgid "Phase change successfully!"
+msgstr ""
+
+#: ideax/views.py:318
+msgid "You need to log in to post new comments."
+msgstr ""
+
+#: ideax/views.py:326
+msgid "Please check your message it has inappropriate content."
+msgstr ""
+
+#: ideax/views.py:329
+msgid "You have to write a comment."
+msgstr ""
+
+#: ideax/views.py:347
+msgid "Your comment has been posted."
 msgstr ""

@@ -2,6 +2,18 @@ from django.db import models
 from django.utils import timezone
 from enum import Enum
 from mptt.models import MPTTModel, TreeForeignKey
+from django.contrib.auth.signals import user_logged_in
+from decouple import config
+
+def check_user_profile(sender, user, request, **kwargs):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfile()
+        user_profile.user = request.user
+        user_profile.save()
+
+user_logged_in.connect(check_user_profile)
 
 class Phase(Enum):
     GROW     = (1, 'Discussão', 'discussion', 'comments')
@@ -40,7 +52,7 @@ class Phase_History(models.Model):
     previous_phase = models.PositiveSmallIntegerField()
     date_change = models.DateTimeField('data da mudança')
     idea = models.ForeignKey('Idea',on_delete=models.DO_NOTHING)
-    author = models.ForeignKey('auth.User',on_delete=models.DO_NOTHING)
+    author = models.ForeignKey('UserProfile',on_delete=models.DO_NOTHING)
     current = models.BooleanField()
 
 class Criterion(models.Model):
@@ -68,7 +80,7 @@ class Idea(models.Model):
     solution = models.TextField(max_length=2500, null=True)
     target = models.TextField(max_length=500, null=True)
     creation_date = models.DateTimeField('data criação')
-    author = models.ForeignKey('auth.User',on_delete=models.CASCADE)
+    author = models.ForeignKey('UserProfile',on_delete=models.CASCADE)
     category = models.ForeignKey('Category', models.SET_NULL,null=True)
     discarded = models.BooleanField(default=False)
 
@@ -86,19 +98,19 @@ class Idea(models.Model):
 class Vote(models.Model):
     evaluation_item = models.ForeignKey(Evaluation_Item,on_delete=models.PROTECT)
     value = models.IntegerField()
-    voter = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    voter = models.ForeignKey('UserProfile',on_delete=models.PROTECT)
     idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
     voting_date = models.DateTimeField('data da votação')
 
 class Popular_Vote(models.Model):
     like = models.BooleanField()
-    voter = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    voter = models.ForeignKey('UserProfile',on_delete=models.PROTECT)
     voting_date = models.DateTimeField()
     idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
 
 class Comment(MPTTModel):
     idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
-    author = models.ForeignKey('auth.User',on_delete=models.PROTECT)
+    author = models.ForeignKey('UserProfile',on_delete=models.PROTECT)
     raw_comment = models.TextField()
     parent = TreeForeignKey('self', related_name='children',
                             null=True, blank=True, db_index=True,on_delete=models.PROTECT)
@@ -108,3 +120,14 @@ class Comment(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['-date']
+
+class UserProfile (models.Model):
+    user = models.OneToOneField('auth.User',on_delete=models.PROTECT)
+    use_term_accept = models.NullBooleanField(default=False)
+    manager = models.NullBooleanField(default=False)
+
+    """
+     it is necessary add manager group in MANAGER_GROUP key in .env file
+    """
+    def is_manager_group(self):
+        return self.user.groups.filter(name=config("MANAGER_GROUP")).exists()

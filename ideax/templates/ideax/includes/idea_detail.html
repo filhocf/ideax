@@ -3,34 +3,42 @@
 <div class="idea {{idea.get_current_phase.css_class}}">
   <!-- idea card header -->
   <div class="idea-header">
-    <h1>
-      {{ idea.author.get_full_name }}
+    <h1 class="idea-title" data-toggle="tooltip" data-placement="bottom" title="{{ idea.title }}">
+      {{ idea.title }}
     </h1>
-    <p class="date">
+    <!-- <p class="date">
       {{ idea.creation_date|date:"d/m/Y" }}
+<<<<<<< HEAD
     </p>
-    {% if link_title == True %}
-      <i class="info-icon fas fa-info-circle" onclick="openModal('{% url 'idea_detail' pk=idea.pk %}')"></i>
+
+    <a href="{% url 'idea_detail' pk=idea.pk %}"><i class="info-icon fas fa-info-circle"></i></a>
+
+=======
+    </p> -->
+    <!-- {% if link_title == True %}
+      <i class="info-icon fas fa-info-circle" ></i>
     {% else%}
-    {% endif%}
+    {% endif%} -->
+
     <!-- idea card phase change and actions -->
     <div class="idea-options">
-      <input class="menu-input" type="checkbox" id="menu{{idea.pk}}{% if link_title == False %}{{idea.pk}}{% endif%}">
-      <label for="menu{{idea.pk}}{% if link_title == False %}{{idea.pk}}{% endif%}">
+      <input class="menu-input" type="checkbox" id="menu{{idea.pk}}">
+      <label for="menu{{idea.pk}}">
         <i class="fas fa-bars"></i>
       </label>
       <div class="options-content">
         <ul>
-          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=1%}">{% trans 'Discussion' %}</a></li>
-          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=2%}">{% trans 'Evaluation' %}</a></li>
-          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=3%}">{% trans 'Approval' %}</a></li>
-          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=4%}">{% trans 'Development' %}</a></li>
-          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=5%}">{% trans 'Finished' %}</a></li>
-          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=6%}">{% trans 'Archived' %}</a></li>
-          <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">{% trans 'Freezed' %}</a></li>
+          {% if request.user.userprofile.manager %}
+            <li><a href="{% url 'change_phase' pk=idea.pk new_phase=1%}">{% trans 'Discussion' %}</a></li>
+            <li><a href="{% url 'change_phase' pk=idea.pk new_phase=2%}">{% trans 'Evaluation' %}</a></li>
+            <li><a href="{% url 'change_phase' pk=idea.pk new_phase=3%}">{% trans 'Approval' %}</a></li>
+            <li><a href="{% url 'change_phase' pk=idea.pk new_phase=4%}">{% trans 'Development' %}</a></li>
+            <li><a href="{% url 'change_phase' pk=idea.pk new_phase=5%}">{% trans 'Finished' %}</a></li>
+            <li><a href="{% url 'change_phase' pk=idea.pk new_phase=6%}">{% trans 'Archived' %}</a></li>
+            <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">{% trans 'Freezed' %}</a></li>
+          {% endif %}
           <li class="actions">
             <div class="action edit">
-              <!-- button class="js-update-idea" data-modal="#modal-idea-crud" data-url="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></button -->
               <a class="js-update-idea" href="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></a>
             </div>
             <div class="action delete">
@@ -42,9 +50,11 @@
     </div>
   </div>
   <!-- idea body -->
-  <div class="idea-body">
-    <p class="idea-title">{{ idea.title }}</p>
-    <p class="idea-description"><span class="bold">{% trans 'Description' %}: </span>{{ idea.description|linebreaksbr }}</p>
+
+  <div class="idea-body" onclick="document.location.href='{% url 'idea_detail' pk=idea.pk %}'">
+        <!-- <p class="idea-title"></p> -->
+
+    <p class="idea-description"><span class="bold">{% trans 'Description' %}: </span>{{ idea.solution|linebreaksbr }}</p>
   </div>
   <!-- idea footer -->
   <div class="idea-footer">
@@ -72,15 +82,5 @@
         </a>
       </div>
     </div>
-    <!-- {% if idea.id in ideas_created_by_me %}
-    <div class="button-group">
-      <button type="button" class="btn btn-sm js-update-idea" data-url="{% url 'idea_edit' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-pencil"></span> Edit
-      </button>
-      <button type="button" class="btn btn-sm js-remove-idea" data-url="{% url 'idea_remove' pk=idea.pk %}">
-        <span class="glyphicon glyphicon-trash"></span> Delete
-      </button>
-    </div>
-    {% endif%} -->
   </div>
 </div>

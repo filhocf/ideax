@@ -57,7 +57,8 @@ def idea_filter(request, phase_pk):
     ideas.sort(key=lambda idea:idea.creation_date)
     context={'ideas': ideas,
              'ideas_liked': get_ideas_voted(request, True),
-             'ideas_disliked': get_ideas_voted(request, False),}
+             'ideas_disliked': get_ideas_voted(request, False),
+             'ideas_created_by_me' : get_ideas_created(request),}
 
     data = dict()
     data['html_idea_list'] = render_to_string('ideax/idea_list_loop.html', context, request=request)
@@ -74,9 +75,8 @@ def save_idea(request, form, template_name, new=False):
         if form.is_valid():
             idea = form.save(commit=False)
 
-            idea.author = UserProfile.objects.get(user=request.user)
-
             if new:
+                idea.author = UserProfile.objects.get(user=request.user)
                 idea.creation_date = timezone.now()
                 idea.phase= Phase.GROW.id
                 idea.save()
@@ -106,31 +106,40 @@ def idea_new(request):
 @login_required
 def idea_edit(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
-    if request.method == "POST":
-        form = IdeaForm(request.POST, instance=idea)
+
+    if request.user.userprofile == idea.author or request.user.userprofile.manager:
+        if request.method == "POST":
+            form = IdeaForm(request.POST, instance=idea)
+        else:
+            form = IdeaForm(instance=idea)
+
+        return save_idea(request, form, 'ideax/idea_edit.html')
     else:
-        form = IdeaForm(instance=idea)
-
-    return save_idea(request, form, 'ideax/idea_edit.html')
-
+        messages.error(request, _('Not supported action'))
+        return redirect('index')
 
 @login_required
 def idea_remove(request, pk):
     idea = get_object_or_404(Idea, pk=pk)
     data = dict()
-    if request.method == 'POST':
-        idea.discarded = True
-        idea.save()
-        data['form_is_valid'] = True
-        ideas = get_ideas_init(request)
-        data['html_list'] = render_to_string('ideax/idea_list_loop.html', ideas, request=request)
-    else:
-        context = {'idea' : idea}
-        data['html_form'] = render_to_string('ideax/includes/partial_idea_remove.html',
-                                             context,
-                                             request=request,)
 
-    return JsonResponse(data)
+    if ((request.user.userprofile == idea.author or request.user.userprofile.manager) and request.is_ajax()):
+        if request.method == 'POST':
+            idea.discarded = True
+            idea.save()
+            data['form_is_valid'] = True
+            ideas = get_ideas_init(request)
+            data['html_list'] = render_to_string('ideax/idea_list_loop.html', ideas, request=request)
+        else:
+            context = {'idea' : idea}
+            data['html_form'] = render_to_string('ideax/includes/partial_idea_remove.html',
+                                                 context,
+                                                 request=request,)
+
+        return JsonResponse(data)
+    else:
+        messages.error(request, _('Not supported action'))
+        return redirect('index')
 
 @login_required
 def criterion_new(request):
@@ -166,6 +175,7 @@ def criterion_edit(request, pk):
 @login_required
 def criterion_remove(request, pk):
     criterion = get_object_or_404(Criterion, pk=pk)
+
     criterion.delete()
     return redirect('criterion_list')
 
@@ -288,7 +298,7 @@ def change_idea_phase(request, pk, new_phase):
     idea = Idea.objects.get(pk=pk)
     phase = Phase.get_phase_by_id(new_phase)
 
-    if phase != None:
+    if phase != None and request.user.userprofile.manager:
         phase_history_current = Phase_History.objects.get(idea=idea, current=True)
         phase_history_current.current = False
         phase_history_current.save()
@@ -331,8 +341,8 @@ def post_comment(request):
     author = UserProfile.objects.get(user=request.user)
     idea_id = request.POST.get('ideiaId', None)
 
-    if Profanity_Check.wordcheck().blacklisted(raw_comment):
-        return JsonResponse({'msg': _("Please check your message it has inappropriate content.")}, status=500)
+    #if Profanity_Check.wordcheck().blacklisted(raw_comment):
+    #    return JsonResponse({'msg': _("Please check your message it has inappropriate content.")}, status=500)
 
     if not raw_comment:
         return JsonResponse({'msg': _("You have to write a comment.")},status=500)

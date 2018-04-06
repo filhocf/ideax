@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-06 13:16-0300\n"
+"POT-Creation-Date: 2018-04-06 13:31-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,16 +45,16 @@ msgid "Weight"
 msgstr "Peso"
 
 #: ideax/forms.py:25 ideax/forms.py:32
-#: ideax/templates/ideax/includes/idea_detail.html:57
+#: ideax/templates/ideax/includes/idea_detail.html:61
 #: ideax/templates/ideax/includes/partial_category_list.html:6
 msgid "Description"
 msgstr "Descrição"
 
-#: ideax/templates/ideax/base.html:24
+#: ideax/templates/ideax/base.html:23
 msgid "New Idea"
 msgstr "Criar Ideia"
 
-#: ideax/templates/ideax/base.html:29
+#: ideax/templates/ideax/base.html:28
 #, python-format
 msgid "Hi, %(name)s!"
 msgstr "Olá, %(name)s"
@@ -121,32 +121,32 @@ msgid "All"
 msgstr "Todas"
 
 #: ideax/templates/ideax/idea_list.html:12
-#: ideax/templates/ideax/includes/idea_detail.html:32
+#: ideax/templates/ideax/includes/idea_detail.html:33
 msgid "Discussion"
 msgstr "Discussão"
 
 #: ideax/templates/ideax/idea_list.html:13
-#: ideax/templates/ideax/includes/idea_detail.html:33
+#: ideax/templates/ideax/includes/idea_detail.html:34
 msgid "Evaluation"
 msgstr "Avaliação"
 
 #: ideax/templates/ideax/idea_list.html:14
-#: ideax/templates/ideax/includes/idea_detail.html:34
+#: ideax/templates/ideax/includes/idea_detail.html:35
 msgid "Approval"
 msgstr "Aprovação"
 
 #: ideax/templates/ideax/idea_list.html:15
-#: ideax/templates/ideax/includes/idea_detail.html:35
+#: ideax/templates/ideax/includes/idea_detail.html:36
 msgid "Development"
 msgstr "Evolução"
 
 #: ideax/templates/ideax/idea_list.html:16
-#: ideax/templates/ideax/includes/idea_detail.html:36
+#: ideax/templates/ideax/includes/idea_detail.html:37
 msgid "Finished"
 msgstr "Feita"
 
 #: ideax/templates/ideax/idea_list.html:17
-#: ideax/templates/ideax/includes/idea_detail.html:37
+#: ideax/templates/ideax/includes/idea_detail.html:38
 msgid "Archived"
 msgstr "Arquivadas"
 
@@ -155,7 +155,7 @@ msgstr "Arquivadas"
 msgid "Create Idea"
 msgstr "Cadastrar ideia"
 
-#: ideax/templates/ideax/includes/idea_detail.html:38
+#: ideax/templates/ideax/includes/idea_detail.html:39
 msgid "Freezed"
 msgstr "Pausadas"
 
@@ -180,6 +180,10 @@ msgstr "Deseja apagar a categoria?"
 #: ideax/templates/ideax/includes/partial_idea_update.html:21
 msgid "Close"
 msgstr "Fechar"
+
+#: ideax/templates/ideax/includes/partial_comments.html:19
+msgid "reply"
+msgstr "Responder"
 
 #: ideax/templates/ideax/includes/partial_idea_remove.html:10
 msgid "Confirm ideia removal"
@@ -291,25 +295,28 @@ msgstr "placeholder:senha"
 msgid "Idea saved successfully!"
 msgstr "Ideia salva com sucesso!"
 
-#: ideax/views.py:303
+#: ideax/views.py:118 ideax/views.py:141
+msgid "Not supported action"
+msgstr "Ação não suportada!"
+
+#: ideax/views.py:313
 msgid "Phase change successfully!"
 msgstr "Fase alterada com sucesso!"
 
-#: ideax/views.py:327
+#: ideax/views.py:337
 msgid "You need to log in to post new comments."
 msgstr "É necessário estar logado para postar comentários."
 
-#: ideax/views.py:335
-msgid "Please check your message it has inappropriate content."
-msgstr "Verifique sua mensagem ela tem conteúdo inapropriado."
-
-#: ideax/views.py:338
+#: ideax/views.py:348
 msgid "You have to write a comment."
 msgstr "É necessário escrever um comentário."
 
-#: ideax/views.py:356
+#: ideax/views.py:366
 msgid "Your comment has been posted."
 msgstr "Comentário postado com sucesso."
+
+#~ msgid "Please check your message it has inappropriate content."
+#~ msgstr "Verifique sua mensagem ela tem conteúdo inapropriado."
 
 #~ msgid "Publish"
 #~ msgstr "Publicar"

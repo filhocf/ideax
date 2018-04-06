@@ -323,6 +323,7 @@ flex-flow: column;
   font-size: 1em;
   font-weight: bold;
   z-index: 1;
+  max-width: 85%;
 }
 
 .idea-header h1,
@@ -415,7 +416,9 @@ input.menu-input{
   border-right: 1px solid #E1E1E1;
   z-index: 5;
   box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
-  margin-right: 35px
+  position: absolute;
+  top: 35px;
+  right: 20px;
 
 }
 
@@ -770,6 +773,8 @@ input#id_title {
   border-radius: 2px;
   //box-shadow: 0 1px 2px #c9cccd;
   //border: 1px solid #E1E1E1;
+  display: flex;
+  flex-direction: column;
 }
 
 .idea-desc p{
@@ -835,7 +840,7 @@ input#id_title {
 
 #idea-tab{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .tab-content{
@@ -861,6 +866,25 @@ input#id_title {
   margin: 25px 0;
 }
 
+#comment-message{
+  margin: 15px 0 0px 0
+}
+
+#commentForm{
+  margin-bottom: 0;
+}
+
+#commentContent{
+  resize: none;
+}
+.nav-link.active{
+  font-weight: bold;
+}
+
+.form-group.comment-group{
+  margin-top: 5px;
+}
+
 .media-left {
     margin-left: 25px;
 }
@@ -880,6 +904,66 @@ input#id_title {
 
 .c-date{
   font-size: 0.7em;
+}
+
+
+
+.action-group{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+
+}
+
+.action-group a{
+  display: block;
+  width: 50%;
+  padding: 8px 0px;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 10px 0;
+
+}
+
+
+.action-group .edit{
+ color: #1f5093;
+  //color: #fefefe;
+  border: solid 3px #1f5093;
+}
+
+.action-group .discard{
+  color: #e52d2a;
+  //color: #fefefe;
+  border: solid 3px #e52d2a;
+}
+
+.action-group a:hover{
+  text-decoration: none;
+}
+
+.idea-page-action .action-icon{
+  font-size: 1.5em;
+  margin-right: 5px
+}
+
+.action-group .edit:hover{
+  background:  #1f5093;
+  color: #fefefe;
+  transition: all 0.3s;
+  border: 3px solid #1f5093;
+
+}
+
+.action-group .discard:hover{
+  background:  #e52d2a;
+  color: #fefefe;
+  transition: all 0.3s;
+  border: 3px solid #e52d2a;
+
 }
 
 /* gereic idea form */
@@ -902,6 +986,8 @@ input#id_title {
     resize: none !important;
     height: 130px;
 }
+
+textarea { resize: none; }
 
 div.idea-form-header {
   background: #6E6E6E;
@@ -931,12 +1017,37 @@ div.idea-form-body{
   flex-direction: column;
 }
 
-div.idea-form-body button{
-  width: 100px;
+.idea-form-body .button-group{
   align-self: flex-end;
+}
+
+.idea-form-body .button-group a,
+.idea-desc .button-group a{
+  width: 100px;
   background-color: #6E6E6E;
   border: 1px solid #ccc;
   margin-top: 25px;
+  color: #fefefe;
+}
+
+.idea-desc .button-group{
+  align-self: center;
+}
+
+
+
+
+div.idea-form-body button{
+  width: 100px;
+
+  background-color: #6E6E6E;
+  border: 1px solid #ccc;
+  margin-top: 25px;
+}
+
+div.idea-form-body button:hover,
+div.idea-form-body a:hover{
+    background: #333 !important;
 }
 
 div.idea-form-body .form-group select{
@@ -1193,6 +1304,7 @@ padding: 8% 15% 0 15%;
   .idea-desc{
     width: 100%;
   }
+
   .idea-interaction{
     width: 100%;
   }

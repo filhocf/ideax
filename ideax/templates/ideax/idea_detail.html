@@ -34,6 +34,9 @@
       <p>{{ idea.solution|linebreaksbr }}</p>
       <h3>{% trans 'Target' %}</h3>
       <p>{{ idea.target|linebreaksbr }}</p>
+      <div class="button-group">
+        <a class="back-redirect btn" href="/">{% trans 'Return' %}</a>
+      </div>
     </div>
     <div class="separator"></div>
 
@@ -42,12 +45,17 @@
         <li class="nav-item">
           <a class="nav-link active" id="comments-area-tab" data-toggle="tab" href="#comments-area" role="tab" aria-controls="comments-area" aria-selected="true">Comentários</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" id="evaluation-tab" data-toggle="tab" href="#evaluation" role="tab" aria-controls="evaluation" aria-selected="false">Avaliação</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Histórico</a>
-        </li>
+        </li> -->
+        <!-- {% if request.user.userprofile == idea.author or request.user.userprofile.manager %}
+          <li class="nav-item">
+            <a class="nav-link" id="actions-tab" data-toggle="tab" href="#actions" role="tab" aria-controls="actions" aria-selected="false">Ações</a>
+          </li>
+        {% endif %} -->
       </ul>
       <div class="tab-content" id="myTabContent">
         <div id="comments-area" class="tab-pane fade show active comments" role="tabpanel" aria-labelledby="comment-group-tab">
@@ -77,6 +85,19 @@
         </div>
         <div class="tab-pane fade" id="evaluation" role="tabpanel" aria-labelledby="evaluation-tab">Avaliação</div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact</div>
+        <!-- {% if request.user.userprofile == idea.author or request.user.userprofile.manager %}
+          <div class="tab-pane fade" id="actions" role="tabpanel" aria-labelledby="actinos-tab">
+            <div class="action-group">
+              <a href="" class="idea-page-action edit">
+                <span class="action-icon"><i class="far fa-edit"></i></span> Editar ideia
+              </a>
+              <a href="" class="idea-page-action discard">
+                <span class="action-icon"><i class="far fa-trash-alt"></i></span> Descartar ideia
+              </a>
+
+            </div>
+          </div>
+        {% endif %} -->
       </div>
     </div>
 

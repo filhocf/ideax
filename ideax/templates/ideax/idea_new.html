@@ -12,7 +12,10 @@
       </div>
       <div class="idea-form-body">
         {% include 'ideax/includes/partial_idea_form.html' %}
-        <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+        <div class="button-group">
+          <a class="back-redirect btn" href="/">{% trans 'Return' %}</a>
+          <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+        </div>
       </div>
     </form>
   </div>

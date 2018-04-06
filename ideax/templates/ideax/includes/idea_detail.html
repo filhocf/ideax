@@ -21,6 +21,7 @@
     {% endif%} -->
 
     <!-- idea card phase change and actions -->
+    {% if idea.id in ideas_created_by_me or request.user.userprofile.manager %}
     <div class="idea-options">
       <input class="menu-input" type="checkbox" id="menu{{idea.pk}}">
       <label for="menu{{idea.pk}}">
@@ -38,16 +39,19 @@
             <li><a href="{% url 'change_phase' pk=idea.pk new_phase=7%}">{% trans 'Freezed' %}</a></li>
           {% endif %}
           <li class="actions">
+            {% if idea.id in ideas_created_by_me or request.user.userprofile.manager %}
             <div class="action edit">
               <a class="js-update-idea" href="{% url 'idea_edit' pk=idea.pk %}"><i class="far fa-edit"></i></a>
             </div>
             <div class="action delete">
               <button class="js-remove-idea" data-modal="#modal-idea-crud" data-url="{% url 'idea_remove' pk=idea.pk %}"><i class="far fa-trash-alt"></i></button>
             </div>
+            {%endif%}
           </li>
         </ul>
       </div>
     </div>
+    {%endif%}
   </div>
   <!-- idea body -->
 

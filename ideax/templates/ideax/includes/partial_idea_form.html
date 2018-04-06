@@ -32,11 +32,6 @@
   {% endfor %}
 </div>
 
-<div class="form-group">
-  <label style="text-align: right;">Caracteres digitados: </label>
-  <p id="character_count" style="text-align: right;">0/3000</p>
-</div>
-
 <div class="form-group{% if form.category.errors %} has-error{% endif %}">
   <label for="{{form.category.id_for_label}}">{{form.category.label}}</label>
   {{ form.category|add_class:'form_control' }}

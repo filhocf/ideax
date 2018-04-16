@@ -768,7 +768,7 @@ input#id_title {
 
 .idea-desc{
   width: 60%;
-  height: 50%;
+  height: inherit;
   //background-color: #fafafa;
   border-radius: 2px;
   //box-shadow: 0 1px 2px #c9cccd;
@@ -1303,10 +1303,12 @@ padding: 8% 15% 0 15%;
 
   .idea-desc{
     width: 100%;
+
   }
 
   .idea-interaction{
     width: 100%;
+    padding-top: 50px;
   }
 
   #idea-tab{

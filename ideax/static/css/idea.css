@@ -966,6 +966,61 @@ input#id_title {
 
 }
 
+.eval-title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.empty-eval{
+  text-align: center;
+}
+
+.eval-title h2{
+  font-size: 1.5em;
+
+}
+
+.eval-title p{
+  font-size: 1.2em;
+}
+
+.eval-title span{
+  font-weight: bold;
+}
+
+.dimension-group{
+  direction: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+  margin-top: 15px;
+  text-align: center;
+  padding: 0 25px;
+}
+
+.dimension-group p{
+  margin-bottom: 3px;
+}
+
+.dimension-group .dimension-title span{
+  font-weight: bold;
+  font-size: 1.15em;
+}
+
+.dimension-group .category span{
+  font-weight: bold;
+
+}
+
+.dimension-group .category{
+
+}
+
+.dimension-group span.tooltip-icon{
+
+}
+
 /* gereic idea form */
 .idea-form{
   width: 70%;
@@ -1351,6 +1406,7 @@ padding: 8% 15% 0 15%;
 #evaluation .form-group textarea{
   height: 70px;
   resize: none;
+  width: 100%;
 }
 
 #evaluation .form-group label{
@@ -1371,6 +1427,11 @@ padding: 8% 15% 0 15%;
   border-bottom: 1px solid rgba(0,0,0,0.2);
   padding: 10px 0 20px 0;
   margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.score #score_value{
+  font-weight: bold
 }
 
 .hide{

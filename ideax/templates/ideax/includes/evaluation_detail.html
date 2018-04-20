@@ -2,16 +2,16 @@
 {% load humanize %}
 
 {%if idea.score > 0%}
-  <div class="">
-    <h1>Avaliação</h1>
-    <p>Pontuação Total: {{idea.score|floatformat:2}}</p>
+  <div class="eval-title">
+    <h2>{% trans 'Evaluation' %}</h2>
+    <p>{% trans 'Total Score' %}: <span>{{idea.score|floatformat:2}}</span></p>
   </div>
   {%for key,value in evaluation_detail.items %}
-    <div class="">
-      <p><span>{{value.dimension.title}}:</span>{{value.dimension.description}}</p>
-      <p><span>Avaliado:</span>{{value.category_dimension}}</p>
+    <div class="dimension-group">
+      <p class="dimension-title"><span data-toggle="tooltip" data-placement="bottom" title="{{value.dimension.description}}">{{value.dimension.title}}</span></p>
+      <p class="category">{{value.category_dimension}}</p>
     </div>
   {% endfor %}
 {%else%}
-  <h2>Avaliação não realizada!</h2>
+  <h2 class="empty-eval">{% trans 'Evaluation not yet done' %}</h2>
 {%endif%}

@@ -289,7 +289,7 @@ div.idea{
   display: flex;
 flex-flow: column;
   justify-content: center;
-  border-radius: 10px;
+  border-radius: 6px;
   font-family: 'Open Sans', sans-serif;
   text-align: center;
   margin: 0 0 50px 0;
@@ -509,7 +509,6 @@ input.menu-input{
 
 .read-more {
   text-align: center;
-  margin-top: 0.5em;
   margin-bottom: 0;
   color: #007bff;
   display: block;
@@ -992,6 +991,7 @@ input#id_title {
 
 .empty-eval{
   text-align: center;
+  font-size: 1.2em;
 }
 
 .eval-title h2{

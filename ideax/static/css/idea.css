@@ -494,8 +494,25 @@ input.menu-input{
   font-size: 0.9em;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 10px 20px;
+  padding: 5px 20px;
   min-height: 200px;
+}
+
+.idea-author {
+  text-align:center;
+  margin-bottom: 0.3em;
+}
+
+.idea-description {
+  margin-bottom: 0;
+}
+
+.read-more {
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  color: #007bff;
+  display: block;
 }
 
 .idea-body:hover{
@@ -768,7 +785,7 @@ input#id_title {
 
 .idea-desc{
   width: 60%;
-  height: 50%;
+  height: inherit;
   //background-color: #fafafa;
   border-radius: 2px;
   //box-shadow: 0 1px 2px #c9cccd;
@@ -963,6 +980,61 @@ input#id_title {
   color: #fefefe;
   transition: all 0.3s;
   border: 3px solid #e52d2a;
+
+}
+
+.eval-title{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.empty-eval{
+  text-align: center;
+}
+
+.eval-title h2{
+  font-size: 1.5em;
+
+}
+
+.eval-title p{
+  font-size: 1.2em;
+}
+
+.eval-title span{
+  font-weight: bold;
+}
+
+.dimension-group{
+  direction: flex;
+  flex-direction: column;
+  margin-bottom: 28px;
+  margin-top: 15px;
+  text-align: center;
+  padding: 0 25px;
+}
+
+.dimension-group p{
+  margin-bottom: 3px;
+}
+
+.dimension-group .dimension-title span{
+  font-weight: bold;
+  font-size: 1.15em;
+}
+
+.dimension-group .category span{
+  font-weight: bold;
+
+}
+
+.dimension-group .category{
+
+}
+
+.dimension-group span.tooltip-icon{
 
 }
 
@@ -1303,10 +1375,12 @@ padding: 8% 15% 0 15%;
 
   .idea-desc{
     width: 100%;
+
   }
 
   .idea-interaction{
     width: 100%;
+    padding-top: 50px;
   }
 
   #idea-tab{
@@ -1333,4 +1407,50 @@ padding: 8% 15% 0 15%;
   display: table-cell;
   vertical-align: top;
   padding-right: 10px;
+}
+
+#evaluation .form-group{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#evaluation .form-group select,
+#evaluation .form-group input{
+  width: 100%
+}
+
+#evaluation .form-group textarea{
+  height: 70px;
+  resize: none;
+  width: 100%;
+}
+
+#evaluation .form-group label{
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+#evaluation{
+  max-height: 81vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-right: 10px;
+  padding-top: 15px
+}
+
+.score{
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding: 10px 0 20px 0;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.score #score_value{
+  font-weight: bold
+}
+
+.hide{
+  display: none;
 }

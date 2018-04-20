@@ -5,21 +5,7 @@
   <div class="idea-header">
     <h1 class="idea-title" data-toggle="tooltip" data-placement="bottom" title="{{ idea.title }}">
       {{ idea.title }}
-    </h1>
-    <!-- <p class="date">
-      {{ idea.creation_date|date:"d/m/Y" }}
-<<<<<<< HEAD
-    </p>
-
-    <a href="{% url 'idea_detail' pk=idea.pk %}"><i class="info-icon fas fa-info-circle"></i></a>
-
-=======
-    </p> -->
-    <!-- {% if link_title == True %}
-      <i class="info-icon fas fa-info-circle" ></i>
-    {% else%}
-    {% endif%} -->
-
+    </h1>  
     <!-- idea card phase change and actions -->
     {% if idea.id in ideas_created_by_me or request.user.userprofile.manager %}
     <div class="idea-options">
@@ -57,8 +43,15 @@
 
   <div class="idea-body" onclick="document.location.href='{% url 'idea_detail' pk=idea.pk %}'">
         <!-- <p class="idea-title"></p> -->
-
-    <p class="idea-description"><span class="bold">{% trans 'Description' %}: </span>{{ idea.solution|linebreaksbr }}</p>
+    <p class="idea-author"><span class="bold">Autor: </span>{{idea.author.user.get_full_name}}</p>
+    <p class="idea-description"><span class="bold">{% trans 'Description' %}: </span>
+      {%if idea.solution|length >= 400 %}
+        {{ idea.solution|truncatechars:400 }}
+        <span class="read-more">Leia Mais</span>
+      {%else%}
+          {{ idea.solution }}
+      {%endif%}
+    </p>
   </div>
   <!-- idea footer -->
   <div class="idea-footer">

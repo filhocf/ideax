@@ -30,5 +30,6 @@ urlpatterns = [
     #path('idea/comment/<int:pk>', views.form_redirect, name='form'),
     path('post/comment/', views.post_comment, name='post_comment'),
     path('idea/comments/<int:pk>/', views.idea_comments, name='idea_comments'),
+    path('idea/evaluation/<int:idea_pk>/', views.idea_evaluation, name='evaluation'),
 
 ]

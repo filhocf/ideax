@@ -99,7 +99,7 @@ $(function () {
 
   var submitEvaluation = function(){
     var form = $(this);
-    
+
     $.ajax({
       url: form.attr("action"),
       data: form.serialize(),
@@ -301,3 +301,15 @@ $(function () {
 });
 
 // end of tooltip functions
+
+$("#evaluation_form button").click(function(){
+  if($(window).scrollTop() > $("#idea-tab").offset().top){
+       $('html, body').animate({
+          scrollTop: $("#idea-tab").offset().top
+      }, 500);
+    }
+    console.log($("#evaluation-message").offset().top);
+  $("#evaluation").animate({
+          scrollTop: 0
+      }, 500);
+});

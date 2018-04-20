@@ -5,21 +5,7 @@
   <div class="idea-header">
     <h1 class="idea-title" data-toggle="tooltip" data-placement="bottom" title="{{ idea.title }}">
       {{ idea.title }}
-    </h1>
-    <!-- <p class="date">
-      {{ idea.creation_date|date:"d/m/Y" }}
-<<<<<<< HEAD
-    </p>
-
-    <a href="{% url 'idea_detail' pk=idea.pk %}"><i class="info-icon fas fa-info-circle"></i></a>
-
-=======
-    </p> -->
-    <!-- {% if link_title == True %}
-      <i class="info-icon fas fa-info-circle" ></i>
-    {% else%}
-    {% endif%} -->
-
+    </h1>  
     <!-- idea card phase change and actions -->
     {% if idea.id in ideas_created_by_me or request.user.userprofile.manager %}
     <div class="idea-options">

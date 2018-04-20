@@ -1,0 +1,26 @@
+{% load widget_tweaks i18n %}
+
+<div id="evaluation-message" class="alert alert-dismissible fade show" role="alert" style="display:none"></div>
+<div id="score" class="score {%if idea.score <= 0%}hide{%endif%}" >
+    Pontuação <br>
+    <p id="score_value">{{idea.score|floatformat:2}}</p>
+</div>
+
+{%if form_evaluation%}
+<form method="post" id="evaluation_form" class="post-form" action="{% url 'evaluation' idea.pk%}">
+  {% csrf_token %}
+  {% for field in form_evaluation %}
+    <div class="form-group{% if field.errors %} has-error{% endif %}">
+      {% if field.label != '' %}
+        <label for="{{field.id_for_label}}">{{field.label}}</label>
+      {%endif%}
+      {{ field|add_class:'form_control' }}
+      {% for error in field.errors %}
+        <p class="help-block">{{ error }}</p>
+      {% endfor %}
+    </div>
+  {% endfor %}
+
+  <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
+</form>
+{%endif%}

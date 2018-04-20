@@ -1,0 +1,17 @@
+{% load widget_tweaks i18n %}
+{% load humanize %}
+
+{%if idea.score > 0%}
+  <div class="">
+    <h1>Avaliação</h1>
+    <p>Pontuação Total: {{idea.score|floatformat:2}}</p>
+  </div>
+  {%for key,value in evaluation_detail.items %}
+    <div class="">
+      <p><span>{{value.dimension.title}}:</span>{{value.dimension.description}}</p>
+      <p><span>Avaliado:</span>{{value.category_dimension}}</p>
+    </div>
+  {% endfor %}
+{%else%}
+  <h2>Avaliação não realizada!</h2>
+{%endif%}

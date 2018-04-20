@@ -29,9 +29,9 @@
   <div class="idea-page">
     <div class="idea-desc">
       <h3>{% trans 'Solution' %}</h3>
-      <p>{{ idea.oportunity|linebreaksbr }}</p>
-      <h3>{% trans 'Oportunity' %}</h3>
       <p>{{ idea.solution|linebreaksbr }}</p>
+      <h3>{% trans 'Oportunity' %}</h3>
+      <p>{{ idea.oportunity|linebreaksbr }}</p>
       <h3>{% trans 'Target' %}</h3>
       <p>{{ idea.target|linebreaksbr }}</p>
       <div class="button-group">
@@ -45,9 +45,10 @@
         <li class="nav-item">
           <a class="nav-link active" id="comments-area-tab" data-toggle="tab" href="#comments-area" role="tab" aria-controls="comments-area" aria-selected="true">Comentários</a>
         </li>
-        <!-- <li class="nav-item">
+        <li class="nav-item">
           <a class="nav-link" id="evaluation-tab" data-toggle="tab" href="#evaluation" role="tab" aria-controls="evaluation" aria-selected="false">Avaliação</a>
         </li>
+        <!--
         <li class="nav-item">
           <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Histórico</a>
         </li> -->
@@ -83,7 +84,13 @@
           </div>
           {% include 'ideax/includes/partial_comments.html' %}
         </div>
-        <div class="tab-pane fade" id="evaluation" role="tabpanel" aria-labelledby="evaluation-tab">Avaliação</div>
+        <div class="tab-pane fade" id="evaluation" role="tabpanel" aria-labelledby="evaluation-tab">
+          {%if request.user.userprofile.manager %}
+            {% include 'ideax/includes/evaluation.html' %}
+          {%else%}
+            {% include 'ideax/includes/evaluation_detail.html' %}
+          {%endif%}
+        </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact</div>
         <!-- {% if request.user.userprofile == idea.author or request.user.userprofile.manager %}
           <div class="tab-pane fade" id="actions" role="tabpanel" aria-labelledby="actinos-tab">

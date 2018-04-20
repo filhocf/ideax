@@ -57,7 +57,9 @@ msgstr ""
 
 #: ideax/templates/ideax/category_new.html:9
 #: ideax/templates/ideax/criterion_edit.html:12
+#: ideax/templates/ideax/evaluation.html:19
 #: ideax/templates/ideax/idea_new.html:17
+#: ideax/templates/ideax/includes/evaluation.html:24
 #: ideax/templates/ideax/includes/partial_idea_create.html:25
 #: ideax/templates/ideax/phase_edit.html:12
 msgid "Save"
@@ -82,7 +84,7 @@ msgstr ""
 msgid "New Comment"
 msgstr ""
 
-#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:78
+#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:79
 msgid "Comment"
 msgstr ""
 
@@ -259,7 +261,7 @@ msgstr ""
 msgid "placeholder:password"
 msgstr ""
 
-#: ideax/views.py:92
+#: ideax/views.py:93
 msgid "Idea saved successfully!"
 msgstr ""
 
@@ -267,18 +269,22 @@ msgstr ""
 msgid "Not supported action"
 msgstr ""
 
-#: ideax/views.py:313
+#: ideax/views.py:217
+msgid "Evaluation done successfully!"
+msgstr ""
+
+#: ideax/views.py:357
 msgid "Phase change successfully!"
 msgstr ""
 
-#: ideax/views.py:337
+#: ideax/views.py:395
 msgid "You need to log in to post new comments."
 msgstr ""
 
-#: ideax/views.py:348
+#: ideax/views.py:406
 msgid "You have to write a comment."
 msgstr ""
 
-#: ideax/views.py:366
+#: ideax/views.py:423
 msgid "Your comment has been posted."
 msgstr ""

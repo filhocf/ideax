@@ -1334,3 +1334,43 @@ padding: 8% 15% 0 15%;
   vertical-align: top;
   padding-right: 10px;
 }
+
+#evaluation .form-group{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#evaluation .form-group select,
+#evaluation .form-group input{
+  width: 100%
+}
+
+#evaluation .form-group textarea{
+  height: 70px;
+  resize: none;
+}
+
+#evaluation .form-group label{
+  font-weight: bold;
+  padding-top: 5px;
+}
+
+#evaluation{
+  max-height: 81vh;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-right: 10px;
+  padding-top: 15px
+}
+
+.score{
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding: 10px 0 20px 0;
+  margin-bottom: 20px;
+}
+
+.hide{
+  display: none;
+}

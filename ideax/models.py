@@ -83,6 +83,7 @@ class Idea(models.Model):
     author = models.ForeignKey('UserProfile',on_delete=models.CASCADE)
     category = models.ForeignKey('Category', models.SET_NULL,null=True)
     discarded = models.BooleanField(default=False)
+    score = models.FloatField(default=0)
 
     def count_popular_vote(self, like_boolean):
         return self.popular_vote_set.filter(like=like_boolean).count()
@@ -131,3 +132,30 @@ class UserProfile (models.Model):
     """
     def is_manager_group(self):
         return self.user.groups.filter(name=config("MANAGER_GROUP")).exists()
+
+class Dimension(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.CharField(max_length=500)
+    weight = models.IntegerField()
+    init_date = models.DateTimeField()
+    final_date = models.DateTimeField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+class Category_Dimension(models.Model):
+    description = models.CharField(max_length=200)
+    value = models.IntegerField()
+    dimension = models.ForeignKey('Dimension',on_delete=models.PROTECT)
+
+    def __str__(self):
+        return self.description
+
+class Evaluation(models.Model):
+    valuator = models.ForeignKey('UserProfile',on_delete=models.PROTECT)
+    idea = models.ForeignKey('Idea',on_delete=models.PROTECT)
+    dimension = models.ForeignKey('Dimension',on_delete=models.PROTECT)
+    category_dimension = models.ForeignKey('Category_Dimension',on_delete=models.PROTECT)
+    evaluation_date = models.DateTimeField()
+    dimension_value = models.IntegerField()
+    note = models.TextField(null=True)

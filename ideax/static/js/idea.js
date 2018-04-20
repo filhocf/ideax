@@ -97,6 +97,28 @@ $(function () {
     return false;
   };
 
+  var submitEvaluation = function(){
+    var form = $(this);
+    
+    $.ajax({
+      url: form.attr("action"),
+      data: form.serialize(),
+      type: form.attr("method"),
+      dataType: 'json',
+      success: function (data){
+        var score = data.score_value;
+        $("#score").removeClass("hide");
+        $("#score_value").html(score.toFixed(2));
+
+        showMessage("#evaluation-message", data.msg, "alert-info");
+      },
+      error: function(xhr, status, error){
+        showMessage("#evaluation-message", xhr.responseJSON.msg , "alert-danger");
+      }
+    });
+    return false;
+  };
+
   //$(".js-create-idea").click(loadForm);
   //$("#modal-idea-crud").on("submit", ".js-idea-create-form", saveForm);
 
@@ -114,6 +136,9 @@ $(function () {
 
   $(document).on("click", ".js-remove-category", loadForm);
   $("#modal-category-crud").on("submit", ".js-category-remove-form", saveForm);
+
+  $(document).on("submit", "#evaluation_form", submitEvaluation);
+
 
   function getCookie(name) {
     var cookieValue = null;
@@ -161,7 +186,7 @@ $(function () {
 
     doPost.done(function (response) {
         if (response.msg) {
-            showCommentMessage(response.msg, "alert-info");
+            showMessage("#comment-message", response.msg, "alert-info");
         }
         $("#commentContent").val("");
         refreshCommentList(event, form)
@@ -169,15 +194,15 @@ $(function () {
 
     doPost.fail(function (response){
       if (response.responseJSON.msg) {
-          showCommentMessage(response.responseJSON.msg, "alert-danger");
+          showMessage("#comment-message", response.responseJSON.msg, "alert-danger");
       }
     });
   }
 
-  function showCommentMessage(message, classMessage){
-    $("#comment-message").html(message);
-    $("#comment-message").css("display","");
-    $("#comment-message").removeClass("alert-danger").removeClass("alert-warning").addClass(classMessage);
+  function showMessage(idDivMessage, message, classMessage){
+    $(idDivMessage).html(message);
+    $(idDivMessage).css("display","");
+    $(idDivMessage).removeClass("alert-danger").removeClass("alert-warning").addClass(classMessage);
   }
 
   function refreshCommentList(event, form){

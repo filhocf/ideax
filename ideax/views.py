@@ -6,8 +6,8 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
-from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment, UserProfile
-from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm
+from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment, UserProfile, Dimension, Evaluation
+from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm, EvaluationForm, EvaluationForm
 from .singleton import Profanity_Check
 from django import forms
 from wordfilter import Wordfilter
@@ -15,6 +15,8 @@ import os
 import json
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
+from django.forms import modelformset_factory
+import collections
 
 
 def index(request):
@@ -74,7 +76,6 @@ def save_idea(request, form, template_name, new=False):
     if request.method == "POST":
         if form.is_valid():
             idea = form.save(commit=False)
-
             if new:
                 idea.author = UserProfile.objects.get(user=request.user)
                 idea.creation_date = timezone.now()
@@ -91,7 +92,6 @@ def save_idea(request, form, template_name, new=False):
                 idea.save()
             messages.success(request, _('Idea saved successfully!'))
             return redirect('idea_list')
-
 
     return render(request, template_name, {'form': form})
 
@@ -173,6 +173,54 @@ def criterion_edit(request, pk):
     return render(request, 'ideax/criterion_edit.html', {'form': form})
 
 @login_required
+def idea_evaluation(request, idea_pk):
+    valuator = UserProfile.objects.get(user=request.user)
+    idea = get_object_or_404(Idea, pk=idea_pk)
+
+    idea_score = 0.0
+    divisor = 0
+    soma = 0
+
+    dim = Dimension.objects.filter(final_date__isnull=True)
+
+    data = dict()
+    if request.POST:
+        form_ = EvaluationForm(request.POST, extra=dim)
+        if form_.is_valid() and request.user.userprofile.manager:
+            for i in dim:
+                divisor += i.weight
+                dimension_value = i.weight * form_.cleaned_data[EvaluationForm.FORMAT_ID % i.pk].value
+                soma += dimension_value
+                if idea.score <= 0:
+                    evaluation = Evaluation(valuator=valuator,
+                                            idea=idea,
+                                            dimension=i,
+                                            category_dimension=form_.cleaned_data[EvaluationForm.FORMAT_ID % i.pk],
+                                            evaluation_date=timezone.now(),
+                                            dimension_value=dimension_value,
+                                            note=form_.cleaned_data[EvaluationForm.FORMAT_ID_NOTE % i.pk],)
+                else:
+                    evaluation = Evaluation.objects.get(dimension=i, idea=idea)
+                    evaluation.category_dimension = form_.cleaned_data[EvaluationForm.FORMAT_ID % i.pk]
+                    evaluation.note = form_.cleaned_data[EvaluationForm.FORMAT_ID_NOTE % i.pk]
+                    evaluation.dimension_value=dimension_value
+
+                evaluation.save()
+
+            idea_score = soma/divisor
+            idea.score = idea_score
+            idea.save()
+            data['score_value'] = idea_score
+        else:
+            data["msg"] = _("Something went wrong or you're not allowed!")
+            return JsonResponse(data, status=500)
+    else:
+        form_ = EvaluationForm(extra=dim)
+
+    data["msg"] = _("Evaluation done successfully!")
+    return JsonResponse(data)
+
+@login_required
 def criterion_remove(request, pk):
     criterion = get_object_or_404(Criterion, pk=pk)
 
@@ -215,7 +263,6 @@ def save_category(request, template_name, form):
 
     return JsonResponse(data)
 
-
 @login_required
 def category_edit(request, pk):
     category = get_object_or_404(Category, pk=pk)
@@ -225,6 +272,7 @@ def category_edit(request, pk):
         form = CategoryForm(instance=category)
 
     return save_category(request,'ideax/category_edit.html',form)
+
 def category_remove(request, pk):
     category = get_object_or_404(Category, pk=pk)
     data = dict()
@@ -266,7 +314,6 @@ def like_popular_vote(request, pk):
             like_boolean = None
         else:
             vote.update(like=like_boolean)
-
 
     data = dict()
     data['qtde_votes_likes'] = idea_.count_likes()
@@ -324,6 +371,20 @@ def idea_detail(request, pk):
     data["idea"] = idea
     data["idea_id"] = idea.pk
 
+    initial = collections.OrderedDict()
+    form_ = None
+    if idea.score > 0:
+        for i in idea.evaluation_set.all().order_by('dimension__id'):
+            initial[EvaluationForm.FORMAT_ID % i.dimension.pk] = i
+            form_ = EvaluationForm(initial=initial)
+
+    else:
+        form_ = EvaluationForm(extra=Dimension.objects.filter(final_date__isnull=True))
+
+
+    data["form_evaluation"] = None if not form_.fields else form_
+    data["evaluation_detail"] = initial
+
     try:
         data["popular_vote"] = idea.popular_vote_set.get(voter=request.user.userprofile).like
     except Popular_Vote.DoesNotExist:
@@ -362,7 +423,6 @@ def post_comment(request):
                       comment_phase=idea.get_current_phase().id)
 
     comment.save()
-
     return JsonResponse({"msg" : _("Your comment has been posted.")})
 
 def idea_comments(request, pk):
@@ -370,5 +430,4 @@ def idea_comments(request, pk):
     data['html_list'] = render_to_string('ideax/includes/partial_comments.html',
                                          {"comments" : Comment.objects.filter(idea__id=pk),
                                           "idea_id" : pk})
-
     return JsonResponse(data)

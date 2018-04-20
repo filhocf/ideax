@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-06 13:31-0300\n"
+"POT-Creation-Date: 2018-04-20 08:51-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,7 +76,9 @@ msgstr "Nova Categoria"
 
 #: ideax/templates/ideax/category_new.html:9
 #: ideax/templates/ideax/criterion_edit.html:12
+#: ideax/templates/ideax/evaluation.html:19
 #: ideax/templates/ideax/idea_new.html:17
+#: ideax/templates/ideax/includes/evaluation.html:24
 #: ideax/templates/ideax/includes/partial_idea_create.html:25
 #: ideax/templates/ideax/phase_edit.html:12
 msgid "Save"
@@ -101,7 +103,7 @@ msgstr "Remover"
 msgid "New Comment"
 msgstr "Novo Comentário"
 
-#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:78
+#: ideax/templates/ideax/form.html:23 ideax/templates/ideax/idea_detail.html:79
 msgid "Comment"
 msgstr "Comentar"
 
@@ -291,7 +293,7 @@ msgstr "placeholder:nome_de_usuário"
 msgid "placeholder:password"
 msgstr "placeholder:senha"
 
-#: ideax/views.py:92
+#: ideax/views.py:93
 msgid "Idea saved successfully!"
 msgstr "Ideia salva com sucesso!"
 
@@ -299,19 +301,23 @@ msgstr "Ideia salva com sucesso!"
 msgid "Not supported action"
 msgstr "Ação não suportada!"
 
-#: ideax/views.py:313
+#: ideax/views.py:217
+msgid "Evaluation done successfully!"
+msgstr "Avaliação feita com sucesso!"
+
+#: ideax/views.py:357
 msgid "Phase change successfully!"
 msgstr "Fase alterada com sucesso!"
 
-#: ideax/views.py:337
+#: ideax/views.py:395
 msgid "You need to log in to post new comments."
 msgstr "É necessário estar logado para postar comentários."
 
-#: ideax/views.py:348
+#: ideax/views.py:406
 msgid "You have to write a comment."
 msgstr "É necessário escrever um comentário."
 
-#: ideax/views.py:366
+#: ideax/views.py:423
 msgid "Your comment has been posted."
 msgstr "Comentário postado com sucesso."
 

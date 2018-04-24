@@ -24,6 +24,9 @@ def index(request):
         return idea_list(request)
     return render(request, 'ideax/index.html')
 
+def ftec(request):
+    return render(request, 'ideax/ftec.html')
+
 @login_required
 def idea_list(request):
     ideas = get_ideas_init(request)

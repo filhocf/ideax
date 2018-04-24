@@ -56,7 +56,8 @@ class EvaluationForm(forms.Form):
         if dimensions:
             for dim in dimensions:
                 self.fields[self.FORMAT_ID % dim.pk ] = forms.ModelChoiceField(queryset=dim.category_dimension_set,
-                                                                               label=dim.title)
+                                                                               label=dim.title,
+                                                                               help_text=dim.description)
                 self.fields[self.FORMAT_ID_NOTE % dim.pk] = forms.CharField(widget=forms.Textarea,
                                                                             label='',
                                                                             required=False)

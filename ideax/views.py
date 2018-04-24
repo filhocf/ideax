@@ -402,8 +402,8 @@ def post_comment(request):
     author = UserProfile.objects.get(user=request.user)
     idea_id = request.POST.get('ideiaId', None)
 
-    #if Profanity_Check.wordcheck().blacklisted(raw_comment):
-    #    return JsonResponse({'msg': _("Please check your message it has inappropriate content.")}, status=500)
+    if Profanity_Check.wordcheck().search_badwords(raw_comment):
+        return JsonResponse({'msg': _("Please check your message it has inappropriate content.")}, status=500)
 
     if not raw_comment:
         return JsonResponse({'msg': _("You have to write a comment.")},status=500)

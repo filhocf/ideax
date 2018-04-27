@@ -1,7 +1,29 @@
+@page {
+  size:A4;
+  @bottom-right{
+        border-top: 0.5pt solid;
+        content: "Página " counter(page) " de " counter(pages);
+  }
+  @media print {
+    #header-report{
+        position: running(header-report);
+    }
+    .document {
+      margin-top: 300px;
+    }
+
+  }
+
+}
+
 body,html{
   font-family: arial;
   width: 100%;
-  background-color: rgba(219, 219, 219, 0.66) !important;
+
+}
+#espaco {
+  display: block;
+  height: 350px;
 }
 
 .wrapper{
@@ -20,7 +42,8 @@ body,html{
 }
 
 .ftec-header{
-  display: flex;
+  position: fixed; top: 1cm; left: 1cm;
+  margin-bottom: 100px;
   justify-content: space-between;
   border-bottom: 1px solid black;
 

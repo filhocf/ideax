@@ -17,6 +17,7 @@ from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from django.forms import modelformset_factory
 import collections
+from weasyprint import HTML, CSS
 
 
 def index(request):
@@ -24,7 +25,48 @@ def index(request):
         return idea_list(request)
     return render(request, 'ideax/index.html')
 
+def get_page_body(boxes):
+    for box in boxes:
+        if box.element_tag == 'body':
+            return box
+        return get_page_body(box.all_children())
+
 def ftec(request):
+
+    # Main template
+    html = HTML('ideax/templates/ideax/ftec.html')
+    main_doc = html.render()
+
+    #exists_links = False
+
+    ## Template of header
+    #html = HTML('ideax/templates/ideax/includes/header_report.html')
+    #header = html.render()
+
+    #header_page = header.pages[0]
+    #exists_links = exists_links or header_page.links
+    #header_body = get_page_body(header_page._page_box.all_children())
+    #header_body = header_body.copy_with_children(header_body.all_children())
+
+
+
+    #for i, page in enumerate(main_doc.pages):
+    #    #if not i:
+    #    #    continue
+
+    #    page_body = get_page_body(page._page_box.all_children())
+    #    page_body.children += header_body.all_children()
+    #    print("\nCHILDREN")
+    #    print(type(page_body.children))
+    #    print(page_body.children)
+
+    #    #page_body.children += footer_body.all_children()
+
+    #    if exists_links:
+    #        page.links.extend(header_page.links)
+            #page.links.extend(footer_page.links)
+
+    main_doc.write_pdf(target='/tmp/main_doc.pdf')
     return render(request, 'ideax/ftec.html')
 
 @login_required

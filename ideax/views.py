@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
-from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment, UserProfile, Dimension, Evaluation
+from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment, UserProfile, Dimension, Evaluation, Category_Image, User_Term
 from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm, EvaluationForm, EvaluationForm
 from .singleton import Profanity_Check
 from django import forms
@@ -17,7 +17,9 @@ from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from django.forms import modelformset_factory
 import collections
-from weasyprint import HTML, CSS
+from django.http import HttpResponse
+from django.template.loader import get_template
+from django.template import Context
 
 
 def index(request):
@@ -31,43 +33,20 @@ def get_page_body(boxes):
             return box
         return get_page_body(box.all_children())
 
-def ftec(request):
+@login_required
+def accept_use_term(request):
+    if not request.user.userprofile.use_term_accept:
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile.use_term_accept = True
+        user_profile.acceptance_date = timezone.localtime(timezone.now())
+        user_profile.ip = request.META.get('REMOTE_ADDR')
+        user_profile.save()
+        messages.success(request, _('Term of use accept!'))
+    else:
+        messages.success(request, _('Term of use already accepty!'))
 
-    # Main template
-    html = HTML('ideax/templates/ideax/ftec.html')
-    main_doc = html.render()
+    return redirect('index')
 
-    #exists_links = False
-
-    ## Template of header
-    #html = HTML('ideax/templates/ideax/includes/header_report.html')
-    #header = html.render()
-
-    #header_page = header.pages[0]
-    #exists_links = exists_links or header_page.links
-    #header_body = get_page_body(header_page._page_box.all_children())
-    #header_body = header_body.copy_with_children(header_body.all_children())
-
-
-
-    #for i, page in enumerate(main_doc.pages):
-    #    #if not i:
-    #    #    continue
-
-    #    page_body = get_page_body(page._page_box.all_children())
-    #    page_body.children += header_body.all_children()
-    #    print("\nCHILDREN")
-    #    print(type(page_body.children))
-    #    print(page_body.children)
-
-    #    #page_body.children += footer_body.all_children()
-
-    #    if exists_links:
-    #        page.links.extend(header_page.links)
-            #page.links.extend(footer_page.links)
-
-    main_doc.write_pdf(target='/tmp/main_doc.pdf')
-    return render(request, 'ideax/ftec.html')
 
 @login_required
 def idea_list(request):
@@ -476,3 +455,7 @@ def idea_comments(request, pk):
                                          {"comments" : Comment.objects.filter(idea__id=pk),
                                           "idea_id" : pk})
     return JsonResponse(data)
+
+def get_term_of_user(request):
+    term = User_Term.objects.get(final_date__isnull=True)
+    return JsonResponse({"term" : term.term })

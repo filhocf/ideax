@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 
@@ -8,16 +10,17 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link href="../../static/css/ftec.css" rel="stylesheet">
-  <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'css/ftec.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
 </head>
 
 <body>
   <!-- BODY -->
   <!-- HEADER -->
+
     <div class="ftec-header" id="header-report">
-      <img class="dtp-logo" src="../../static/images/logo-dtp.png" alt="">
+      <img class="dtp-logo" src="{% static 'images/logo-dtp.png' %}" alt="">
       <div class="header-text-container">
         <div class="dept-group">
           <p>Diretoria de Relacionamento, Desenvolvimento e Informações - DRD</p>
@@ -30,10 +33,6 @@
         </div>
       </div>
     </div>
-  
-  <div class="" id="espaco">
-
-  </div>
   <!-- HEADER -->
 
   <div class="document">

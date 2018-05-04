@@ -57,6 +57,20 @@ function vote(url, idLike, idDislike, aLike, aDislike){
   });
 }
 
+function getUserTerm(idDivTerm, urlTerm){
+  var term;
+  $.ajax({
+    url: urlTerm,
+    type: 'get',
+    dataType: 'json',
+    success: function (data){
+      term = data.term;
+      $(idDivTerm).html(term);
+    }
+  });
+  return term;
+}
+
 $(function () {
   var loadForm = function(){
     var btn = $(this);

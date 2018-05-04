@@ -4,15 +4,7 @@
         border-top: 0.5pt solid;
         content: "Página " counter(page) " de " counter(pages);
   }
-  @media print {
-    #header-report{
-        position: running(header-report);
-    }
-    .document {
-      margin-top: 300px;
-    }
 
-  }
 
 }
 
@@ -21,10 +13,7 @@ body,html{
   width: 100%;
 
 }
-#espaco {
-  display: block;
-  height: 350px;
-}
+
 
 .wrapper{
   width:50%;

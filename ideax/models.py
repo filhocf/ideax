@@ -4,6 +4,7 @@ from enum import Enum
 from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.signals import user_logged_in
 from decouple import config
+import random
 
 def check_user_profile(sender, user, request, **kwargs):
     try:
@@ -71,8 +72,21 @@ class Category(models.Model):
     description = models.CharField(max_length=200)
     discarded = models.BooleanField(default=False)
 
+    def get_all_image_header(self):
+        return self.category_image_set.all()
+
     def __str__(self):
         return self.title
+
+class Category_Image(models.Model):
+    description = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='category/')
+    category = models.ForeignKey('Category', models.SET_NULL,null=True)
+
+    @classmethod
+    def get_random_image(cls, category):
+        id_list = Category_Image.objects.filter(category=category).values_list('id', flat=True)
+        return Category_Image.objects.get(id=random.choice(list(id_list)))
 
 class Idea(models.Model):
     title = models.CharField(max_length=200)
@@ -125,6 +139,8 @@ class Comment(MPTTModel):
 class UserProfile (models.Model):
     user = models.OneToOneField('auth.User',on_delete=models.PROTECT)
     use_term_accept = models.NullBooleanField(default=False)
+    acceptance_date = models.DateTimeField(null=True)
+    ip = models.CharField(max_length=20, null=True)
     manager = models.NullBooleanField(default=False)
 
     """
@@ -159,3 +175,9 @@ class Evaluation(models.Model):
     evaluation_date = models.DateTimeField()
     dimension_value = models.IntegerField()
     note = models.TextField(null=True)
+
+class User_Term(models.Model):
+    creator = models.ForeignKey('UserProfile',on_delete=models.PROTECT)
+    term = models.TextField(max_length=12500)
+    init_date = models.DateTimeField()
+    final_date = models.DateTimeField(blank=True, null=True)

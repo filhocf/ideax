@@ -1,26 +1,35 @@
 <!-- {% load widget_tweaks i18n %} -->
+{% load staticfiles i18n %}
 
 <div class="idea-card">
-  <div class="img-analytics">
-    <img style="width: 100%; height: 120px;" src="{{ idea.category.category_image.image}}" alt="" />
+  <div class="img-container">
+    <!-- <img style="width: 100%; height: 120px;" src="{{ idea.category.category_image.image}}" alt="" /> -->
+      <img style="width: 100%; height: 120px;" src="{% static 'images/analytics2.jpg' %}" alt="" />
   </div> <!-- IMAGEM DA CATEGORIA -->
-  <div class="idea-card-body">
-    <div>
-      <div class="cat-name">
-        {{ idea.category.title }}
+  <div class="idea-content">
+    <div class="idea-card-body">
+      <div>
+        <div class="cat-name">
+          {{ idea.category.title }}
+        </div>
+        <div class="vote"></div>
       </div>
-      <div class="vote"></div>
+      <h1>{{ idea.title }}</h1>
+      <div class="card-author">
+          Por {{idea.author.user}}
+      </div>
+      <div class="short-desc">
+        {{ idea.solution|truncatechars:140 }}
+      </div>
     </div>
-    <h1>{{ idea.title }}</h1>
-    <div class="card-author">
-        Por {{idea.author.user}}
+
+    <div class="idea-card-footer">
+      <div class="card-line {{idea.get_current_phase.css_class}}"></div>
+      <div class="card-phase">
+        {{ idea.get_current_phase.description }}
+      </div>
     </div>
-    <div class="short-desc">
-      {{ idea.solution|truncatechars:140 }}
-    </div>
-    <div class="card-line {{idea.get_current_phase.css_class}}"></div>
-    <div class="card-phase">
-      {{ idea.get_current_phase.description }}
-    </div>
+
   </div>
+
 </div>

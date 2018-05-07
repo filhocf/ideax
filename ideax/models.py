@@ -5,6 +5,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.signals import user_logged_in
 from decouple import config
 import random
+from django.conf import settings
 
 def check_user_profile(sender, user, request, **kwargs):
     try:
@@ -98,6 +99,7 @@ class Idea(models.Model):
     category = models.ForeignKey('Category', models.SET_NULL,null=True)
     discarded = models.BooleanField(default=False)
     score = models.FloatField(default=0)
+    category_image = models.CharField(max_length=200, default=settings.MEDIA_URL+'category/default.png' )
 
     def count_popular_vote(self, like_boolean):
         return self.popular_vote_set.filter(like=like_boolean).count()

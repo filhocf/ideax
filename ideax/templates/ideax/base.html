@@ -39,11 +39,29 @@
       <div class="content   {% if user.is_authenticated %}container{% endif %}">
         {% block content %}
         {% endblock %}
-
-        {% include 'ideax/includes/footer.html' %}
-
-
       </div>
+
+      <div class="modal fade" id="modal-term" data-backdrop="static" data-keyboard="false" data-url="{% url 'term_of_use' %}">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <div class="modal-title">
+              <span><i class="fas fa-exclamation"></i></span>
+                <h4>{% trans 'Terms of use' %}</h4>
+              </div>
+            </div>
+            <div class="modal-body" id="modal-term-text">
+              TERMO DE USO
+            </div>
+            <div class="modal-footer">
+              <a id="term-decline" class="term-btn" href="{% url 'logout' %}">Cancelar</a>
+              <a id="term-accept" class="term-btn" href="{% url 'accept_term' %}">Aceitar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% include 'ideax/includes/footer.html' %}
 
       <script src="{% static '/js/jquery-3.3.1.min.js' %}"></script>
       <script src="{% static '/js/popper.min.js' %}"></script>

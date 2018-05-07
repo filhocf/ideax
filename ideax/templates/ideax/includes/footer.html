@@ -4,24 +4,4 @@
     <div class="logo">
       <p class="alpha-version">Idea X - Software in alpha stage 2018-03-29</p>
     </div>
-
-    <div class="modal fade" id="modal-term" data-backdrop="static" data-keyboard="false" data-url="{% url 'term_of_use' %}">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="modal-title">
-            <span><i class="fas fa-exclamation"></i></span>
-              <h4>{% trans 'Terms of use' %}</h4>
-            </div>
-          </div>
-          <div class="modal-body" id="modal-term-text">
-            TERMO DE USO
-          </div>
-          <div class="modal-footer">
-            <a id="term-decline" class="term-btn" href="{% url 'logout' %}">Cancelar</a>
-            <a id="term-accept" class="term-btn" href="{% url 'accept_term' %}">Aceitar</a>
-          </div>
-        </div>
-      </div>
-    </div>
 </footer>

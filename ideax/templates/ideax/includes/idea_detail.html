@@ -4,15 +4,14 @@
 <div class="idea-card">
   <div class="img-container">
     <!-- <img style="width: 100%; height: 120px;" src="{{ idea.category.category_image.image}}" alt="" /> -->
-      <img style="width: 100%; height: 120px;" src="{% static 'images/analytics2.jpg' %}" alt="" />
+      <img src="{% static 'images/analytics2.jpg' %}" alt="" />
   </div> <!-- IMAGEM DA CATEGORIA -->
   <div class="idea-content">
-    <div class="idea-card-body">
+    <a href="{% url 'idea_detail' pk=idea.pk %}" class="idea-card-body">
       <div>
         <div class="cat-name">
           {{ idea.category.title }}
         </div>
-        <div class="vote"></div>
       </div>
       <h1>{{ idea.title }}</h1>
       <div class="card-author">
@@ -21,12 +20,32 @@
       <div class="short-desc">
         {{ idea.solution|truncatechars:140 }}
       </div>
-    </div>
+    </a>
 
     <div class="idea-card-footer">
       <div class="card-line {{idea.get_current_phase.css_class}}"></div>
-      <div class="card-phase">
-        {{ idea.get_current_phase.description }}
+      <div class="footer-content">
+        <div class="card-phase">
+          {{ idea.get_current_phase.description }}
+        </div>
+        <div class="like-menu">
+          <div class="liked">
+            <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+              <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
+              <p class="liked_idea_{{idea.id}} ">
+                {{ idea.count_likes }}
+              </p>
+            </a>
+          </div>
+          <div class="disliked">
+            <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+              <i class="{%if idea.id in ideas_disliked %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
+              <p class="disliked_idea_{{idea.id}}">
+                {{ idea.count_dislikes }}
+              </p>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 

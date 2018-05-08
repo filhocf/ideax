@@ -280,6 +280,11 @@ $(function () {
     submitEvent(event, $(this));
   });
 
+  $('iframe').load( function() {
+    console.log("iframe css");
+      $('iframe').contents().find("head").append($("<style type='text/css'>  .b-agent-demo .b-agent-demo_header{min-height:50px!important;height:50px!important}.b-agent-demo .b-agent-demo_header-icon{top:4px!important}.b-agent-demo .b-agent-demo_header-description{padding-top:0!important}  </style>"));
+  });
+
 });
 
 
@@ -327,3 +332,6 @@ $("#evaluation_form button").click(function(){
           scrollTop: 0
       }, 500);
 });
+
+
+//chatbot

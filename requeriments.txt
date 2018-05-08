@@ -6,4 +6,5 @@ django-widget-tweaks==1.4.1
 pyldap==2.4.45
 python-decouple==3.1
 pytz==2017.3
+WeasyPrint==0.42.3
 wordfilter==0.2.6.2

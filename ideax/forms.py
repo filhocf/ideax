@@ -6,8 +6,8 @@ class IdeaForm(forms.ModelForm):
 
     class Meta:
         model = Idea
-        fields = ('title', 'oportunity', 'solution', 'target', 'category' )
-        labels = {'title': _('Title'), 'oportunity': _('Oportunity'), 'solution': _('Solution'), 'target': _('Target'),'category': _('Category')}
+        fields = ('title', 'summary', 'oportunity', 'solution', 'target', 'category' )
+        labels = {'title': _('Title'), 'summary': _('Summary') , 'oportunity': _('Oportunity'), 'solution': _('Solution'), 'target': _('Target'),'category': _('Category')}
 
 
 class IdeaFormUpdate(forms.ModelForm):
@@ -56,7 +56,8 @@ class EvaluationForm(forms.Form):
         if dimensions:
             for dim in dimensions:
                 self.fields[self.FORMAT_ID % dim.pk ] = forms.ModelChoiceField(queryset=dim.category_dimension_set,
-                                                                               label=dim.title)
+                                                                               label=dim.title,
+                                                                               help_text=dim.description)
                 self.fields[self.FORMAT_ID_NOTE % dim.pk] = forms.CharField(widget=forms.Textarea,
                                                                             label='',
                                                                             required=False)

@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
-from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment, UserProfile, Dimension, Evaluation
+from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment, UserProfile, Dimension, Evaluation, Category_Image, Use_Term
 from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm, EvaluationForm, EvaluationForm
 from .singleton import Profanity_Check
 from django import forms
@@ -17,12 +17,36 @@ from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
 from django.forms import modelformset_factory
 import collections
-
+from django.http import HttpResponse
+from django.template.loader import get_template
+from django.template import Context
+from django.conf import settings
 
 def index(request):
     if request.user.is_authenticated:
         return idea_list(request)
     return render(request, 'ideax/index.html')
+
+def get_page_body(boxes):
+    for box in boxes:
+        if box.element_tag == 'body':
+            return box
+        return get_page_body(box.all_children())
+
+@login_required
+def accept_use_term(request):
+    if not request.user.userprofile.use_term_accept:
+        user_profile = UserProfile.objects.get(user=request.user)
+        user_profile.use_term_accept = True
+        user_profile.acceptance_date = timezone.localtime(timezone.now())
+        user_profile.ip = request.META.get('REMOTE_ADDR')
+        user_profile.save()
+        messages.success(request, _('Term of use accept!'))
+    else:
+        messages.success(request, _('Term of use already accepty!'))
+
+    return redirect('index')
+
 
 @login_required
 def idea_list(request):
@@ -80,6 +104,10 @@ def save_idea(request, form, template_name, new=False):
                 idea.author = UserProfile.objects.get(user=request.user)
                 idea.creation_date = timezone.now()
                 idea.phase= Phase.GROW.id
+                category_image = Category_Image.get_random_image(idea.category)
+                if category_image:
+                    idea.category_image = category_image.image.url
+
                 idea.save()
                 phase_history = Phase_History(current_phase=Phase.GROW.id,
                                               previous_phase=0,
@@ -402,8 +430,8 @@ def post_comment(request):
     author = UserProfile.objects.get(user=request.user)
     idea_id = request.POST.get('ideiaId', None)
 
-    #if Profanity_Check.wordcheck().blacklisted(raw_comment):
-    #    return JsonResponse({'msg': _("Please check your message it has inappropriate content.")}, status=500)
+    if Profanity_Check.wordcheck().search_badwords(raw_comment):
+        return JsonResponse({'msg': _("Please check your message it has inappropriate content.")}, status=500)
 
     if not raw_comment:
         return JsonResponse({'msg': _("You have to write a comment.")},status=500)
@@ -431,3 +459,7 @@ def idea_comments(request, pk):
                                          {"comments" : Comment.objects.filter(idea__id=pk),
                                           "idea_id" : pk})
     return JsonResponse(data)
+
+def get_term_of_user(request):
+    term = Use_Term.objects.get(final_date__isnull=True)
+    return JsonResponse({"term" : term.term })

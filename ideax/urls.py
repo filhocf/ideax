@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -31,5 +33,8 @@ urlpatterns = [
     path('post/comment/', views.post_comment, name='post_comment'),
     path('idea/comments/<int:pk>/', views.idea_comments, name='idea_comments'),
     path('idea/evaluation/<int:idea_pk>/', views.idea_evaluation, name='evaluation'),
-
+    path('term/accept', views.accept_use_term, name="accept_term"),
+    path('term', views.get_term_of_user, name="term_of_use"),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

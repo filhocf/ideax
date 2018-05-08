@@ -1,0 +1,14 @@
+@page {
+  @top-left {
+      content: element(pageHeader);
+  }
+  @bottom-right{
+        border-top: 0.5pt solid;
+        content: "Página " counter(page) " de " counter(pages);
+  }
+    @media print {
+      #divHeader{
+          position: running(pageHeader);
+      }
+  }
+}

@@ -26,7 +26,7 @@ msgid "Weight"
 msgstr ""
 
 #: ideax/forms.py:25 ideax/forms.py:32
-#: ideax/templates/ideax/includes/idea_detail.html:61
+#: ideax/templates/ideax/includes/_idea_detail.html:47
 #: ideax/templates/ideax/includes/partial_category_list.html:6
 msgid "Description"
 msgstr ""
@@ -98,44 +98,48 @@ msgstr ""
 msgid "Update_Idea"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:11
+#: ideax/templates/ideax/idea_list.html:12
 msgid "All"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:12
-#: ideax/templates/ideax/includes/idea_detail.html:33
+#: ideax/templates/ideax/idea_list.html:13
+#: ideax/templates/ideax/includes/_idea_detail.html:19
 msgid "Discussion"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:13
+#: ideax/templates/ideax/idea_list.html:14
+#: ideax/templates/ideax/includes/_idea_detail.html:20
 #: ideax/templates/ideax/includes/evaluation_detail.html:6
-#: ideax/templates/ideax/includes/idea_detail.html:34
 msgid "Evaluation"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:14
-#: ideax/templates/ideax/includes/idea_detail.html:35
+#: ideax/templates/ideax/idea_list.html:15
+#: ideax/templates/ideax/includes/_idea_detail.html:21
 msgid "Approval"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:15
-#: ideax/templates/ideax/includes/idea_detail.html:36
+#: ideax/templates/ideax/idea_list.html:16
+#: ideax/templates/ideax/includes/_idea_detail.html:22
 msgid "Development"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:16
-#: ideax/templates/ideax/includes/idea_detail.html:37
+#: ideax/templates/ideax/idea_list.html:17
+#: ideax/templates/ideax/includes/_idea_detail.html:23
 msgid "Finished"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:17
-#: ideax/templates/ideax/includes/idea_detail.html:38
+#: ideax/templates/ideax/idea_list.html:18
+#: ideax/templates/ideax/includes/_idea_detail.html:24
 msgid "Archived"
 msgstr ""
 
 #: ideax/templates/ideax/idea_new.html:11
 #: ideax/templates/ideax/includes/partial_idea_create.html:10
 msgid "Create Idea"
+msgstr ""
+
+#: ideax/templates/ideax/includes/_idea_detail.html:25
+msgid "Freezed"
 msgstr ""
 
 #: ideax/templates/ideax/includes/evaluation_detail.html:7
@@ -146,8 +150,20 @@ msgstr ""
 msgid "Evaluation not yet done"
 msgstr ""
 
-#: ideax/templates/ideax/includes/idea_detail.html:39
-msgid "Freezed"
+#: ideax/templates/ideax/includes/footer.html:3
+msgid "Help"
+msgstr ""
+
+#: ideax/templates/ideax/includes/footer.html:19
+msgid "Terms of use"
+msgstr ""
+
+#: ideax/templates/ideax/includes/footer.html:26
+msgid "Decline"
+msgstr ""
+
+#: ideax/templates/ideax/includes/footer.html:27
+msgid "Accept"
 msgstr ""
 
 #: ideax/templates/ideax/includes/partial_category_list.html:7
@@ -269,34 +285,46 @@ msgstr ""
 msgid "placeholder:password"
 msgstr ""
 
-#: ideax/views.py:93
+#: ideax/views.py:44
+msgid "Term of use accept!"
+msgstr ""
+
+#: ideax/views.py:46
+msgid "Term of use already accepty!"
+msgstr ""
+
+#: ideax/views.py:117
 msgid "Idea saved successfully!"
 msgstr ""
 
-#: ideax/views.py:118 ideax/views.py:141
+#: ideax/views.py:142 ideax/views.py:165
 msgid "Not supported action"
 msgstr ""
 
-#: ideax/views.py:215
+#: ideax/views.py:239
 msgid "Something went wrong or you're not allowed!"
 msgstr ""
 
-#: ideax/views.py:220
+#: ideax/views.py:244
 msgid "Evaluation done successfully!"
 msgstr ""
 
-#: ideax/views.py:360
+#: ideax/views.py:384
 msgid "Phase change successfully!"
 msgstr ""
 
-#: ideax/views.py:398
+#: ideax/views.py:422
 msgid "You need to log in to post new comments."
 msgstr ""
 
-#: ideax/views.py:409
+#: ideax/views.py:430
+msgid "Please check your message it has inappropriate content."
+msgstr ""
+
+#: ideax/views.py:433
 msgid "You have to write a comment."
 msgstr ""
 
-#: ideax/views.py:426
+#: ideax/views.py:450
 msgid "Your comment has been posted."
 msgstr ""

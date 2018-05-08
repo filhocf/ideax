@@ -8,6 +8,14 @@
   {% endfor %}
 </div>
 
+<div class="form-group{% if form.summary.errors %} has-error{% endif %}">
+  <label for="{{form.summary.id_for_label}}">{{form.summary.label}}</label>
+  {{ form.summary|add_class:'form_control' }}
+  {% for error in form.summary.errors %}
+    <p class="help-block">{{ error }}</p>
+  {% endfor %}
+</div>
+
 <div class="form-group{% if form.oportunity.errors %} has-error{% endif %}">
   <label for="{{form.oportunity.id_for_label}}">{{form.oportunity.label}}</label>
   {{ form.oportunity|add_class:'form_control' }}

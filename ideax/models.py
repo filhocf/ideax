@@ -87,7 +87,9 @@ class Category_Image(models.Model):
     @classmethod
     def get_random_image(cls, category):
         id_list = Category_Image.objects.filter(category=category).values_list('id', flat=True)
-        return Category_Image.objects.get(id=random.choice(list(id_list)))
+        if id_list:
+            return Category_Image.objects.get(id=random.choice(list(id_list)))
+        return None
 
 class Idea(models.Model):
     title = models.CharField(max_length=200)
@@ -100,6 +102,8 @@ class Idea(models.Model):
     discarded = models.BooleanField(default=False)
     score = models.FloatField(default=0)
     category_image = models.CharField(max_length=200, default=settings.MEDIA_URL+'category/default.png' )
+    summary = models.TextField(max_length=140, null=True, blank=False)
+
 
     def count_popular_vote(self, like_boolean):
         return self.popular_vote_set.filter(like=like_boolean).count()
@@ -178,7 +182,7 @@ class Evaluation(models.Model):
     dimension_value = models.IntegerField()
     note = models.TextField(null=True)
 
-class User_Term(models.Model):
+class Use_Term(models.Model):
     creator = models.ForeignKey('UserProfile',on_delete=models.PROTECT)
     term = models.TextField(max_length=12500)
     init_date = models.DateTimeField()

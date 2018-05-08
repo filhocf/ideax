@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from django.views.decorators.http import require_http_methods
 from django.db.models import Count, Case, When
-from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment, UserProfile, Dimension, Evaluation, Category_Image, User_Term
+from .models import Idea, Criterion,Popular_Vote, Phase, Phase_History,Category, Comment, UserProfile, Dimension, Evaluation, Category_Image, Use_Term
 from .forms import IdeaForm, CriterionForm,IdeaFormUpdate, CategoryForm, EvaluationForm, EvaluationForm
 from .singleton import Profanity_Check
 from django import forms
@@ -20,7 +20,7 @@ import collections
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
-
+from django.conf import settings
 
 def index(request):
     if request.user.is_authenticated:
@@ -104,6 +104,10 @@ def save_idea(request, form, template_name, new=False):
                 idea.author = UserProfile.objects.get(user=request.user)
                 idea.creation_date = timezone.now()
                 idea.phase= Phase.GROW.id
+                category_image = Category_Image.get_random_image(idea.category)
+                if category_image:
+                    idea.category_image = category_image.image.url
+
                 idea.save()
                 phase_history = Phase_History(current_phase=Phase.GROW.id,
                                               previous_phase=0,
@@ -457,5 +461,5 @@ def idea_comments(request, pk):
     return JsonResponse(data)
 
 def get_term_of_user(request):
-    term = User_Term.objects.get(final_date__isnull=True)
+    term = Use_Term.objects.get(final_date__isnull=True)
     return JsonResponse({"term" : term.term })

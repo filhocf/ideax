@@ -4,7 +4,7 @@
 <div class="idea-card">
   <div class="img-container">
     <!-- <img style="width: 100%; height: 120px;" src="{{ idea.category.category_image.image}}" alt="" /> -->
-      <img src="{% static 'images/analytics2.jpg' %}" alt="" />
+      <img src="{{idea.category_image}}" alt="" />
   </div> <!-- IMAGEM DA CATEGORIA -->
   <div class="idea-content">
     <a href="{% url 'idea_detail' pk=idea.pk %}" class="idea-card-body">
@@ -18,7 +18,11 @@
           Por {{idea.author.user}}
       </div>
       <div class="short-desc">
-        {{ idea.solution|truncatechars:140 }}
+        {% if idea.summary %}
+          {{idea.summary}}
+        {% else %}
+          {{ idea.solution|truncatechars:140 }}
+        {% endif %}
       </div>
     </a>
 

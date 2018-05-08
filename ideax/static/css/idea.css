@@ -226,7 +226,8 @@ iframe#bot-iframe{
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px 0 130px
+  padding: 0 20px 0 130px;
+  z-index: 100000;
 
 }
 

@@ -98,37 +98,37 @@ msgstr ""
 msgid "Update_Idea"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:11
+#: ideax/templates/ideax/idea_list.html:12
 msgid "All"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:12
+#: ideax/templates/ideax/idea_list.html:13
 #: ideax/templates/ideax/includes/_idea_detail.html:19
 msgid "Discussion"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:13
+#: ideax/templates/ideax/idea_list.html:14
 #: ideax/templates/ideax/includes/_idea_detail.html:20
 #: ideax/templates/ideax/includes/evaluation_detail.html:6
 msgid "Evaluation"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:14
+#: ideax/templates/ideax/idea_list.html:15
 #: ideax/templates/ideax/includes/_idea_detail.html:21
 msgid "Approval"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:15
+#: ideax/templates/ideax/idea_list.html:16
 #: ideax/templates/ideax/includes/_idea_detail.html:22
 msgid "Development"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:16
+#: ideax/templates/ideax/idea_list.html:17
 #: ideax/templates/ideax/includes/_idea_detail.html:23
 msgid "Finished"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:17
+#: ideax/templates/ideax/idea_list.html:18
 #: ideax/templates/ideax/includes/_idea_detail.html:24
 msgid "Archived"
 msgstr ""
@@ -150,8 +150,20 @@ msgstr ""
 msgid "Evaluation not yet done"
 msgstr ""
 
-#: ideax/templates/ideax/includes/footer.html:12
+#: ideax/templates/ideax/includes/footer.html:3
+msgid "Help"
+msgstr ""
+
+#: ideax/templates/ideax/includes/footer.html:19
 msgid "Terms of use"
+msgstr ""
+
+#: ideax/templates/ideax/includes/footer.html:26
+msgid "Decline"
+msgstr ""
+
+#: ideax/templates/ideax/includes/footer.html:27
+msgid "Accept"
 msgstr ""
 
 #: ideax/templates/ideax/includes/partial_category_list.html:7

@@ -2,10 +2,10 @@
 {% load staticfiles i18n %}
 
 <div class="idea-card">
-  <div class="img-container">
+  <a href="{% url 'idea_detail' pk=idea.pk %}" class="img-container">
     <!-- <img style="width: 100%; height: 120px;" src="{{ idea.category.category_image.image}}" alt="" /> -->
       <img src="{% static 'images/analytics2.jpg' %}" alt="" />
-  </div> <!-- IMAGEM DA CATEGORIA -->
+  </a> <!-- IMAGEM DA CATEGORIA -->
   <div class="idea-content">
     <a href="{% url 'idea_detail' pk=idea.pk %}" class="idea-card-body">
       <div>

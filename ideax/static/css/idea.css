@@ -200,11 +200,76 @@ ul.phase-list li.active a {
   font-size: 1.8em;
 }
 
-.content iframe{
+/*IFRAME*/
+
+iframe#bot-iframe{
   position: fixed;
   right: 25px;
   bottom: 0;
+  width: 300px;
+  z-index: 6000;
+  height: 430px;
 }
+
+.bot-control{
+  width: 299px;
+  background-color: #2b303e;
+  color: white;
+  height: 30px;
+  position: fixed;
+  bottom: 0;
+  right: 26px;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 1.8em;
+  transition: all 0.7s;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px 0 130px
+
+}
+
+.bot-control p{
+  font-size: 15px;
+  font-weight: bold;
+  padding-top: 2px;
+}
+
+.bot-control svg{
+  transform: rotate(180deg);
+}
+
+.bot-control[aria-expanded="false"]{
+  bottom: 0;
+  transition-delay: 0.7s;
+
+}
+
+.bot-control[aria-expanded="true"]{
+  bottom: 430px;
+
+}
+
+.bot-control[aria-expanded="true"] svg{
+  bottom: 430px;
+  transform: rotate(0deg);
+
+}
+.bot-control[aria-expanded="false"] svg{
+  bottom: 0;
+  transform: rotate(180deg);
+  transition-delay: 0.7s;
+}
+
+
+
+
+
+
+
+
+/*IFRAME*/
 
 
 /*Login*/
@@ -1531,6 +1596,8 @@ padding: 8% 15% 0 15%;
   height: 170px;
   position: relative;
   overflow: hidden;
+  display: block;
+
 }
 
 .img-container img{

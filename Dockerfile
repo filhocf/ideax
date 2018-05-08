@@ -3,7 +3,7 @@ FROM python:alpine
 ARG VERSION=master
 
 RUN \
-    apk add --no-cache unzip wget ca-certificates gcc openldap-dev binutils-libs binutils gmp isl libgomp libatomic libgcc pkgconf pkgconfig mpfr3 mpc1 libstdc++ libc-dev musl-dev mariadb-dev postgresql-dev nginx gettext 
+    apk add --no-cache unzip wget ca-certificates gcc openldap-dev binutils-libs binutils gmp isl libgomp libatomic libgcc pkgconf pkgconfig mpfr3 mpc1 libstdc++ libc-dev musl-dev mariadb-dev postgresql-dev nginx gettext jpeg-dev zlib-dev freetype-dev lcms2-dev openjpeg-dev tiff-dev tk-dev tcl-dev
 
 RUN \
     cd /var/www; \

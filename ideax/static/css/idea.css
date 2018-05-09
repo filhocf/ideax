@@ -684,7 +684,30 @@ input.menu-input{
   height: 25px;
   margin-right: 5px;
 }
-
+.discussion{
+  background-color: #f68b2c;
+}
+.rate{
+  background-color: #D95578
+}
+.aproved{
+  background-color: #107906;
+}
+.develop{
+  background-color: #30a2a6;
+}
+.done{
+  background-color: #065B8D;
+}
+.archived{
+  background-color: #726C69;
+}
+.evaluation{
+  background-color:#054a02;
+}
+.paused{
+  background-color: #DDD;
+}
 /* .discussion{
   border-left: 5px solid #f68b2c !important;
 
@@ -1706,18 +1729,4 @@ padding: 8% 15% 0 15%;
   margin-top: 20px;
   width: 100%;
   height: 2px;
-  background-color: red;
-
-}
-
-.discussion{
-  background-color: red;
-}
-
-.evaluation{
-  background-color:#054a02;
-}
-
-.aprove{
-  background-color: #2b3ba6;
 }

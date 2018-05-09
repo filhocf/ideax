@@ -294,7 +294,7 @@ function filterIdeas(url){
     type: 'get',
     dataType: 'json',
     success: function (data){
-      $("#idea-list").html(data.html_idea_list);
+      $("#idea-list-group").html(data.html_idea_list);
     }
   });
 };

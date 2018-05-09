@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-09 12:17-0300\n"
+"POT-Creation-Date: 2018-05-09 17:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ideax/forms.py:10 ideax/forms.py:18 ideax/forms.py:32
+#: ideax/forms.py:10 ideax/forms.py:24 ideax/forms.py:38
 msgid "Title"
 msgstr "Título"
 
@@ -25,17 +25,17 @@ msgstr "Título"
 msgid "Summary"
 msgstr ""
 
-#: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/forms.py:10 ideax/forms.py:24
 #: ideax/templates/ideax/idea_detail.html:33
 msgid "Oportunity"
 msgstr "Oportunidade"
 
-#: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/forms.py:10 ideax/forms.py:24
 #: ideax/templates/ideax/idea_detail.html:31
 msgid "Solution"
 msgstr "Solução"
 
-#: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/forms.py:10 ideax/forms.py:24
 #: ideax/templates/ideax/idea_detail.html:35
 msgid "Target"
 msgstr "Público-alvo"
@@ -44,11 +44,27 @@ msgstr "Público-alvo"
 msgid "Category"
 msgstr "Categoria"
 
-#: ideax/forms.py:25
+#: ideax/forms.py:12
+msgid "Sell your idea in 140 characters!"
+msgstr "Venda sua ideia em 140 caracteres!"
+
+#: ideax/forms.py:13
+msgid "Describe the problem or opportunity your idea will meet!"
+msgstr "Descreva o problema ou a oportunidade que sua ideia irá atender!"
+
+#: ideax/forms.py:14
+msgid "Describe the solution very clearly and succinctly!"
+msgstr "Descreva a solução de forma bastante clara e sucinta!"
+
+#: ideax/forms.py:15
+msgid "Indicate who your solution audience is"
+msgstr "Indique quem é o público-alvo da sua solução."
+
+#: ideax/forms.py:31
 msgid "Weight"
 msgstr "Peso"
 
-#: ideax/forms.py:25 ideax/forms.py:32
+#: ideax/forms.py:31 ideax/forms.py:38
 #: ideax/templates/ideax/includes/_idea_detail.html:47
 #: ideax/templates/ideax/includes/partial_category_list.html:6
 msgid "Description"
@@ -63,7 +79,7 @@ msgstr "Criar Ideia"
 msgid "Hi, %(name)s!"
 msgstr "Olá, %(name)s"
 
-#: ideax/templates/ideax/base.html:50
+#: ideax/templates/ideax/base.html:49
 msgid "Terms of use"
 msgstr "Termo de uso"
 
@@ -308,7 +324,7 @@ msgstr "É necessário fazer o login para ter acesso às ideias."
 
 #: ideax/templates/registration/login.html:22
 msgid "placeholder:username"
-msgstr "placeholder:nome_de_usuário"
+msgstr "placeholder:nome.sobrenome"
 
 #: ideax/templates/registration/login.html:25
 msgid "placeholder:password"

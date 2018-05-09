@@ -1,4 +1,4 @@
-#: ideax/forms.py:10 ideax/forms.py:18 ideax/forms.py:32
+#: ideax/forms.py:10 ideax/forms.py:24 ideax/forms.py:38
 msgid "Title"
 msgstr ""
 
@@ -6,17 +6,17 @@ msgstr ""
 msgid "Summary"
 msgstr ""
 
-#: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/forms.py:10 ideax/forms.py:24
 #: ideax/templates/ideax/idea_detail.html:33
 msgid "Oportunity"
 msgstr ""
 
-#: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/forms.py:10 ideax/forms.py:24
 #: ideax/templates/ideax/idea_detail.html:31
 msgid "Solution"
 msgstr ""
 
-#: ideax/forms.py:10 ideax/forms.py:18
+#: ideax/forms.py:10 ideax/forms.py:24
 #: ideax/templates/ideax/idea_detail.html:35
 msgid "Target"
 msgstr ""
@@ -25,11 +25,27 @@ msgstr ""
 msgid "Category"
 msgstr ""
 
-#: ideax/forms.py:25
+#: ideax/forms.py:12
+msgid "Sell your idea in 140 characters!"
+msgstr ""
+
+#: ideax/forms.py:13
+msgid "Describe the problem or opportunity your idea will meet!"
+msgstr ""
+
+#: ideax/forms.py:14
+msgid "Describe the solution very clearly and succinctly!"
+msgstr ""
+
+#: ideax/forms.py:15
+msgid "Indicate who your solution audience is"
+msgstr ""
+
+#: ideax/forms.py:31
 msgid "Weight"
 msgstr ""
 
-#: ideax/forms.py:25 ideax/forms.py:32
+#: ideax/forms.py:31 ideax/forms.py:38
 #: ideax/templates/ideax/includes/_idea_detail.html:47
 #: ideax/templates/ideax/includes/partial_category_list.html:6
 msgid "Description"
@@ -44,7 +60,7 @@ msgstr ""
 msgid "Hi, %(name)s!"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:50
+#: ideax/templates/ideax/base.html:49
 msgid "Terms of use"
 msgstr ""
 

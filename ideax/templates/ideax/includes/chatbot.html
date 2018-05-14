@@ -1,0 +1,9 @@
+{% load i18n %}
+
+{%if DIALOGFLOW_ID%}
+<div class="bot-control" data-toggle="collapse" data-target="#bot-iframe">
+  <p>{% trans 'Help' %}</p>
+  <i class="fas fa-angle-down"></i>
+</div>
+<iframe id="bot-iframe" class="collapse" width="350" height="430" src="https://console.dialogflow.com/api-client/demo/embedded/{{DIALOGFLOW_ID}}"></iframe>
+{%endif%}

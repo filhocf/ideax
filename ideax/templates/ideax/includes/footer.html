@@ -1,10 +1,5 @@
 {% load staticfiles i18n %}
-<div class="bot-control" data-toggle="collapse" data-target="#bot-iframe">
-  <p>{% trans 'Help' %}</p>
-  <i class="fas fa-angle-down"></i>
-</div>
-<iframe id="bot-iframe" class="collapse" width="350" height="430" src="https://console.dialogflow.com/api-client/demo/embedded/5d7dfc5a-1a3d-4d60-9ef6-bd2cfc285318"></iframe>
-
+{% include 'ideax/includes/chatbot.html' %}
 <footer {% if not user.is_authenticated %}class="landing-page"{% endif %} >
     <div class="logo">
       <p class="alpha-version">Idea<sup>X</sup> - Software in alpha stage</p>

@@ -7,16 +7,33 @@ Idea X is a Django application, so you can download it and install in a WSGI ser
 ## Installation
 
 ### Get Idea X!
-You can clone its repository or download a zip file.
+You can clone its repository or download its zip file.
+```
+$ git clone https://github.com/filhocf/ideax.git
+```
+```
+$ wget https://github.com/filhocf/ideax/archive/master.zip
+```
 
 ### Install dependencies
+If you want to authenticate against a LDAP or AD server, you need to install some python packages for LDAP and its dependencies.
+It and others dependencies are listed in requirements.txt file.
+```
+$ sudo apt install gcc libpython3.5-dev libldap2-dev libsasl2-dev
+$ pip install -r requirements.txt
+```
 
 ### Database Configuration
 
-Next thing we need to do is decide what database backend we'll use. The most common is MySQL but others are PostgreSQL and SQLite.
-So once you decide, create a database with any name you want and grant privileges to a separate database user. It's recommended not to use an existing user or root.
+If prefer, you can choice a database to use as backend. The most common is MySQL but others are PostgreSQL and SQLite. SQLite is native and don't requires any action to use. For others, is necessary to install the related python package to support it. After, create a database with any name you want and grant privileges to a separate database user.
 
-With MySQL you can set up the database by issuing the following commands:
+Considering to use MySQL as database, use following commands:
+```
+$ sudo apt install libmariadbclient-dev
+$ pip install mysqlclient
+```
+
+And in the mysql server:
 ```
 CREATE DATABASE ideax;
 GRANT ALL PRIVILEGES ON ideax.* TO username@localhost IDENTIFIED BY 'password';
@@ -25,12 +42,12 @@ FLUSH PRIVILEGES;
 
 ## Run with Docker
 
-You can run IdeaX with SQLLite or a database server, like MySql. For the first, run the follow command, otherwise use the next instruction.
+You can run IdeaX with SQLLite or a database server, like MySql. For the first, run the following command, otherwise use the next instructions.
 ```
 docker run -d -p 80:8000 --name ideax filhocf/ideax # run with sqlite3
 ```
 
-For customized environment, is possible to map the .env file. For this propose, copy or rename env.example file.
+For customized environment, is possible to map the .env file. For this propose, copy or rename env.example file. After to up the database server don't forget to create tables as described above.
 ```
 docker run -d -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=password mysql
 docker run -d -p 80:8000 --name ideax -v .env:/var/www/ideax/.env --link mysql:mysql filhocf/ideax

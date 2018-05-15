@@ -1,9 +1,7 @@
 dj-database-url==0.4.2
 Django==2.0.1
-django-auth-ldap==1.3.0
 django-mptt==0.9.0
 django-widget-tweaks==1.4.1
-pyldap==2.4.45
 python-decouple==3.1
 pytz==2017.3
 Pillow==5.1.0

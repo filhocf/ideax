@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-09 17:25-0300\n"
+"POT-Creation-Date: 2018-05-15 09:25-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -373,19 +373,3 @@ msgstr "É necessário escrever um comentário."
 #: ideax/views.py:454
 msgid "Your comment has been posted."
 msgstr "Comentário postado com sucesso."
-
-#~ msgid "Decline"
-#~ msgstr "Recusar"
-
-#~ msgid "Accept"
-#~ msgstr "Aceitar"
-
-#~| msgid "Evaluation"
-#~ msgid "Evaluated"
-#~ msgstr "Avaliação"
-
-#~ msgid "Publish"
-#~ msgstr "Publicar"
-
-#~ msgid "New Mission"
-#~ msgstr "Nova Missão"

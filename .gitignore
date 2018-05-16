@@ -10,3 +10,4 @@ _config.yml
 .env
 locale/*/LC_MESSAGES/django.mo
 /media
+/docs/_build

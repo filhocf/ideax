@@ -9,12 +9,13 @@
         <link rel="stylesheet" href="{% static 'css/idea.css' %}">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+        {% include 'ideax/includes/piwik.js' %}
     </head>
     <body>
       <div class="main-header">
         <h1 class="title">
           <a href="/">
-            <img src="{% static 'images/logo_vertical.png' %}" alt="">
+            <img src="{% static 'images/logo_horizontal.png' %}" alt="">
           </a>
         </h1>
         {% if user.is_authenticated %}
@@ -46,8 +47,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <div class="modal-title">
-              <span><i class="fas fa-exclamation"></i></span>
-                <h4>{% trans 'Terms of use' %}</h4>
+                <h4 class="title-modal-term">{% trans 'Terms of use' %}</h4>
               </div>
             </div>
             <div class="modal-body" id="modal-term-text">

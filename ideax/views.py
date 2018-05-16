@@ -41,9 +41,9 @@ def accept_use_term(request):
         user_profile.acceptance_date = timezone.localtime(timezone.now())
         user_profile.ip = request.META.get('REMOTE_ADDR')
         user_profile.save()
-        messages.success(request, _('Term of use accept!'))
+        messages.success(request, _('Term of use accepted!'))
     else:
-        messages.success(request, _('Term of use already accepty!'))
+        messages.success(request, _('Term of use already accepted!'))
 
     return redirect('index')
 

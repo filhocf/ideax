@@ -212,13 +212,13 @@ iframe#bot-iframe{
 }
 
 .bot-control{
-  width: 299px;
+  width: 298px;
   background-color: #2b303e;
   color: white;
   height: 30px;
   position: fixed;
   bottom: 0;
-  right: 26px;
+  right: 27px;
   border: 1px solid black;
   text-align: center;
   font-size: 1.8em;
@@ -228,6 +228,7 @@ iframe#bot-iframe{
   justify-content: space-between;
   padding: 0 20px 0 130px;
   z-index: 100000;
+  border-radius: 5px 5px 0 0;
 
 }
 

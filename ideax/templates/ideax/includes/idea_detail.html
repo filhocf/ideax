@@ -4,7 +4,7 @@
 <div class="idea-card">
   <a href="{% url 'idea_detail' pk=idea.pk %}" class="img-container">
     <!-- <img style="width: 100%; height: 120px;" src="{{ idea.category.category_image.image}}" alt="" /> -->
-      <img src="{{idea.category_image}}" alt="" />
+      <img src="{{idea.category_image}}" alt="{{ idea.category.title }}" />
   </a> <!-- IMAGEM DA CATEGORIA -->
 
   <div class="idea-content">

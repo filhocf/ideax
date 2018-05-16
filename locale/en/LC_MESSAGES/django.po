@@ -2,6 +2,10 @@
 msgid "Title"
 msgstr ""
 
+#: ideax/forms.py:10
+msgid "Summary"
+msgstr ""
+
 #: ideax/forms.py:10 ideax/forms.py:18
 #: ideax/templates/ideax/idea_detail.html:33
 msgid "Oportunity"
@@ -38,6 +42,18 @@ msgstr ""
 #: ideax/templates/ideax/base.html:29
 #, python-format
 msgid "Hi, %(name)s!"
+msgstr ""
+
+#: ideax/templates/ideax/base.html:50
+msgid "Terms of use"
+msgstr ""
+
+#: ideax/templates/ideax/base.html:57
+msgid "Cancel"
+msgstr ""
+
+#: ideax/templates/ideax/base.html:58
+msgid "Accept"
 msgstr ""
 
 #: ideax/templates/ideax/category_edit.html:5
@@ -98,37 +114,37 @@ msgstr ""
 msgid "Update_Idea"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:12
+#: ideax/templates/ideax/idea_list.html:11
 msgid "All"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:13
+#: ideax/templates/ideax/idea_list.html:12
 #: ideax/templates/ideax/includes/_idea_detail.html:19
 msgid "Discussion"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:14
+#: ideax/templates/ideax/idea_list.html:13
 #: ideax/templates/ideax/includes/_idea_detail.html:20
 #: ideax/templates/ideax/includes/evaluation_detail.html:6
 msgid "Evaluation"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:15
+#: ideax/templates/ideax/idea_list.html:14
 #: ideax/templates/ideax/includes/_idea_detail.html:21
 msgid "Approval"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:16
+#: ideax/templates/ideax/idea_list.html:15
 #: ideax/templates/ideax/includes/_idea_detail.html:22
 msgid "Development"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:17
+#: ideax/templates/ideax/idea_list.html:16
 #: ideax/templates/ideax/includes/_idea_detail.html:23
 msgid "Finished"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:18
+#: ideax/templates/ideax/idea_list.html:17
 #: ideax/templates/ideax/includes/_idea_detail.html:24
 msgid "Archived"
 msgstr ""
@@ -152,18 +168,6 @@ msgstr ""
 
 #: ideax/templates/ideax/includes/footer.html:3
 msgid "Help"
-msgstr ""
-
-#: ideax/templates/ideax/includes/footer.html:19
-msgid "Terms of use"
-msgstr ""
-
-#: ideax/templates/ideax/includes/footer.html:26
-msgid "Decline"
-msgstr ""
-
-#: ideax/templates/ideax/includes/footer.html:27
-msgid "Accept"
 msgstr ""
 
 #: ideax/templates/ideax/includes/partial_category_list.html:7
@@ -286,45 +290,49 @@ msgid "placeholder:password"
 msgstr ""
 
 #: ideax/views.py:44
-msgid "Term of use accept!"
-msgstr ""
+#, fuzzy
+#| msgid "Term of use accept!"
+msgid "Term of use accepted!"
+msgstr "Termo de uso aceito!"
 
 #: ideax/views.py:46
-msgid "Term of use already accepty!"
-msgstr ""
+#, fuzzy
+#| msgid "Term of use accept!"
+msgid "Term of use already accepted!"
+msgstr "Termo de uso aceito!"
 
-#: ideax/views.py:117
+#: ideax/views.py:121
 msgid "Idea saved successfully!"
 msgstr ""
 
-#: ideax/views.py:142 ideax/views.py:165
+#: ideax/views.py:146 ideax/views.py:169
 msgid "Not supported action"
 msgstr ""
 
-#: ideax/views.py:239
+#: ideax/views.py:243
 msgid "Something went wrong or you're not allowed!"
 msgstr ""
 
-#: ideax/views.py:244
+#: ideax/views.py:248
 msgid "Evaluation done successfully!"
 msgstr ""
 
-#: ideax/views.py:384
+#: ideax/views.py:388
 msgid "Phase change successfully!"
 msgstr ""
 
-#: ideax/views.py:422
+#: ideax/views.py:426
 msgid "You need to log in to post new comments."
 msgstr ""
 
-#: ideax/views.py:430
+#: ideax/views.py:434
 msgid "Please check your message it has inappropriate content."
 msgstr ""
 
-#: ideax/views.py:433
+#: ideax/views.py:437
 msgid "You have to write a comment."
 msgstr ""
 
-#: ideax/views.py:450
+#: ideax/views.py:454
 msgid "Your comment has been posted."
 msgstr ""

@@ -51,17 +51,59 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:24
+#: ideax/models.py:22 ideax/templates/ideax/idea_list.html:12
+#: ideax/templates/ideax/includes/_idea_detail.html:19
+msgid "Discussion"
+msgstr ""
+
+#: ideax/models.py:23 ideax/templates/ideax/idea_detail.html:49
+#: ideax/templates/ideax/idea_list.html:13
+#: ideax/templates/ideax/includes/_idea_detail.html:20
+#: ideax/templates/ideax/includes/evaluation_detail.html:6
+msgid "Evaluation"
+msgstr ""
+
+#: ideax/models.py:24 ideax/templates/ideax/idea_list.html:14
+#: ideax/templates/ideax/includes/_idea_detail.html:21
+msgid "Approval"
+msgstr ""
+
+#: ideax/models.py:25
+msgid "Evolution"
+msgstr ""
+
+#: ideax/models.py:26
+msgid "Done"
+msgstr ""
+
+#: ideax/models.py:27 ideax/templates/ideax/idea_list.html:17
+#: ideax/templates/ideax/includes/_idea_detail.html:24
+msgid "Archived"
+msgstr ""
+
+#: ideax/models.py:28
+msgid "Paused"
+msgstr ""
+
+#: ideax/templates/ideax/base.html:25
 msgid "New Idea"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:29
+#: ideax/templates/ideax/base.html:30
 #, python-format
 msgid "Hi, %(name)s!"
 msgstr ""
 
-#: ideax/templates/ideax/base.html:49
+#: ideax/templates/ideax/base.html:50 ideax/templates/ideax/base.html:54
 msgid "Terms of use"
+msgstr ""
+
+#: ideax/templates/ideax/base.html:57
+msgid "Cancel"
+msgstr ""
+
+#: ideax/templates/ideax/base.html:58
+msgid "I agree"
 msgstr ""
 
 #: ideax/templates/ideax/category_edit.html:5
@@ -117,29 +159,17 @@ msgstr ""
 msgid "Return"
 msgstr ""
 
+#: ideax/templates/ideax/idea_detail.html:46
+msgid "Comments"
+msgstr ""
+
 #: ideax/templates/ideax/idea_edit.html:12
 #: ideax/templates/ideax/includes/partial_idea_update.html:8
-msgid "Update_Idea"
+msgid "Update Idea"
 msgstr ""
 
 #: ideax/templates/ideax/idea_list.html:11
 msgid "All"
-msgstr ""
-
-#: ideax/templates/ideax/idea_list.html:12
-#: ideax/templates/ideax/includes/_idea_detail.html:19
-msgid "Discussion"
-msgstr ""
-
-#: ideax/templates/ideax/idea_list.html:13
-#: ideax/templates/ideax/includes/_idea_detail.html:20
-#: ideax/templates/ideax/includes/evaluation_detail.html:6
-msgid "Evaluation"
-msgstr ""
-
-#: ideax/templates/ideax/idea_list.html:14
-#: ideax/templates/ideax/includes/_idea_detail.html:21
-msgid "Approval"
 msgstr ""
 
 #: ideax/templates/ideax/idea_list.html:15
@@ -152,11 +182,6 @@ msgstr ""
 msgid "Finished"
 msgstr ""
 
-#: ideax/templates/ideax/idea_list.html:17
-#: ideax/templates/ideax/includes/_idea_detail.html:24
-msgid "Archived"
-msgstr ""
-
 #: ideax/templates/ideax/idea_new.html:11
 #: ideax/templates/ideax/includes/partial_idea_create.html:10
 msgid "Create Idea"
@@ -164,6 +189,22 @@ msgstr ""
 
 #: ideax/templates/ideax/includes/_idea_detail.html:25
 msgid "Freezed"
+msgstr ""
+
+#: ideax/templates/ideax/includes/_idea_detail.html:46
+msgid "Author"
+msgstr ""
+
+#: ideax/templates/ideax/includes/_idea_detail.html:50
+msgid "Read more"
+msgstr ""
+
+#: ideax/templates/ideax/includes/chatbot.html:5
+msgid "Help"
+msgstr ""
+
+#: ideax/templates/ideax/includes/empty.html:3
+msgid "There are no ideas at this stage!"
 msgstr ""
 
 #: ideax/templates/ideax/includes/evaluation_detail.html:7
@@ -174,8 +215,8 @@ msgstr ""
 msgid "Evaluation not yet done"
 msgstr ""
 
-#: ideax/templates/ideax/includes/footer.html:3
-msgid "Help"
+#: ideax/templates/ideax/includes/footer.html:5
+msgid "Software in beta stage"
 msgstr ""
 
 #: ideax/templates/ideax/includes/partial_category_list.html:7
@@ -217,13 +258,13 @@ msgid "Confirm"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:6
-msgid "Idea X sharing ideas!"
+msgid "Idea<sup>X</sup> sharing ideas!"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:7
 msgid ""
-"With Ideia X you have an open channel for innovation, getting ideas from all "
-"parties, evaluating and making them happen!"
+"With Ideia<sup>X</sup> you have an open channel for innovation, getting "
+"ideas from all parties, evaluating and making them happen!"
 msgstr ""
 
 #: ideax/templates/ideax/index.html:11
@@ -232,8 +273,8 @@ msgstr ""
 
 #: ideax/templates/ideax/index.html:12
 msgid ""
-"Ideia X is the channel to spread and share your ideas, allowing your peers "
-"to contribute, discuss and collaborate to grow it."
+"Ideia<sup>X</sup> is the channel to spread and share your ideas, allowing "
+"your peers to contribute, discuss and collaborate to grow it."
 msgstr ""
 
 #: ideax/templates/ideax/index.html:13
@@ -274,7 +315,7 @@ msgstr ""
 msgid ""
 "Through APIs is possible to integrate with other tools. Integrating with a "
 "project management tool is possible to create a project based on an idea "
-"registered in Idea X."
+"registered in Idea<sup>X</sup>."
 msgstr ""
 
 #: ideax/templates/ideax/phase_edit.html:6

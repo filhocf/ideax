@@ -6,6 +6,7 @@ from django.contrib.auth.signals import user_logged_in
 from decouple import config
 import random
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 def check_user_profile(sender, user, request, **kwargs):
     try:
@@ -18,13 +19,13 @@ def check_user_profile(sender, user, request, **kwargs):
 user_logged_in.connect(check_user_profile)
 
 class Phase(Enum):
-    GROW     = (1, 'Discussão', 'discussion', 'comments')
-    RATE     = (2, 'Avaliação', 'rate','clipboard')
-    APROVED  = (3, 'Aprovação', 'aproved','star')
-    ACT      = (4, 'Evolução', 'develop','tasks')
-    DONE     = (5, 'Feita', 'done', 'check')
-    ARCHIVED = (6, 'Arquivada', 'archived', 'archive')
-    PAUSED   = (7, 'Pausada', 'paused', 'pause')
+    GROW     = (1, _('Discussion'), 'discussion', 'comments')
+    RATE     = (2, _('Evaluation'), 'rate','clipboard')
+    APROVED  = (3, _('Approval'), 'aproved','star')
+    ACT      = (4, _('Evolution'), 'develop','tasks')
+    DONE     = (5, _('Done'), 'done', 'check')
+    ARCHIVED = (6, _('Archived'), 'archived', 'archive')
+    PAUSED   = (7, _('Paused'), 'paused', 'pause')
 
 
     def __init__(self, id, description, css_class, icon_class):

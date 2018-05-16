@@ -7,7 +7,7 @@ RUN \
 
 RUN \
     cd /var/www; \
-    wget -q -O ideax.tar.gz https://github.com/filhocf/ideax/archive/${VERSION}.tar.gz; \
+    wget -q -O ideax.tar.gz https://github.com/filhocf/ideax/archive/master.tar.gz; \
     tar xf ideax.tar.gz; \
     mv ideax-master ideax; \
     rm ideax.tar.gz; \

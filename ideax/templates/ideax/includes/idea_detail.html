@@ -1,59 +1,49 @@
 <!-- {% load widget_tweaks i18n %} -->
 {% load staticfiles i18n %}
 
-<div class="idea-card">
-  <a href="{% url 'idea_detail' pk=idea.pk %}" class="img-container">
-    <!-- <img style="width: 100%; height: 120px;" src="{{ idea.category.category_image.image}}" alt="" /> -->
-      <img src="{{idea.category_image}}" alt="" />
-  </a> <!-- IMAGEM DA CATEGORIA -->
-
-  <div class="idea-content">
-    <a href="{% url 'idea_detail' pk=idea.pk %}" class="idea-card-body">
-      <div>
-        <div class="cat-name">
-          {{ idea.category.title }}
-        </div>
-      </div>
-      <h1>{{ idea.title }}</h1>
-      <div class="card-author">
-          Por {{idea.author.user}}
-      </div>
-      <div class="short-desc">
+<div class="card">
+  <!-- <div class="card-header">
+    
+  </div> -->
+  <img class="card-img-top" src="{{idea.category_image}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{ idea.title }}</h5>
+    <div class="card-text">
         {% if idea.summary %}
           {{idea.summary}}
         {% else %}
           {{ idea.solution|truncatechars:140 }}
         {% endif %}
-      </div>
-    </a>
-
-    <div class="idea-card-footer">
-      <div class="card-line {{idea.get_current_phase.css_class}}"></div>
-      <div class="footer-content">
-        <div class="card-phase">
-          {{ idea.get_current_phase.description }}
-        </div>
-        <div class="like-menu">
-          <div class="liked">
-            <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
-              <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
-              <p class="liked_idea_{{idea.id}} ">
-                {{ idea.count_likes }}
-              </p>
-            </a>
-          </div>
-          <div class="disliked">
-            <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
-              <i class="{%if idea.id in ideas_disliked %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
-              <p class="disliked_idea_{{idea.id}}">
-                {{ idea.count_dislikes }}
-              </p>
-            </a>
-          </div>
-        </div>
+    </div>
+    <div class="text-left pb-2 pt-2">
+        <a href="{% url 'idea_detail' pk=idea.pk %}">{% trans 'Details...' %}</a>
+    </div>
+    <div class="text-right">
+      <span class="badge badge-secondary">{{ idea.get_current_phase.description }}</span>
+      <a class="like badge badge-success" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+        <i class="{%if idea.id in ideas_liked %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
+        <span class="liked_idea_{{idea.id}} ">
+          {{ idea.count_likes }}
+        </span>
+      </a>
+      <a class="dislike badge badge-danger" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
+        <i class="{%if idea.id in ideas_disliked %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
+        <span class="disliked_idea_{{idea.id}}">
+          {{ idea.count_dislikes }}
+        </span>
+      </a>
+      <a href="#" class="badge badge-primary">
+        <i class="fas fa-comments"></i> {{idea.comment_set.all.count}}
+      </a>
+    </div>
+    
+  </div>
+  
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-sm-12 text-right">
+          <a href="#"><small class="text-muted">{% trans 'By' %} @{{idea.author.user}}</small></a>
       </div>
     </div>
-
   </div>
-
 </div>

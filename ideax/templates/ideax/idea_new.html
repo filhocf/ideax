@@ -2,22 +2,19 @@
 {% load widget_tweaks i18n %}
 
 {% block content %}
-
-  <div class="idea-form">
-    <form method="post" class="post-form js-idea-create-form" action="{% url 'idea_new' %}" data-modal="#modal-idea-crud" data-list-div="#idea-list">
-      {% csrf_token %}
-      <div class="idea-form-header">
-        <i class="far fa-lightbulb"></i>
-        <h4>{% trans 'Create Idea' %}</h4>
-      </div>
-      <div class="idea-form-body">
+  <div class="idea-list-bg">
+      <h1 class="display-3">{% trans 'Create Idea' %}</h1>
+  </div>
+  <div class="container">
+      <form method="post" class="form post-form js-idea-create-form" action="{% url 'idea_new' %}" data-modal="#modal-idea-crud" data-list-div="#idea-list">
+        {% csrf_token %}
         {% include 'ideax/includes/partial_idea_form.html' %}
-        <div class="button-group">
+        <div class="button-group text-right">
           <a class="back-redirect btn" href="/">{% trans 'Return' %}</a>
           <button type="submit" class="btn btn-primary">{% trans 'Save' %}</button>
         </div>
-      </div>
-    </form>
+      </form>
   </div>
+  <br />
 
 {% endblock %}

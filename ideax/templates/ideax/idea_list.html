@@ -2,35 +2,90 @@
 {% load i18n %}
 
 {% block content %}
-    <nav class="phase-filter">
-
-      <ul class="phase-list">
-        {% for phase in phases %}
-            <li onclick="filterIdeas('{% url 'idea_filter' phase_pk=phase.0 %}')"><a href="#">{{ phase.1 }}</a></li>
-        {% endfor %}
-        <!-- <li class="active"><a href="#">{% trans 'All' %}</a></li>
-        <li><a href="#">{% trans 'Discussion' %}</a></li>
-        <li><a href="#">{% trans 'Evaluation' %}</a></li>
-        <li><a href="#">{% trans 'Approval' %}</a></li>
-        <li><a href="#">{% trans 'Development' %}</a></li>
-        <li><a href="#">{% trans 'Finished' %}</a></li>
-        <li><a href="#">{% trans 'Archived' %}</a></li> -->
-      </ul>
-    </nav>
-    {% for message in messages %}
-      <div class="alert alert-dismissible alert-{% if message.tags == 'error' %}danger{%else%}{{message.tags}}{%endif%}">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          {{ message }}
-      </div>
-    {% endfor %}
-    <div class="group" id="idea-list-group">
-      {%if not ideas %}
-          {% include 'ideax/includes/empty.html' %}
-      {%else%}
-        {% for idea in ideas %}
-            {% include 'ideax/includes/idea_detail.html' %}
-        {% endfor %}
-      {%endif%}
+    <div class="idea-list-bg">
+        <h1 class="display-3 d-none d-md-block">{% trans 'Explore Ideas' %}</h1>
+        <h1 class="display-4 d-block d-sm-block d-md-none">{% trans 'Explore' %}</h1>
     </div>
-    {% include 'ideax/includes/modals.html' %}
+    <div class="container">
+
+      <div class="row">
+        <!-- Menu Desktop-->
+        <div class="col-lg-2 d-none d-lg-block">
+          <nav class="phase-filter">
+            <h4 class="filter-title"><i class="fas fa-filter"></i> {% trans 'Filters' %}</h4>
+            <ul class="phase-list nav nav-pills flex-column">
+              {% for phase in phases %}
+                  <li class="nav-item" onclick="filterIdeas('{% url 'idea_filter' phase_pk=phase.0 %}')">
+                    {% if phase.0 == 1 %}
+                    <a class="nav-link active" href="#">{{ phase.1 }}</a>
+                    {% else %}
+                    <a class="nav-link" href="#">{{ phase.1 }}</a>
+                    {% endif %}
+                  </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+        <!-- Menu Tablet -->
+        <div class="col-md-12 d-none d-md-block d-lg-none pb-2">
+          <nav class="phase-filter">
+            <ul class="phase-list nav nav-pills justify-content-center">
+              {% for phase in phases %}
+                  <li class="nav-item" onclick="filterIdeas('{% url 'idea_filter' phase_pk=phase.0 %}')">
+                    <a class="nav-link" href="#">{{ phase.1 }}</a>
+                  </li>
+              {% endfor %}
+            </ul>
+          </nav>
+        </div>
+        <!-- Menu Mobile -->
+        <div class="col-sm-12 d-block d-sm-block d-md-none pb-2">
+          <nav class="phase-filter">
+            <ul class="phase-list nav nav-pills nav-justified">
+              <li class="nav-item" onclick="filterIdeas('{% url 'idea_filter' phase_pk=phases.0.0 %}')">
+                <a class="nav-link" href="#">{{phases.0.1}}</a>
+              </li>
+              <li class="nav-item" onclick="filterIdeas('{% url 'idea_filter' phase_pk=phases.1.0 %}')">
+                <a class="nav-link" href="#">{{phases.1.1}}</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="#" onclick="filterIdeas('{% url 'idea_filter' phase_pk=phases.2.0 %}')">{{phases.2.1}}</a>
+                  <a class="dropdown-item" href="#" onclick="filterIdeas('{% url 'idea_filter' phase_pk=phases.3.0 %}')">{{phases.3.1}}</a>
+                  <a class="dropdown-item" href="#" onclick="filterIdeas('{% url 'idea_filter' phase_pk=phases.4.0 %}')">{{phases.4.1}}</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <!-- Card List -->
+        <div class="col-lg-10 col-md-12 col-sm-12">
+          {% for message in messages %}
+          <div class="alert alert-dismissible alert-{% if message.tags == 'error' %}danger{%else%}{{message.tags}}{%endif%}">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              {{ message }}
+          </div>
+          {% endfor %}
+          {%if not ideas %}
+            {% include 'ideax/includes/empty.html' %}
+          {%else%}
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="{% trans 'Search for...' %}" aria-label="{% trans 'Search Box' %}" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">{% trans 'Search' %}</button>
+              </div>
+            </div>
+            <div class="group card-columns" id="idea-list-group">
+              {% for idea in ideas %}
+                {% include 'ideax/includes/idea_detail.html' %}
+              {% endfor %}
+            </div>
+          {%endif%}
+          {% include 'ideax/includes/modals.html' %}
+        </div>
+      </div>
+    </div>
+    
+    
 {% endblock %}

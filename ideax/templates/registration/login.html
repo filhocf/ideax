@@ -1,34 +1,30 @@
 {% extends "ideax/base.html" %}
 {% load widget_tweaks staticfiles i18n %}
 
-{% trans "Your username and password didn't match. Please try again." as login-error-message %}
+{% trans "Your username and password didn't match. Please try again." as login_error_message %}
 {% block content %}
-    {% if form.errors %}
-      <div class="alert alert-danger">
-        <div class="login_error_message">
-          {{ login_error_message }}
+    
+    <div class="login-box container text-center">
+
+      {% if form.errors %}
+        <!-- @TODO: Corrigir o problema nas mensagens de erro. -->
+        <div class="alert alert-danger" style="margin-top: 100px;">
+          <div class="login_error_message">
+            {{ login_error_message }}
+          </div>
         </div>
-      </div>
+      {% endif %}
 
-    {% endif %}
-
-    <div class="login-box">
-      <img class="login-icon" src="{% static 'images/idea_launch.png' %}" alt="">
-      <p class="login-info">{% trans 'You must be logged in to access ideas.' %}</p>
-      <form method="post" action="{% url 'login' %}">
-      {% csrf_token %}
-          <table>
-          <tr>
-              <td>{{ form.username|attr:'class:login-field'|attr:_('placeholder:username') }}</td>
-          </tr>
-          <tr>
-              <td>{{ form.password|attr:'class:login-field'|attr:_('placeholder:password') }}</td>
-          </tr>
-
-          </table>
-
-          <input type="submit" value="login" class="login-button" />
-          <input type="hidden" name="next" value="{{ next }}" />
+      <form class="form-signin" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <img class="mb-4" src="{% static 'images/idea_launch.png' %}" alt="" width="72">
+        <h1 class="h3 mb-3 font-weight-normal">{% trans 'You must be logged in to access ideas.' %}</h1>
+        <label for="id_username" class="sr-only">{% trans 'Username' %}</label>
+        {{ form.username|attr:'class:form-control'|attr:_('placeholder:username') }}
+        <label for="id_password" class="sr-only">{% trans 'Password' %}</label>
+        {{ form.password|attr:'class:form-control'|attr:_('placeholder:password') }}
+        <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans 'Sign in' %}</button>
+        <input type="hidden" name="next" value="{{ next }}" />
       </form>
     </div>
 {% endblock %}

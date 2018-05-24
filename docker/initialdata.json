@@ -1,0 +1,95 @@
+[{
+  "model": "ideax.category",
+  "pk": 1,
+  "fields": {
+    "title": "No category",
+    "description": "A first category",
+    "discarded": false
+  }
+}, {
+  "model": "ideax.idea",
+  "pk": 1,
+  "fields": {
+    "title": "My first idea",
+    "oportunity": "Describe the problem or opportunity your idea will meet!",
+    "solution": "Describe the solution very clearly and succinctly!",
+    "target": "Indicate who your solution audience is.",
+    "creation_date": "2018-05-14T19:12:33.098Z",
+    "author": 1,
+    "category": 1,
+    "discarded": false,
+    "score": 0.0,
+    "category_image": "/media/category/default.png",
+    "summary": "Sell your idea in 140 characters!"
+  }
+}, {
+  "model": "ideax.comment",
+  "pk": 1,
+  "fields": {
+    "idea": 1,
+    "author": 1,
+    "raw_comment": "This is a comment about this idea.",
+    "parent": null,
+    "date": "2018-05-17T18:16:16.845Z",
+    "comment_phase": 1,
+    "deleted": false,
+    "lft": 1,
+    "rght": 2,
+    "tree_id": 1,
+    "level": 0
+  }
+}, {
+  "model": "ideax.dimension",
+  "pk": 1,
+  "fields": {
+    "title": "No dimension",
+    "description": "A first dimension",
+    "weight": 0,
+    "init_date": "2018-05-14T18:44:31Z",
+    "final_date": null
+  }
+}, {
+  "model": "ideax.category_dimension",
+  "pk": 1,
+  "fields": {
+    "description": "A category for this dimension.",
+    "value": 1,
+    "dimension": 1
+  }
+}, {
+  "model": "ideax.use_term",
+  "pk": 1,
+  "fields": {
+    "creator": 1,
+    "term": "A generic Term of Use.",
+    "init_date": "2018-05-14T18:45:26Z",
+    "final_date": null
+  }
+}, {
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$100000$Dgqiqe7IBSEY$XoIHZCItnacYFRVNdDZTCLshXXFPi2cZW6PKdgkzBd0=",
+    "last_login": "2018-05-17T18:15:01.135Z",
+    "is_superuser": true,
+    "username": "admin",
+    "first_name": "",
+    "last_name": "",
+    "email": "admin@localhost",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2018-05-14T15:47:23Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}, {
+  "model": "ideax.userprofile",
+  "pk": 1,
+  "fields": {
+    "user": 1,
+    "use_term_accept": true,
+    "acceptance_date": "2018-05-14T15:48:23Z",
+    "ip": "127.0.0.1",
+    "manager": true
+  }
+}]

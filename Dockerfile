@@ -20,7 +20,7 @@ RUN \
 WORKDIR /var/www/ideax
 
 COPY ./docker/entrypoint.sh /
-
+COPY ./docker/initialdata.json /var/www/ideax
 COPY ./docker/nginx.conf /etc/nginx/
 
 CMD ["/entrypoint.sh"]

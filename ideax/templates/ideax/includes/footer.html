@@ -1,20 +1,8 @@
 {% load staticfiles i18n %}
-{% comment %} <div class="bot-control" data-toggle="collapse" data-target="#bot-iframe">
-  <p>{% trans 'Help' %}</p>
-  <i class="fas fa-angle-down"></i>
-</div>
-<iframe id="bot-iframe" class="collapse" width="350" height="430" src="https://console.dialogflow.com/api-client/demo/embedded/5d7dfc5a-1a3d-4d60-9ef6-bd2cfc285318"></iframe> {% endcomment %}
 
-{% if not user.is_authenticated %}
-  <nav class="navbar fixed-bottom navbar-dark bg-dark footer shadow-sm">
-    <span class="navbar-text mx-auto">
-        <span class="alpha-version">Idea<sup>X</sup> - Software in alpha stage</span>
-    </span>
-  </nav>
-{% else %}
-  <nav class="navbar fixed-bottom navbar-light bg-light footer shadow-sm">
-    <span class="navbar-text mx-auto">
-        <span class="alpha-version">Idea<sup>X</sup> - Software in alpha stage</span>
-    </span>
-  </nav>
-{% endif %}
+{% include 'ideax/includes/chatbot.html' %}
+<footer {% if not user.is_authenticated %}class="landing-page"{% endif %} >
+    <div class="logo">
+      <p class="alpha-version">Idea<sup>X</sup> - {% trans 'Software in beta stage' %}</p>
+    </div>
+</footer>

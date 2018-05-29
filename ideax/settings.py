@@ -70,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'ideax.context_processors.export_vars',
             ],
         },
     },
@@ -117,7 +118,8 @@ USE_I18N = True
 
 LANGUAGES = (
     ('en', u'English'),
-    ('pt-br', u'Português')
+    ('pt-br', u'Português'),
+    ('es', u'Español')
 )
 LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
@@ -132,28 +134,33 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 LOGIN_REDIRECT_URL = '/idea/list'
 LOGOUT_REDIRECT_URL = '/'
 
-AUTHENTICATION_BACKENDS = [
-    'django.contrib.auth.backends.ModelBackend',
-    'django_auth_ldap.backend.LDAPBackend',
-]
+AUTH_LDAP_SERVER_URI = config('AUTH_LDAP_SERVER_URI', default='')
+if AUTH_LDAP_SERVER_URI!='':
+    import ldap
+    from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 
-AUTH_LDAP_SERVER_URI = config('AUTH_LDAP_SERVER_URI', default='ldap://ldap.example.com')
+    AUTH_LDAP_BIND_DN = config('AUTH_LDAP_BIND_DN', default='')
+    AUTH_LDAP_BIND_PASSWORD = config('AUTH_LDAP_BIND_PASSWORD', default='')
+    AUTH_LDAP_GLOBAL_OPTIONS = {ldap.OPT_X_TLS_REQUIRE_CERT : ldap.OPT_X_TLS_NEVER}
+    AUTH_LDAP_START_TLS = config('AUTH_LDAP_START_TLS', default=0, cast=bool)
+    AUTH_LDAP_USER_SEARCH = LDAPSearch(config('AUTH_LDAP_USER_SEARCH', default='ou=users,dc=example,dc=com'), ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+    AUTH_LDAP_USER_ATTR_MAP = {
+        "first_name": "givenName",
+        "last_name": "sn",
+        "email": "mail"
+    }
+    AUTHENTICATION_BACKENDS = [
+        'django.contrib.auth.backends.ModelBackend',
+        'django_auth_ldap.backend.LDAPBackend',
+    ]
+else:
+    AUTHENTICATION_BACKENDS = [
+        'django.contrib.auth.backends.ModelBackend',
+    ]
 
-import ldap
-from django_auth_ldap.config import LDAPSearch, GroupOfNamesType
 
-AUTH_LDAP_BIND_DN = config('AUTH_LDAP_BIND_DN', default='')
-AUTH_LDAP_BIND_PASSWORD = config('AUTH_LDAP_BIND_PASSWORD', default='')
-AUTH_LDAP_GLOBAL_OPTIONS = {ldap.OPT_X_TLS_REQUIRE_CERT : ldap.OPT_X_TLS_NEVER}
-AUTH_LDAP_START_TLS = config('AUTH_LDAP_START_TLS', default=0, cast=bool)
-AUTH_LDAP_USER_SEARCH = LDAPSearch(config('AUTH_LDAP_USER_SEARCH', default='ou=users,dc=example,dc=com'), ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
-AUTH_LDAP_USER_ATTR_MAP = {
-    "first_name": "givenName",
-    "last_name": "sn",
-    "email": "mail"
-}
+
 import logging
-
 logger = logging.getLogger('django_auth_ldap')
 logger.addHandler(logging.StreamHandler())
 logger.setLevel(logging.DEBUG)

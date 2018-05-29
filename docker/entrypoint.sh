@@ -19,6 +19,13 @@ if [ ! -d /run/nginx ]; then
   mkdir /run/nginx
 fi
 
+python manage.py dumpdata > /dev/null
+
+if [ $? == 1 ]; then
+  python manage.py migrate
+  python manage.py loaddata initialdata.json
+fi
+
 python manage.py migrate
 python manage.py compilemessages
 

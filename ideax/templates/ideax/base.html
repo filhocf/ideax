@@ -6,38 +6,72 @@
     <head>
         <title>Ideia X</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'css/idea.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'css/idea.css' %}"> -->
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- <link rel="stylesheet" href="{% static 'css/ideax.bootstrap.min.css' %}"> -->
+        <link rel="stylesheet" href="{% static 'css/idea.theme.css' %}">
+        <!-- Temas Selecionados -->
+        {% comment %} <link rel="stylesheet" href="https://bootswatch.com/4/journal/bootstrap.min.css"> {% endcomment %}
+        {% comment %} <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css"> {% endcomment %}
+        {% comment %} <link rel="stylesheet" href="https://bootswatch.com/4/united/bootstrap.min.css"> {% endcomment %}
+        {% comment %} <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css"> {% endcomment %}
+        {% comment %} <link rel="stylesheet" href="https://bootswatch.com/4/cosmo/bootstrap.min.css"> {% endcomment %}
+        {% comment %} <link rel="stylesheet" href="https://bootswatch.com/4/lux/bootstrap.min.css"> {% endcomment %}
+        <!-- Fontes -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
         {% include 'ideax/includes/piwik.js' %}
     </head>
     <body>
-      <div class="main-header">
-        <h1 class="title">
-          <a href="/">
-            <img src="{% static 'images/logo_horizontal.png' %}" alt="">
-          </a>
-        </h1>
-        {% if user.is_authenticated %}
-        <div class="menu">
-          <a class="icon  js-create-idea" href="/idea/new/" class="top-menu js-create-idea">
-            <span><i class="fas fa-plus"></i><i class="fas fa-lightbulb"></i></span>
-            <p>{% trans 'New Idea' %}</p>
-          </a>
+      <!-- Image and text -->
+      <nav class="navbar navbar-expand fixed-top navbar-dark shadow-sm" style="background-color:rgba(0, 0, 0, 0.8);">
+        <a class="navbar-brand" href="/">
+          <img src="{% static 'images/logo_vertical.png' %}" height="30" class="d-inline-block align-top" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="true" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          {% if user.is_authenticated %}
+          <ul class="navbar-nav mx-auto"></ul>
+          <ul class="navbar-nav">
+            <span class="navbar-text">
+              {% blocktrans with name=user.username %}Hi, {{name}}!{% endblocktrans %}
+            </span>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bars fa-lg"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/">{% trans 'Explore Ideas' %}</a>
+                <a class="dropdown-item" href="#">{% trans 'Users' %}</a>
+                <a class="dropdown-item" href="#">{% trans 'Terms of Use and Privacy' %}</a>
+                <a class="dropdown-item" href="{% url 'logout' %}">{% trans 'Logout' %}</i></a>
+              </div>
+            </li>
+          </ul>
+          
+          {% else %}
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/help/"><i class="fas fa-question"></i> {% trans 'Help' %}</a></li>
+          </ul>
+          <span class="navbar-text">
+            <a href="{% url 'login' %}">{% trans 'Login' %}</i></a>
+          </span>
+          {% endif %}
+        </div>
+      </nav>
 
+      {% if user.is_authenticated %}
+      <div class="fab-button fixed-bottom">
+        <div class="container">
+          <div class="text-right">
+            <a class="btn btn-primary" href="/idea/new/" title="{% trans 'New Idea' %}"><i class="fas fa-lightbulb fa-2x"></i></a>
+          </div>
         </div>
-        <div class="login">
-          <p>{% blocktrans with name=user.username %}Hi, {{name}}!{% endblocktrans %}</p>
-          <a href="{% url 'logout' %}">( Sair )</i></a>
-        </div>
-        {% else %}
-        <div class="login">
-          <a href="{% url 'login' %}">Login</i></a>
-        </div>
-
-        {% endif %}
       </div>
-      <div class="content   {% if user.is_authenticated %}container{% endif %}">
+      {% endif %}
+      
+      <div class="content ideax-body {% if user.is_authenticated %}container-fluid{% endif %}">
         {% block content %}
         {% endblock %}
       </div>
@@ -55,7 +89,7 @@
             </div>
             <div class="modal-footer">
               <a id="term-decline" class="term-btn" href="{% url 'logout' %}">{% trans 'Cancel' %}</a>
-              <a id="term-accept" class="term-btn" href="{% url 'accept_term' %}">{% trans 'I agree' %}</a>
+              <a id="term-accept" class="term-btn" href="{% url 'accept_term' %}">{% trans 'Accept' %}</a>
             </div>
           </div>
         </div>

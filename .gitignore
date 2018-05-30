@@ -10,4 +10,9 @@ _config.yml
 .env
 locale/*/LC_MESSAGES/django.mo
 /media
-/docs/_build
+bin/
+include/
+lib/
+pip-selfcheck.json
+fixture.json
+.Python

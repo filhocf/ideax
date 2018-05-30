@@ -1,115 +1,126 @@
-{% extends 'ideax/base.html' %}
-{% load i18n %}
-
-{% block content %}
-  <div class="idea-desc-title">
-      <h1 class="desc-title">
-        {{ idea.title }}
-      </h1>
-      <p class="author">Por {{ idea.author.user.get_full_name }}</p>
-      <div class="like-menu">
-        <div class="liked">
-          <a class="like" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
-            <i class="{%if popular_vote == True %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}" ></i>
-            <p class="liked_idea_{{idea.id}} ">
-              {{ idea.count_likes }}
-            </p>
-          </a>
-        </div>
-        <div class="disliked">
-          <a class="dislike" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')" href="javascript:void(0)">
-            <i class="{%if popular_vote == False %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
-            <p class="disliked_idea_{{idea.id}}">
-              {{ idea.count_dislikes }}
-            </p>
-          </a>
-        </div>
-      </div>
+{% extends 'ideax/base.html' %} {% load i18n %} {% block content %}
+<div class="idea-list-bg" id="idea-title">
+  <h1 class="display-3 desktop-title">{{ idea.title }}</h1>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <p class="text-center">
+        {% if idea.summary %} {{idea.summary}} {% else %} {{ idea.solution|truncatechars:140 }} {% endif %}
+      </p>
+    </div>
   </div>
-  <div class="idea-page">
-    <div class="idea-desc">
-      <h3>{% trans 'Solution' %}</h3>
-      <p>{{ idea.solution|linebreaksbr }}</p>
-      <h3>{% trans 'Oportunity' %}</h3>
-      <p>{{ idea.oportunity|linebreaksbr }}</p>
-      <h3>{% trans 'Target' %}</h3>
-      <p>{{ idea.target|linebreaksbr }}</p>
-      <div class="button-group">
-        <a class="back-redirect btn" href="/">{% trans 'Return' %}</a>
+  <div class="row">
+    <!-- Idea Utils -->
+    <div class="col-md-3 text-center pb-3">
+      <div>
+        <img src="{{idea.category_image}}" class="img-fluid img-thumbnail" alt="{% trans 'Banner Idea' %}" />
+      </div>
+      <p>
+        <a href="#">
+          <small class="text-muted">{% trans 'By' %}
+            <span id="real-author"></span>@{{idea.author.user}}</small>
+        </a>
+      </p>
+      <div class="like-menu">
+        <span class="badge badge-secondary">{{ idea.get_current_phase.description }}</span>
+        <a class="like badge badge-success" onclick="vote('{% url 'like_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')"
+          href="javascript:void(0)">
+          <span class="d-none d-lg-inline">{% trans 'Like' %}</span>
+          <i class="{%if popular_vote == True %} fas {% else %} far {% endif %} fa-thumbs-up like_{{idea.id}}"></i>
+          <span class="liked_idea_{{idea.id}} ">
+            {{ idea.count_likes }}
+          </span>
+        </a>
+        <a class="dislike badge badge-danger" onclick="vote('{% url 'dislike_ideia' pk=idea.pk %}', '.liked_idea_{{idea.id}}', '.disliked_idea_{{idea.id}}', '.like_{{idea.id}}', '.dislike_{{idea.id}}')"
+          href="javascript:void(0)">
+          <span class="d-none d-lg-inline">{% trans 'Dislike' %}</span>
+          <i class="{%if popular_vote == False %} fas {% else %} far {% endif %} fa-thumbs-down dislike_{{idea.id}}"></i>
+          <span class="disliked_idea_{{idea.id}}">
+            {{ idea.count_dislikes }}
+          </span>
+        </a>
+        <a href="javascript:void(0);" class="badge badge-primary">
+          <span class="d-none d-lg-inline">{% trans 'Share' %}</span>
+          <i class="fas fa-share-alt"></i>
+          <span>
+            0
+          </span>
+        </a>
       </div>
     </div>
-    <div class="separator"></div>
-
-    <div class="idea-interaction">
-      <ul class="nav nav-tabs" id="idea-tab" role="tablist">
+    <!-- Idea Information -->
+    <div class="col-md-9">
+      <ul class="nav nav-pills nav-fill mb-3" id="idea-pills-tab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="comments-area-tab" data-toggle="tab" href="#comments-area" role="tab" aria-controls="comments-area" aria-selected="true">{% trans 'Comments' %}</a>
+          <a class="nav-link active" id="description-tab" data-toggle="pill" href="#description" role="tab" aria-controls="description"
+            aria-selected="true">{% trans 'Description' %}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="evaluation-tab" data-toggle="tab" href="#evaluation" role="tab" aria-controls="evaluation" aria-selected="false">{% trans 'Evaluation' %}</a>
+          <a class="nav-link" id="comments-tab" data-toggle="pill" href="#comments" role="tab" aria-controls="comments" aria-selected="false">{% trans 'Comments' %}</a>
         </li>
-        <!--
         <li class="nav-item">
-          <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Histórico</a>
-        </li> -->
-        <!-- {% if request.user.userprofile == idea.author or request.user.userprofile.manager %}
-          <li class="nav-item">
-            <a class="nav-link" id="actions-tab" data-toggle="tab" href="#actions" role="tab" aria-controls="actions" aria-selected="false">Ações</a>
-          </li>
-        {% endif %} -->
+          <a class="nav-link" id="evaluation-tab" data-toggle="pill" href="#evaluation" role="tab" aria-controls="evaluation" aria-selected="false">{% trans 'Evaluation' %}</a>
+        </li>
       </ul>
-      <div class="tab-content" id="myTabContent">
-        <div id="comments-area" class="tab-pane fade show active comments" role="tabpanel" aria-labelledby="comment-group-tab">
-          <div class="new-comment">
-            <div id="comment-message" class="alert alert-dismissible fade show" role="alert" style="display:none">
+      <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+          <div class="readmore-block">
+            <h4>{% trans 'Solution' %}</h4>
+            <p>{{ idea.solution|linebreaksbr }}</p>
+            <div class="text-center">
+              <a href="javascript:void(0)" class="expand-button">
+                <i class="fas fa-sort-down"></i>
+              </a>
             </div>
-            <form id="commentForm" class="form-horizontal" data-idea-id="{{idea.pk}}" action="/post/comment/">
-                {% csrf_token %}
-                <fieldset>
-
-                    <div class="form-group comment-group">
-                        <label for="commentContent" class="col-lg-2 control-label"></label>
-
-                        <div class="col-lg-12">
-                            <textarea class="form-control" rows="3" id="commentContent"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-lg-10 col-lg-offset-2">
-                            <button type="submit" class="btn btn-primary">{% trans 'Comment' %}</button>
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
           </div>
-          {% include 'ideax/includes/partial_comments.html' %}
+          <div class="readmore-block">
+            <h4>{% trans 'Oportunity' %}</h4>
+            <p>{{ idea.oportunity|linebreaksbr }}</p>
+            <div class="text-center">
+              <a href="javascript:void(0)" class="expand-button">
+                <i class="fas fa-sort-down"></i>
+              </a>
+            </div>
+          </div>
+          <div class="readmore-block">
+            <h4>{% trans 'Target' %}</h4>
+            <p>{{ idea.target|linebreaksbr }}</p>
+            <div class="text-center">
+              <a href="javascript:void(0)" class="expand-button">
+                <i class="fas fa-sort-down"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
+          <form id="commentForm" class="form-horizontal" data-idea-id="{{idea.pk}}" action="/post/comment/">
+            {% csrf_token %}
+            <fieldset>
+              <div class="form-group comment-group">
+                <label for="commentContent" class="col-lg-2 control-label"></label>
+
+                <div class="col-lg-12">
+                  <textarea class="form-control" rows="3" id="commentContent"></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-lg-12 text-right">
+                  <button type="submit" class="btn btn-primary">{% trans 'Comment' %}</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+          <div class="container">
+            {% include 'ideax/includes/partial_comments.html' %}
+          </div>
         </div>
         <div class="tab-pane fade" id="evaluation" role="tabpanel" aria-labelledby="evaluation-tab">
-          {%if request.user.userprofile.manager %}
-            {% include 'ideax/includes/evaluation.html' %}
-          {%else%}
-            {% include 'ideax/includes/evaluation_detail.html' %}
-          {%endif%}
+          {%if request.user.userprofile.manager %} {% include 'ideax/includes/evaluation.html' %} {%else%} {% include 'ideax/includes/evaluation_detail.html'
+          %} {%endif%}
         </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">Contact</div>
-        <!-- {% if request.user.userprofile == idea.author or request.user.userprofile.manager %}
-          <div class="tab-pane fade" id="actions" role="tabpanel" aria-labelledby="actinos-tab">
-            <div class="action-group">
-              <a href="" class="idea-page-action edit">
-                <span class="action-icon"><i class="far fa-edit"></i></span> Editar ideia
-              </a>
-              <a href="" class="idea-page-action discard">
-                <span class="action-icon"><i class="far fa-trash-alt"></i></span> Descartar ideia
-              </a>
-
-            </div>
-          </div>
-        {% endif %} -->
       </div>
     </div>
-
   </div>
-
-
-
+</div>
 {% endblock %}

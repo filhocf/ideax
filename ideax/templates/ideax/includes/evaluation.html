@@ -1,11 +1,21 @@
 {% load widget_tweaks i18n %}
 
 <div id="evaluation-message" class="alert alert-dismissible fade show" role="alert" style="display:none"></div>
-<div id="score" class="score {%if idea.score <= 0%}hide{%endif%}" >
-    Pontuação <br>
-    <p id="score_value">{{idea.score|floatformat:2}}</p>
+<div id="score form-group" class="score {%if idea.score <= 0%}hide{%endif%}" >
+  <div class="row">
+    <div class="col-sm-10 pt-2">
+        <div class="progress" id="evaluationProgress">
+          <div class="progress-bar" role="progressbar" style="width: {% widthratio idea.score|floatformat:0 5 100 %}%" aria-valuenow="{{idea.score|floatformat:0}}" aria-valuemin="0" aria-valuemax="5">{% widthratio idea.score|floatformat:0 5 100 %}%</div>
+        </div>
+      </div>
+      <div class="col-sm-2 pt-1 text-right">
+        <p class="h4">{{idea.score|floatformat:2}}</p>
+      </div>
+  </div>
 </div>
 
+
+<br />
 {%if form_evaluation%}
 <form method="post" id="evaluation_form" class="post-form" action="{% url 'evaluation' idea.pk%}">
   {% csrf_token %}
@@ -14,7 +24,7 @@
       {% if field.label != '' %}
         <label for="{{field.id_for_label}}" data-toggle="tooltip" data-placement="bottom" title="{{field.help_text}}" >{{field.label}}</label>
       {%endif%}
-      {{ field|add_class:'form_control' }}
+      {{ field|add_class:'form-control' }}
       {% for error in field.errors %}
         <p class="help-block">{{ error }}</p>
       {% endfor %}

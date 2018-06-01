@@ -118,7 +118,7 @@ body {
 .fab-button {
   display: inline-block;
   position: fixed;
-  bottom: 5%;
+  bottom: 8%;
   right: 14vw;
   z-index: 50;
 }

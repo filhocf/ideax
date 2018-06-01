@@ -1,3 +1,28 @@
+$('.expand-button').on('click', function (evt) {
+  let ideaText = evt.currentTarget.parentNode.parentNode.querySelector('p');
+  ideaText.classList.toggle('expand');
+  //console.log($(evt.currentTarget).parent().parent());
+});
+
+(() => {
+  let ideaTitle = document.querySelector('#idea-title h1');
+  if (ideaTitle !== undefined && ideaTitle !== null) {
+    let autorIndex = ideaTitle.textContent.indexOf('Autor:');
+    if (autorIndex > 0) {
+      let autor = ideaTitle.textContent.substring(autorIndex);
+      let title = ideaTitle.textContent.substring(0, autorIndex);
+      title = title.substring(0, title.length - 3);
+      autor = autor.substring(7);
+      console.log('Encontrado');
+      console.log(title);
+      console.log(autor);
+      ideaTitle.textContent = title;
+      document.querySelector("#real-author").textContent = `${autor} via `;
+    }
+  }
+})();
+
+
 $(window).scroll(function(){
 if($(window).scrollTop() >= $('.main-header').outerHeight()) {
   var scroll = $(window).outerWidth() - $('body').outerWidth();
@@ -234,24 +259,36 @@ $(function () {
     submitEvent(event, $(this));
   });
 
-  var newCommentForm = '<form id="commentFormReply" class="form-horizontal" \
-                              action="/post/comment/"\
-                              >\
-                              <fieldset>\
-                              <div class="form-group comment-group">\
-                                  <label for="commentContent" class="col-lg-2 control-label"></label>\
-                                  <div class="col-lg-10">\
-                                      <textarea class="form-control" rows="3" id="commentContent"></textarea>\
-                                      <span id="postResponse" class="text-success" style="display: none"></span>\
-                                  </div>\
-                              </div>\
-                              <div class="form-group">\
-                                  <div class="col-lg-10 col-lg-offset-2">\
-                                      <button type="submit" class="btn btn-primary">Comentar</button>\
-                                  </div>\
-                              </div>\
-                          </fieldset>\
-                      </form>';
+  var newCommentForm = `
+    <form id="commentFormReply" class="form-horizontal" action="/post/comment/">
+      <div class="form-group">
+        <label for="commentContent">Reply Comment</label>
+        <textarea class="form-control" id="commentContent" rows="3"></textarea>
+        <span id="postResponse" class="text-success" style="display: none"></span>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Post Reply</button>
+      </div>
+    </form>
+  `;
+  // var newCommentForm = '<form id="commentFormReply" class="form-horizontal" \
+  //                             action="/post/comment/"\
+  //                             >\
+  //                             <fieldset>\
+  //                             <div class="form-group comment-group">\
+  //                                 <label for="commentContent" class="col-lg-2 control-label">Reply</label>\
+  //                                 <div class="col-lg-10">\
+  //                                     <textarea class="form-control" rows="3" id="commentContent"></textarea>\
+  //                                     <span id="postResponse" class="text-success" style="display: none"></span>\
+  //                                 </div>\
+  //                             </div>\
+  //                             <div class="form-group">\
+  //                                 <div class="col-lg-10 col-lg-offset-2">\
+  //                                     <button type="submit" class="btn btn-primary">Comentar</button>\
+  //                                 </div>\
+  //                             </div>\
+  //                         </fieldset>\
+  //                     </form>';
 
   $(document).on("click", 'a[name="replyButton"]', function () {
     var $mediaBody = $(this).parent();
@@ -299,8 +336,10 @@ function filterIdeas(url){
   });
 };
 
-$('body').on('click', 'li', function() {
+$('body').on('click', 'li', function(ev) {
       $('li.active').removeClass('active');
+      $('a.active').removeClass('active');
+      ev.target.classList.add("active");
       $(this).addClass('active');
 });
 
@@ -308,6 +347,13 @@ $('#idea-tab a').on('click', function (e) {
   e.preventDefault()
   $(this).tab('show')
 })
+
+$('#idea-pills-tab a').on('click', function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+
+
 
 // tooltip functions
 

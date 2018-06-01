@@ -2,10 +2,18 @@
 {% load humanize %}
 
 {%if idea.score > 0%}
-  <div class="eval-title">
-    <h2>{% trans 'Evaluation' %}</h2>
-    <p>{% trans 'Total Score' %}: <span>{{idea.score|floatformat:2}}</span></p>
-  </div>
+  
+  <div class="row">
+    <div class="col-sm-10 pt-2">
+      <div class="progress" id="evaluationProgress">
+        <div class="progress-bar" role="progressbar" style="width: {% widthratio idea.score|floatformat:0 5 100 %}%" aria-valuenow="{{idea.score|floatformat:0}}" aria-valuemin="0" aria-valuemax="5">{% widthratio idea.score|floatformat:0 5 100 %}%</div>
+      </div>
+    </div>
+    <div class="col-sm-2 pt-1 text-right">
+      <p class="h4">{{idea.score|floatformat:2}}</p>
+    </div>
+  </div>  
+  
   {%for key,value in evaluation_detail.items %}
     <div class="dimension-group">
       <p class="dimension-title"><span data-toggle="tooltip" data-placement="bottom" title="{{value.dimension.description}}">{{value.dimension.title}}</span></p>

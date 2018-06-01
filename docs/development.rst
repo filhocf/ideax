@@ -1,5 +1,5 @@
-Firsts steps
-============
+Firsts steps in development
+===========================
 
 Idea\ :sup:`X` is developed in python 3 with Django, so you need to prepare your development environment. For this, we considered that you already have it in your machine. To confirm, please, use the following command in your terminal.
 
@@ -42,7 +42,7 @@ In .env file, you need to add a secret key. To generate it, type the following c
     >>> from django.utils.crypto import get_random_string
     >>> chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
     >>> get_random_string(50, chars)
-    
+
 
 After, you need to create/populate the database, create a user and at end run the server in development mode.
 

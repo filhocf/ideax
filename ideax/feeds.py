@@ -1,4 +1,5 @@
 from django.contrib.syndication.views import Feed
+from django.utils.translation import ugettext_lazy as _
 from ideax.models import *
 
 class Comment_Feed(Feed):
@@ -14,7 +15,7 @@ class Comment_Feed(Feed):
 
     def item_description(self, item):
         comment = (item.raw_comment[:200] + ' ...') if len(item.raw_comment) > 75 else item.raw_comment
-        comment += '</br></br> Comentário por: <strong>'+ item.author.user.username +'</strong>'
+        comment += '</br></br>'+str(_('Comment by: '))+'<strong> '+' '+ item.author.user.username +'</strong>'
         return comment
 
     def item_link(self, item):

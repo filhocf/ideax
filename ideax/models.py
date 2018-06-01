@@ -144,9 +144,6 @@ class Comment(MPTTModel):
     comment_phase = models.PositiveSmallIntegerField()
     deleted = models.BooleanField(default=False)
 
-    # def get_absolute_url(self):
-    #     return "/idea/%i/" % self.idea.id
-
     class MPTTMeta:
         order_insertion_by = ['-date']
 

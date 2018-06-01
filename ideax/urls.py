@@ -38,7 +38,7 @@ urlpatterns = [
     path('term', views.get_term_of_user, name="term_of_use"),
     path('feed/comment/latest',Comment_Feed()),
     path('feed/idea/latest', New_Idea_Feed()),
-    path('invite', views.invite, name="invite"),
+   
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

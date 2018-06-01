@@ -27,9 +27,6 @@ def index(request):
         return idea_list(request)
     return render(request, 'ideax/index.html')
 
-def invite(request):
-    return render(request, 'ideax/invite.html')
-
 def get_page_body(boxes):
     for box in boxes:
         if box.element_tag == 'body':

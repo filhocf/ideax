@@ -203,7 +203,7 @@ iframe#bot-iframe {
   height: 30px;
   position: fixed;
   bottom: 0;
-  right: 26px;
+  right: 27px;
   border: 1px solid black;
   text-align: center;
   font-size: 1.8em;
@@ -1608,4 +1608,47 @@ div.idea-form-body .form-group select {
 
 .title-modal-term {
   font-weight: bold;
+}
+
+.invite{
+  background-image: url("../images/grey-logo.png");
+  width: 730px;
+  height: 560px;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: 53px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 30px;
+}
+
+.invite-body{
+  text-align: center;
+}
+
+.invite-body div{
+  display: inline;
+}
+
+.invite-footer img{
+  height: auto;
+  width: 70px
+}
+
+.invite-footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+
+.invite-footer .dep-info{
+  font-size: 12px;
+}
+
+.invite-footer .dep-info p{
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
 }

@@ -1,0 +1,35 @@
+{% load staticfiles i18n %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="{% static 'css/idea.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'css/ideax.bootstrap.min.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/idea.theme.css' %}">
+  <link rel="stylesheet" href="{% static 'css/idea.css' %}">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+</head>
+
+<body>
+    <div class="invite">
+        <h1>Convite</h1>
+        <div class="invite-body">
+            O Departamento de Inovação da Dataprev convida a todos para a <div class="bold">DEFESA DOS CONCEITOS DAS IDEIAS DA N RODADA DO CICLO DE IDEAÇÃO,</div> que ocorrerá em <div class="bold">data e horário do evento</div>, no local <div class="bold">local onde ocorrerá o evento</div>. Para mais informações sobre as Ideias que serão apresentadas, favor acessar o endereço <div class="bold">URL do Relatório de Ideias do Conceito no IdeiaX</div>
+        </div>
+        <div class="invite-footer">
+            <img src="{% static 'images/idea_launch.png' %}" alt="">
+            <div class="dep-info">
+                <p>DEIN - Departamento de Inovação</p>
+                <p>DIEP - Divisão de Estruturação, Processos e Tecnologia para inovação</p>
+                <p>DATAPREV</p>
+            </div>
+        </div>
+    </div>    
+</body>
+
+</html>

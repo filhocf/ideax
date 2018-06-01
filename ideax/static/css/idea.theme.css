@@ -116,8 +116,11 @@ body {
 }
 
 .fab-button {
-  margin-bottom: 70px;
-  
+  display: inline-block;
+  position: fixed;
+  bottom: 8%;
+  right: 14vw;
+  z-index: 50;
 }
 
 .fab-button a.btn {
@@ -127,6 +130,7 @@ body {
   border-radius: 50%;
   height: 70px;
   width: 70px;
+
 }
 
 .dropdown-toggle::after {

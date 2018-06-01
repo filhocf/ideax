@@ -116,8 +116,11 @@
           </div>
         </div>
         <div class="tab-pane fade" id="evaluation" role="tabpanel" aria-labelledby="evaluation-tab">
-          {%if request.user.userprofile.manager %} {% include 'ideax/includes/evaluation.html' %} {%else%} {% include 'ideax/includes/evaluation_detail.html'
-          %} {%endif%}
+          {%if request.user.userprofile.manager %} 
+            {% include 'ideax/includes/evaluation.html' %} 
+          {%else%} 
+            {% include 'ideax/includes/evaluation_detail.html' %}
+          {%endif%}
         </div>
       </div>
     </div>

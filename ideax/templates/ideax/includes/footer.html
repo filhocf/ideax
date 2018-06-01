@@ -1,8 +1,17 @@
 {% load staticfiles i18n %}
 
 {% include 'ideax/includes/chatbot.html' %}
-<footer {% if not user.is_authenticated %}class="landing-page"{% endif %} >
-    <div class="logo">
-      <p class="alpha-version">Idea<sup>X</sup> - {% trans 'Software in beta stage' %}</p>
-    </div>
-</footer>
+
+{% if not user.is_authenticated %}
+  <nav class="navbar fixed-bottom navbar-dark bg-dark footer shadow-sm">
+    <span class="navbar-text mx-auto">
+        <span class="alpha-version">Idea<sup>X</sup> - Software in alpha stage</span>
+    </span>
+  </nav>
+{% else %}
+  <nav class="navbar fixed-bottom navbar-light bg-light footer shadow-sm">
+    <span class="navbar-text mx-auto">
+        <span class="alpha-version">Idea<sup>X</sup> - Software in alpha stage</span>
+    </span>
+  </nav>
+{% endif %}

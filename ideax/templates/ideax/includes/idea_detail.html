@@ -41,8 +41,30 @@
   
   <div class="card-footer">
     <div class="row">
-      <div class="col-sm-12 text-right">
-          <a href="#"><small class="text-muted">{% trans 'By' %} @{{idea.author.user}}</small></a>
+      <div class="col-sm-8 text-left">
+        <button class="btn btn-link"><small class="text-muted">{% trans 'By' %} @{{idea.author.user}}</small></button>
+          <!-- <a href="#"><small class="text-muted">{% trans 'By' %} @{{idea.author.user}}</small></a> -->
+      </div>
+      <div class="col-sm-4 text-right pl-1">
+          <div class="btn-group dropup">
+            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-bars"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right text-right">
+              <h6 class="dropdown-header">Idea Stage</h6>
+              <button class="dropdown-item" type="button">Discussion</button>
+              <button class="dropdown-item" type="button">Evaluation</button>
+              <button class="dropdown-item" type="button">Approval</button>
+              <button class="dropdown-item" type="button">Evolution</button>
+              <button class="dropdown-item" type="button">Done</button>
+              <button class="dropdown-item" type="button">Archived</button>
+              <button class="dropdown-item" type="button">Paused</button>
+              <div class="dropdown-divider"></div>
+              <h6 class="dropdown-header">Actions</h6>
+              <button class="dropdown-item" type="button">Edit</button>
+              <button class="dropdown-item" type="button">Delete</button>
+            </div>
+          </div>
       </div>
     </div>
   </div>

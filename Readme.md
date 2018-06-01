@@ -22,13 +22,29 @@ More informations, read the docs in ```docs``` directory.
 
 `virtualenv -p python3 ~/Dev/ideax`
 
+* Activate virtualenv
+
+`source ~/Dev/ideax/bin/activate`
+
 * Install IdeaX dependencies:
 
 `pip3 install -r requirements.txt`
 
-* Activate virtualenv
+* Create a new `.env` file based on `env.example` and adjust parameters based on your environment:
 
-`source ~/Dev/ideax/bin/activate`
+`cp env.example .env`
+
+* Run migrations:
+
+`./manage.py migrate`
+
+* Create a superuser:
+
+`.manage.py createsuperuser`
+
+* Load sample data:
+
+`./manage.py loaddata ./docker/initialdata.json`
 
 * Start server:
 

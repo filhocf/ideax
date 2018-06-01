@@ -5,6 +5,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from . import views
+from ideax.feeds import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,6 +36,9 @@ urlpatterns = [
     path('idea/evaluation/<int:idea_pk>/', views.idea_evaluation, name='evaluation'),
     path('term/accept', views.accept_use_term, name="accept_term"),
     path('term', views.get_term_of_user, name="term_of_use"),
+    path('feed/comment/latest',Comment_Feed()),
+    path('feed/idea/latest', New_Idea_Feed()),
+   
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -3,10 +3,12 @@ from django.utils import timezone
 from enum import Enum
 from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.signals import user_logged_in
+from django.urls import reverse
 from decouple import config
 import random
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+
 
 def check_user_profile(sender, user, request, **kwargs):
     try:
@@ -116,6 +118,8 @@ class Idea(models.Model):
         return self.phase_history_set.get(current=True)
     def get_current_phase(self):
         return Phase.get_phase_by_id(self.phase_history_set.get(current=True).current_phase)
+    def get_absolute_url(self):
+        return "/idea/%i/" % self.id
 
 class Vote(models.Model):
     evaluation_item = models.ForeignKey(Evaluation_Item,on_delete=models.PROTECT)
@@ -142,6 +146,8 @@ class Comment(MPTTModel):
 
     class MPTTMeta:
         order_insertion_by = ['-date']
+
+    
 
 class UserProfile (models.Model):
     user = models.OneToOneField('auth.User',on_delete=models.PROTECT)

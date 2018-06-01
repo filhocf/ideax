@@ -62,13 +62,11 @@
       </nav>
 
       {% if user.is_authenticated %}
-      <div class="fab-button fixed-bottom">
-        <div class="container">
-          <div class="text-right">
-            <a class="btn btn-primary" href="/idea/new/" title="{% trans 'New Idea' %}"><i class="fas fa-lightbulb fa-2x"></i></a>
-          </div>
-        </div>
+      {% if user.is_authenticated %}
+      <div class="fab-button">
+        <a class="btn btn-primary" href="/idea/new/" title="{% trans 'New Idea' %}"><i class="fas fa-lightbulb fa-2x"></i></a>
       </div>
+      {% endif %}
       {% endif %}
       
       <div class="content ideax-body {% if user.is_authenticated %}container-fluid{% endif %}">

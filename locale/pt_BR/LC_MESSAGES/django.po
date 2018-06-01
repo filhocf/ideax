@@ -7,18 +7,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-
-"POT-Creation-Date: 2018-05-16 16:26-0300\n"
+"POT-Creation-Date: 2018-06-01 15:24-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
-
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 2.0.7\n"
+
+#: ideax/feeds.py:18
+msgid "Comment by: "
+msgstr "Comentário por: "
 
 #: ideax/forms.py:10 ideax/forms.py:24 ideax/forms.py:38
 msgid "Title"
@@ -69,79 +71,66 @@ msgstr "Peso"
 
 #: ideax/forms.py:31 ideax/forms.py:38
 #: ideax/templates/ideax/idea_detail.html:57
-#: ideax/templates/ideax/includes/_idea_detail.html:47
 #: ideax/templates/ideax/includes/partial_category_list.html:6
 msgid "Description"
 msgstr "Descrição"
 
-
-#: ideax/templates/ideax/base.html:43
-
-#: ideax/models.py:22 ideax/templates/ideax/idea_list.html:12
-#: ideax/templates/ideax/includes/_idea_detail.html:19
+#: ideax/models.py:24 ideax/templates/ideax/includes/idea_detail.html:55
 msgid "Discussion"
 msgstr "Discussão"
 
-#: ideax/models.py:23 ideax/templates/ideax/idea_detail.html:49
-#: ideax/templates/ideax/idea_list.html:13
-#: ideax/templates/ideax/includes/_idea_detail.html:20
-#: ideax/templates/ideax/includes/evaluation_detail.html:6
+#: ideax/models.py:25 ideax/templates/ideax/idea_detail.html:63
+#: ideax/templates/ideax/includes/idea_detail.html:56
 msgid "Evaluation"
 msgstr "Avaliação"
 
-#: ideax/models.py:24 ideax/templates/ideax/idea_list.html:14
-#: ideax/templates/ideax/includes/_idea_detail.html:21
+#: ideax/models.py:26 ideax/templates/ideax/includes/idea_detail.html:57
 msgid "Approval"
 msgstr "Aprovação"
 
-#: ideax/models.py:25
+#: ideax/models.py:27 ideax/templates/ideax/includes/idea_detail.html:58
 msgid "Evolution"
 msgstr "Evolução"
 
-#: ideax/models.py:26
+#: ideax/models.py:28 ideax/templates/ideax/includes/idea_detail.html:59
 msgid "Done"
 msgstr "Feitas"
 
-#: ideax/models.py:27 ideax/templates/ideax/idea_list.html:17
-#: ideax/templates/ideax/includes/_idea_detail.html:24
+#: ideax/models.py:29 ideax/templates/ideax/includes/idea_detail.html:60
 msgid "Archived"
 msgstr "Arquivadas"
 
-#: ideax/models.py:28
+#: ideax/models.py:30 ideax/templates/ideax/includes/idea_detail.html:61
 msgid "Paused"
 msgstr "Pausadas"
 
-#: ideax/templates/ideax/base.html:25
-msgid "New Idea"
-msgstr "Criar Ideia"
-
-#: ideax/templates/ideax/base.html:30
-
+#: ideax/templates/ideax/base.html:44
 #, python-format
 msgid "Hi, %(name)s!"
 msgstr "Olá, %(name)s!"
 
-#: ideax/templates/ideax/base.html:50 ideax/templates/ideax/idea_list.html:6
+#: ideax/templates/ideax/base.html:51 ideax/templates/ideax/idea_list.html:6
 msgid "Explore Ideas"
 msgstr "Explorar Ideias"
 
-#: ideax/templates/ideax/base.html:51
+#: ideax/templates/ideax/base.html:52
 msgid "Users"
 msgstr "Usuários"
 
-#: ideax/templates/ideax/base.html:52
+#: ideax/templates/ideax/base.html:53
 msgid "Terms of Use and Privacy"
 msgstr "Termo de uso já aceito"
 
-#: ideax/templates/ideax/base.html:53
+#: ideax/templates/ideax/base.html:54
 msgid "Logout"
 msgstr "Sair"
 
-#: ideax/templates/ideax/base.html:60
+#: ideax/templates/ideax/base.html:61
+#: ideax/templates/ideax/includes/chatbot.html:5
 msgid "Help"
 msgstr "Ajuda"
 
-#: ideax/templates/ideax/base.html:63
+#: ideax/templates/ideax/base.html:64
 msgid "Login"
 msgstr "Entrar"
 
@@ -149,15 +138,15 @@ msgstr "Entrar"
 msgid "New Idea"
 msgstr "Criar Ideia"
 
-#: ideax/templates/ideax/base.html:89 ideax/templates/ideax/base.html:93
+#: ideax/templates/ideax/base.html:88 ideax/templates/ideax/base.html:92
 msgid "Terms of use"
 msgstr "Termo de uso"
 
-#: ideax/templates/ideax/base.html:96
+#: ideax/templates/ideax/base.html:95
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ideax/templates/ideax/base.html:97
+#: ideax/templates/ideax/base.html:96
 msgid "Accept"
 msgstr "Aceitar"
 
@@ -166,7 +155,7 @@ msgid "Update Category"
 msgstr "Atualizar Categoria"
 
 #: ideax/templates/ideax/category_edit.html:11
-#: ideax/templates/ideax/idea_edit.html:18
+#: ideax/templates/ideax/idea_edit.html:16
 #: ideax/templates/ideax/includes/partial_idea_update.html:22
 msgid "Update"
 msgstr "Atualizar"
@@ -190,6 +179,7 @@ msgid "New Criterion"
 msgstr "Novo Critério"
 
 #: ideax/templates/ideax/criterion_list.html:9
+#: ideax/templates/ideax/includes/idea_detail.html:64
 #: ideax/templates/ideax/includes/partial_category_list.html:8
 #: ideax/templates/ideax/phase_list.html:8
 msgid "Edit"
@@ -217,6 +207,7 @@ msgstr "Gestão de ideias"
 
 #: ideax/templates/ideax/idea_detail.html:21
 #: ideax/templates/ideax/includes/idea_detail.html:45
+#: ideax/templates/ideax/includes/idea_detail.html:46
 msgid "By"
 msgstr "Por"
 
@@ -236,25 +227,13 @@ msgstr "Compartilhar"
 msgid "Comments"
 msgstr "Comentários"
 
-#: ideax/templates/ideax/idea_detail.html:63
-#: ideax/templates/ideax/includes/_idea_detail.html:20
-msgid "Evaluation"
-msgstr "Avaliação"
-
-#: ideax/templates/ideax/idea_detail.html:46
-#, fuzzy
-#| msgid "Comment"
-msgid "Comments"
-msgstr "Comentar"
-
-#: ideax/templates/ideax/idea_edit.html:12
-#: ideax/templates/ideax/includes/partial_idea_update.html:8
+#: ideax/templates/ideax/idea_edit.html:7
 #, fuzzy
 #| msgid "Update_Idea"
-msgid "Update Idea"
+msgid "Edit Idea"
 msgstr "Atualizar Ideia"
 
-#: ideax/templates/ideax/idea_edit.html:17
+#: ideax/templates/ideax/idea_edit.html:15
 #: ideax/templates/ideax/idea_new.html:13
 msgid "Return"
 msgstr "Voltar"
@@ -284,72 +263,29 @@ msgstr "Pesquisar"
 msgid "Create Idea"
 msgstr "Cadastrar Ideia"
 
-
-#: ideax/templates/ideax/includes/_idea_detail.html:19
-msgid "Discussion"
-msgstr "Discussão"
-
-#: ideax/templates/ideax/includes/_idea_detail.html:21
-msgid "Approval"
-msgstr "Aprovação"
-
-#: ideax/templates/ideax/idea_list.html:15
-
-#: ideax/templates/ideax/includes/_idea_detail.html:22
-msgid "Development"
-msgstr "Evolução"
-
-#: ideax/templates/ideax/includes/_idea_detail.html:23
-msgid "Finished"
-msgstr "Feita"
-
-
-#: ideax/templates/ideax/includes/_idea_detail.html:24
-msgid "Archived"
-msgstr "Arquivadas"
-
-#: ideax/templates/ideax/idea_new.html:11
-#: ideax/templates/ideax/includes/partial_idea_create.html:10
-msgid "Create Idea"
-msgstr "Cadastrar ideia"
-
-#: ideax/templates/ideax/includes/_idea_detail.html:25
-msgid "Freezed"
-msgstr "Pausadas"
-
-#: ideax/templates/ideax/includes/empty.html:2
+#: ideax/templates/ideax/includes/empty.html:5
 msgid "There are no ideas at this stage!"
 msgstr "Não existem ideias nesta etapa!"
-
-#: ideax/templates/ideax/includes/_idea_detail.html:46
-msgid "Author"
-msgstr "Autor"
-
-#: ideax/templates/ideax/includes/_idea_detail.html:50
-msgid "Read more"
-msgstr "Ler mais"
-
-#: ideax/templates/ideax/includes/chatbot.html:5
-msgid "Help"
-msgstr "Ajuda"
-
-#: ideax/templates/ideax/includes/evaluation_detail.html:7
-msgid "Total Score"
-msgstr "Pontuação Total"
-
 
 #: ideax/templates/ideax/includes/evaluation_detail.html:24
 msgid "Evaluation not yet done"
 msgstr "Avaliação não realizada"
 
-
 #: ideax/templates/ideax/includes/idea_detail.html:19
 msgid "Details..."
 msgstr "Detalhes…"
 
-#: ideax/templates/ideax/includes/footer.html:5
-msgid "Software in beta stage"
-msgstr "Software em estágio beta"
+#: ideax/templates/ideax/includes/idea_detail.html:54
+msgid "Idea Stage"
+msgstr "Fase da Ideia"
+
+#: ideax/templates/ideax/includes/idea_detail.html:63
+msgid "Actions"
+msgstr "Ações"
+
+#: ideax/templates/ideax/includes/idea_detail.html:65
+msgid "Delete"
+msgstr ""
 
 #: ideax/templates/ideax/includes/partial_category_list.html:7
 msgid "key_word"
@@ -393,11 +329,13 @@ msgstr "Deseja descartar a ideia:"
 msgid "Confirm"
 msgstr "Confirmar"
 
+#: ideax/templates/ideax/includes/partial_idea_update.html:8
+#, fuzzy
+#| msgid "Update_Idea"
+msgid "Update Idea"
+msgstr "Atualizar Ideia"
 
 #: ideax/templates/ideax/index.html:8
-msgid "Idea X sharing ideas!"
-
-#: ideax/templates/ideax/index.html:6
 msgid "Idea<sup>X</sup> sharing ideas!"
 msgstr "Ideia<sup>X</sup> compartilhando ideias!"
 
@@ -505,11 +443,15 @@ msgid "Sign in"
 msgstr "Acessar"
 
 #: ideax/views.py:44
-msgid "Term of use accept!"
+#, fuzzy
+#| msgid "Term of use accept!"
+msgid "Term of use accepted!"
 msgstr "Termo de uso aceito!"
 
 #: ideax/views.py:46
-msgid "Term of use already accepty!"
+#, fuzzy
+#| msgid "Term of use already accepty!"
+msgid "Term of use already accepted!"
 msgstr "Termo de uso já aceito!"
 
 #: ideax/views.py:121
@@ -547,3 +489,27 @@ msgstr "É necessário escrever um comentário."
 #: ideax/views.py:454
 msgid "Your comment has been posted."
 msgstr "Comentário postado com sucesso."
+
+#~ msgid "Development"
+#~ msgstr "Evolução"
+
+#~ msgid "Finished"
+#~ msgstr "Feita"
+
+#~ msgid "Freezed"
+#~ msgstr "Pausadas"
+
+#~ msgid "Author"
+#~ msgstr "Autor"
+
+#~ msgid "Read more"
+#~ msgstr "Ler mais"
+
+#~ msgid "Total Score"
+#~ msgstr "Pontuação Total"
+
+#~ msgid "Software in beta stage"
+#~ msgstr "Software em estágio beta"
+
+#~ msgid "Idea X sharing ideas!"
+#~ msgstr "idea X compartilhando ideias!"

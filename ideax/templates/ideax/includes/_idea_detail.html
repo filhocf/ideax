@@ -43,11 +43,11 @@
 
   <div class="idea-body" onclick="document.location.href='{% url 'idea_detail' pk=idea.pk %}'">
         <!-- <p class="idea-title"></p> -->
-    <p class="idea-author"><span class="bold">Autor: </span>{{idea.author.user.get_full_name}}</p>
+    <p class="idea-author"><span class="bold">{% trans 'Author' %}: </span>{{idea.author.user.get_full_name}}</p>
     <p class="idea-description"><span class="bold">{% trans 'Description' %}: </span>
       {%if idea.solution|length >= 400 %}
         {{ idea.solution|truncatechars:400 }}
-        <span class="read-more">Leia Mais</span>
+        <span class="read-more">{% trans 'Read more' %}</span>
       {%else%}
           {{ idea.solution }}
       {%endif%}

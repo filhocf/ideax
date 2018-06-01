@@ -51,11 +51,11 @@
               </div>
             </div>
             <div class="modal-body" id="modal-term-text">
-
+              {% trans 'Terms of use' %}
             </div>
             <div class="modal-footer">
               <a id="term-decline" class="term-btn" href="{% url 'logout' %}">{% trans 'Cancel' %}</a>
-              <a id="term-accept" class="term-btn" href="{% url 'accept_term' %}">{% trans 'Accept' %}</a>
+              <a id="term-accept" class="term-btn" href="{% url 'accept_term' %}">{% trans 'I agree' %}</a>
             </div>
           </div>
         </div>

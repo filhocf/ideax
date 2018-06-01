@@ -2,6 +2,6 @@
 {% include 'ideax/includes/chatbot.html' %}
 <footer {% if not user.is_authenticated %}class="landing-page"{% endif %} >
     <div class="logo">
-      <p class="alpha-version">Idea<sup>X</sup> - Software in alpha stage</p>
+      <p class="alpha-version">Idea<sup>X</sup> - {% trans 'Software in beta stage' %}</p>
     </div>
 </footer>

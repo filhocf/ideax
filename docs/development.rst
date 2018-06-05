@@ -8,6 +8,12 @@ Idea\ :sup:`X` is developed in python 3 with Django, so you need to prepare your
   $ python3 --version
   Python 3.6.5
 
+If you haven't python in your computer, install it first:
+.. code::
+
+  $ apt install python3 # for linux
+  $ brew install python3 # for mac
+
 After, clone the project in your computer:
 
 .. code::
@@ -18,8 +24,8 @@ Now, you need create your python environment and load it, using the package virt
 
 .. code::
 
-  $ sudo apt install python3-virtualenv
-  $ python3 -m venv ~/.env
+  $ sudo apt install virtualenv
+  $ virtualenv -p python3 ~/.env
   $ . ~/.env/bin/activate
 
 By end, to install the required packages:
@@ -33,6 +39,10 @@ By end, to install the required packages:
 Loading the system
 ------------------
 With the system installed, you need create a .env file into root directory, copying the file env.example and changing what is necessary.
+
+.. code::
+
+    $ cp env.example .env
 
 In .env file, you need to add a secret key. To generate it, type the following commands in prompt and, at end, will generate a long string. Copy it and past into .env file, for secret_key variable.
 
@@ -52,6 +62,7 @@ After, you need to create/populate the database, create a user and at end run th
   $ ./manage.py createsuperuser
   $ ./manage.py runserver
 
+
 Extra settings
 --------------
 If you want to work with LDAP or MySQL, you need to install some aditional development packages in your system. In a linux box:
@@ -62,5 +73,17 @@ If you want to work with LDAP or MySQL, you need to install some aditional devel
   $ sudo apt install libldap2-dev libsasl2-dev    # packages to work with LDAP
   $ pip install -r pyldap django-auth-ldap
   $ sudo apt install libmariadbclient-dev         # package to work with MySQL
-  $ pip install -r mysqlclient
-  $ sudo apt install gettext                      # package to work with localization (translation)
+  $ pip install mysqlclient
+
+To work with translations, you need to install gettext tool.
+
+.. code::
+
+  $ sudo apt install gettext  # for linux
+  $ brew install gettext      # for mac
+
+After, compile your messages.
+
+.. code::
+
+  $ ./manage.py compilemessages

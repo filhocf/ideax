@@ -16,3 +16,4 @@ lib/
 pip-selfcheck.json
 fixture.json
 .Python
+docs/_build/

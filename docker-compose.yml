@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  ideax:
+    image: dtplabs/ideax:0.5
+    volumes:
+      # Copy env.example to env and edit.
+      - ./env:/var/www/ideax/.env
+      - ideax_media:/var/www/ideax/media
+  # Databases PostgreSQL and Mysql
+  mydb:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql_password
+    volumes:
+      - my_data:/var/lib/mysql
+volumes:
+  ideax_media:
+  my_data:
